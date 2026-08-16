@@ -1,20 +1,27 @@
 \begin{figure}[H]
 \centering
 \begin{tikzpicture}[>=Stealth,scale=0.98]
-  \draw[->] (-5.5,0) -- (6.2,0) node[right] {eje óptico};
-  \draw[<->,very thick,blue] (-1.8,-2.3) -- (-1.8,2.3) node[above] {objetivo};
-  \filldraw[fill=gray!25,draw=black,thick] (4.2,-1.25) rectangle (4.45,1.25);
-  \node[right] at (4.45,0) {CCD};
-  \draw[<->] (4.85,-1.25) -- (4.85,1.25) node[midway,right] {$l$};
-  \draw[red,thick] (-1.8,0) -- (4.2,1.25);
-  \draw[red,thick] (-1.8,0) -- (4.2,-1.25);
-  \draw[red,dashed] (-1.8,0) -- (-5.1,0.69);
-  \draw[red,dashed] (-1.8,0) -- (-5.1,-0.69);
-  \draw (-3.4,0.34) arc[start angle=168.2,end angle=191.8,radius=1.63];
-  \node at (-3.75,0) {$\mathrm{FoV}$};
-  \draw[<->] (-1.8,-2.75) -- (4.2,-2.75)
+  \draw[->] (-5.6,0) -- (6.2,0) node[right] {eje óptico};
+  \fill[cyan!12] (-5.2,1.05) -- (-1.6,0) -- (-5.2,-1.05) -- cycle;
+  \filldraw[fill=cyan!18,draw=blue!65,thick]
+    (-1.6,-2.25) .. controls (-2.2,-1.1) and (-2.2,1.1) .. (-1.6,2.25)
+    .. controls (-1.0,1.1) and (-1.0,-1.1) .. cycle;
+  \node[above] at (-1.6,2.3) {objetivo};
+  \draw[dashed] (4.2,-1.65) -- (4.2,1.65) node[above] {plano focal};
+  \filldraw[fill=gray!25,draw=black,thick] (4.2,-1.25) rectangle (4.48,1.25);
+  \node[above] at (4.34,1.32) {CCD};
+  \draw[<->] (4.88,-1.25) -- (4.88,1.25) node[midway,right] {$l$};
+  \draw[red,very thick] (-1.6,0) -- (4.2,1.25);
+  \draw[red,very thick] (-1.6,0) -- (4.2,-1.25);
+  \draw[red,dashed] (-1.6,0) -- (-5.2,1.05);
+  \draw[red,dashed] (-1.6,0) -- (-5.2,-1.05);
+  \draw (-3.05,0.42) arc[start angle=163.7,end angle=196.3,radius=1.51];
+  \node[fill=cyan!12,inner sep=1pt] at (-3.55,0) {$\mathrm{FoV}$};
+  \node[align=center] at (-4.65,1.45) {porción de cielo\\registrada};
+  \draw[<->] (-1.6,-2.75) -- (4.2,-2.75)
     node[midway,fill=white] {$f_{\text{obj}}$};
-  \node[align=center] at (-4.5,1.35) {porción de cielo\\cubierta};
+  \node[draw,rounded corners,fill=white] at (1.35,2.6)
+    {$\mathrm{FoV}\simeq l/f_{\text{obj}}$};
 \end{tikzpicture}
 \caption{Campo de visión determinado por el tamaño del detector y la distancia focal.}
 \end{figure}

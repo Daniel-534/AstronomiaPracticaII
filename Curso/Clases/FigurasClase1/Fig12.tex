@@ -1,19 +1,32 @@
 \begin{figure}[H]
 \centering
 \begin{tikzpicture}[>=Stealth,scale=1.02]
-  \draw[->] (-6.2,0) -- (2,0) node[right] {eje óptico};
+  \draw[->] (-6.2,0) -- (1.55,0) node[right] {eje óptico};
   \draw[very thick] (-0.94,-3) .. controls (0.31,-1.5) and (0.31,1.5) .. (-0.94,3);
-  \foreach \y in {-2.2,-1.1,1.1,2.2}{
+  \node[align=center] at (0.55,2.45) {espejo\\esférico};
+  \foreach \y in {-2.2,-1.5,-0.8,0.8,1.5,2.2}{
     \draw[->,blue,thick] (-5.8,\y) -- ({-0.19-0.155*abs(\y)},\y);
   }
   \draw[->,red,thick] (-0.53,2.2) -- (-3.15,0);
-  \draw[->,red,thick] (-0.36,1.1) -- (-3.75,0);
-  \draw[->,red,thick] (-0.36,-1.1) -- (-3.75,0);
   \draw[->,red,thick] (-0.53,-2.2) -- (-3.15,0);
-  \fill (-3.75,0) circle (2pt) node[below=5pt] {$F_{\text{paraxial}}$};
-  \fill (-3.15,0) circle (2pt) node[above=5pt] {$F_{\text{marginal}}$};
-  \fill[orange,opacity=.28] (-3.45,-0.02) ellipse (0.48 and 0.25);
-  \node[orange!70!black] at (-2.75,-0.72) {zona focal};
+  \draw[->,orange!85!black,thick] (-0.42,1.5) -- (-3.45,0);
+  \draw[->,orange!85!black,thick] (-0.42,-1.5) -- (-3.45,0);
+  \draw[->,green!55!black,thick] (-0.31,0.8) -- (-3.75,0);
+  \draw[->,green!55!black,thick] (-0.31,-0.8) -- (-3.75,0);
+
+  \fill[orange,opacity=.22] (-3.45,0) ellipse (0.48 and 0.22);
+  \draw[dashed,red!70] (-3.15,-0.42) -- (-3.15,0.42);
+  \draw[dashed,green!60!black] (-3.75,-0.42) -- (-3.75,0.42);
+  \fill[red] (-3.15,0) circle (2pt);
+  \fill[green!55!black] (-3.75,0) circle (2pt);
+  \node[red,fill=white,inner sep=1pt,above right=2pt] at (-3.15,0)
+    {$F_m$};
+  \node[green!45!black,fill=white,inner sep=1pt,below left=2pt] at (-3.75,0)
+    {$F_p$};
+  \draw[<->,thick] (-3.75,1.35) -- (-3.15,1.35)
+    node[midway,above] {$\Delta f$};
+  \node[orange!70!black,fill=white,inner sep=1pt] at (-3.45,-1.25)
+    {zona focal extendida};
 \end{tikzpicture}
 \caption{Aberración esférica: los rayos marginales y paraxiales no comparten un único foco.}
 \end{figure}

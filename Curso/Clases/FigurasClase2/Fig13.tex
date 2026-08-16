@@ -1,6 +1,6 @@
 \begin{figure}[H]
 \centering
-\begin{tikzpicture}[x=0.65cm,y=1.25cm]
+\begin{tikzpicture}[x=0.65cm,y=2.8cm]
   \foreach \shift/\sep/\titulo in {0/3.2/{(a) Resueltas},6.0/1.7/{(b) Límite de Rayleigh},12.0/0.8/{(c) No resueltas}}{
     \begin{scope}[xshift=\shift cm]
       \draw[->] (-3.1,0) -- (3.2,0);
@@ -11,7 +11,7 @@
         plot (\x,{exp(-1.2*(\x-\sep/2)^2)});
       \draw[black,very thick,domain=-3:3,samples=120,smooth]
         plot (\x,{exp(-1.2*(\x+\sep/2)^2)+exp(-1.2*(\x-\sep/2)^2)});
-      \node[font=\bfseries] at (0,1.55) {\titulo};
+      \node[font=\bfseries] at (0,1.52) {\titulo};
     \end{scope}
   }
 \end{tikzpicture}

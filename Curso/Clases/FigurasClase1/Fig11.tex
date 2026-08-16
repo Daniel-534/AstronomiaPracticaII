@@ -1,21 +1,33 @@
 \begin{figure}[H]
 \centering
-\begin{tikzpicture}[scale=1.0]
-  \draw[->] (-8,0) -- (1.2,0) node[right] {eje óptico};
+\begin{tikzpicture}[>=Stealth,scale=0.98]
+  \draw[->] (-7.5,0) -- (1.25,0) node[right] {eje óptico};
   \draw[very thick] (-0.86,-3) .. controls (0.29,-1.5) and (0.29,1.5) .. (-0.86,3);
+  \node[align=center] at (0.55,2.45) {espejo\\cóncavo};
   \foreach \x/\lab in {0/V,-2/F,-4/C}{
-    \fill (\x,0) circle (1.5pt) node[below=4pt] {$\lab$};
+    \fill (\x,0) circle (1.7pt) node[above=4pt] {$\lab$};
   }
-  \draw[->,very thick] (-6.5,0) -- (-6.5,2.5) node[above] {objeto};
-  \draw[->,very thick] (-2.56,0) -- (-2.56,-0.94) node[below] {imagen};
-  \draw[->,blue,thick] (-6.5,2.5) -- (-0.51,2.5);
-  \draw[->,blue,thick] (-0.51,2.5) -- (-3.4,-2.35);
-  \draw[->,red,thick] (-6.5,2.5) -- (-2,0) -- (-0.31,-0.94);
-  \draw[->,red,thick] (-0.31,-0.94) -- (-6.0,-0.94);
-  \draw[<->] (-6.5,-2.75) -- (0,-2.75) node[midway,fill=white] {$d_o$};
-  \draw[<->] (-2.56,-2.25) -- (0,-2.25) node[midway,fill=white] {$d_i$};
-  \draw[<->] (-2,-1.75) -- (0,-1.75) node[midway,fill=white] {$f$};
-  \draw[<->] (-4,-1.25) -- (0,-1.25) node[midway,fill=white] {$R$};
+  \draw[->,very thick] (-6.4,0) -- (-6.4,2.4) node[above] {objeto};
+  \draw[->,very thick,orange!80!black] (-2.59,0) -- (-2.59,-0.93)
+    node[below] {imagen};
+
+  % Rayo paralelo que se refleja pasando por F.
+  \draw[->,blue,thick] (-6.4,2.4) -- (-0.48,2.4);
+  \draw[->,blue,thick] (-0.48,2.4) -- (-3.55,-2.45);
+
+  % Rayo que pasa por F y se refleja paralelo al eje.
+  \draw[->,green!55!black,thick] (-6.4,2.4) -- (-2,0) -- (-0.32,-0.93);
+  \draw[->,green!55!black,thick] (-0.32,-0.93) -- (-5.8,-0.93);
+
+  \draw[dashed,gray] (-6.4,0) -- (-6.4,-3.15);
+  \draw[dashed,gray] (-2.59,0) -- (-2.59,-2.7);
+  \draw[dashed,gray] (-2,0) -- (-2,-2.25);
+  \draw[dashed,gray] (-4,0) -- (-4,-1.8);
+  \draw[dashed,gray] (0,0) -- (0,-3.15);
+  \draw[<->] (-6.4,-3.1) -- (0,-3.1) node[midway,fill=white] {$d_o$};
+  \draw[<->] (-2.59,-2.65) -- (0,-2.65) node[midway,fill=white] {$d_i$};
+  \draw[<->] (-2,-2.2) -- (0,-2.2) node[midway,fill=white] {$f$};
+  \draw[<->] (-4,-1.75) -- (0,-1.75) node[midway,fill=white] {$R$};
 \end{tikzpicture}
 \caption{Formación de una imagen real, invertida y reducida en un espejo cóncavo.}
 \end{figure}
