@@ -1,0 +1,22 @@
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[>=Stealth,scale=0.92]
+  \draw[rounded corners,very thick,gray!65] (-5,-2.35) rectangle (5.5,2.35);
+  \draw[->] (-5.4,0) -- (7.2,0) node[right] {eje óptico};
+  \draw[very thick] (4.5,-2.0) .. controls (5.15,-1) and (5.15,-0.35) .. (4.55,-0.28);
+  \draw[very thick] (4.55,0.28) .. controls (5.15,0.35) and (5.15,1) .. (4.5,2.0);
+  \node[right,align=left] at (4.85,-1.55) {primario con\\orificio central};
+  \draw[very thick] (-0.9,-0.78) .. controls (-0.3,-0.4) and (-0.3,0.4) .. (-0.9,0.78);
+  \node[above,align=center] at (-0.65,0.86) {secundario\\convexo};
+  \foreach \y in {-1.35,1.35}{
+    \draw[->,blue,thick] (-4.8,\y) -- (4.62,\y);
+  }
+  \draw[red,thick] (4.62,1.35) -- (-0.65,0.55);
+  \draw[red,thick] (4.62,-1.35) -- (-0.65,-0.55);
+  \draw[->,green!60!black,thick] (-0.65,0.55) -- (6.25,0);
+  \draw[->,green!60!black,thick] (-0.65,-0.55) -- (6.25,0);
+  \filldraw[fill=gray!25] (6.15,-0.55) rectangle (6.4,0.55);
+  \node[above,align=center] at (6.28,0.62) {plano focal\\trasero};
+\end{tikzpicture}
+\caption{Trayectoria plegada de la luz en un telescopio Cassegrain.}
+\end{figure}

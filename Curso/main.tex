@@ -1,0 +1,81 @@
+\documentclass[a4paper,11pt]{report}
+
+\usepackage[spanish]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb,mathrsfs}
+\usepackage[margin=2cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage[shortlabels]{enumitem}
+\usepackage{parskip}
+\usepackage[most]{tcolorbox}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage[hidelinks]{hyperref}
+
+\usetikzlibrary{arrows.meta,babel,calc,decorations.pathreplacing,shapes.geometric}
+\pgfplotsset{compat=1.18}
+
+\newcommand{\dd}{\mathop{}\!\mathrm{d}}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[l]{Astonomía Práctica II}
+\fancyhead[c]{Notas de Clase}
+\fancyhead[r]{\today}
+\fancyfoot[c]{\thepage}
+\renewcommand{\headrulewidth}{0.2pt}
+\setlength{\headheight}{14pt}
+
+\begin{document}
+
+\hypersetup{pageanchor=false}
+\begin{titlepage}
+    \centering
+
+    \vspace*{2.2cm}
+
+    {\Large Universidad de Antioquia\par}
+    \vspace{0.3cm}
+    {\large Instituto de Física\par}
+
+    \vspace{2.2cm}
+
+    \rule{\textwidth}{1.2pt}
+    \vspace{0.6cm}
+
+    {\Huge\bfseries Curso de Astronomía Práctica II\par}
+    \vspace{0.5cm}
+    {\LARGE Notas de Clase\par}
+
+    \vspace{0.6cm}
+    \rule{\textwidth}{1.2pt}
+
+    \vfill
+
+    {\large\bfseries Autor\par}
+    \vspace{0.35cm}
+    {\Large Daniel Soto Villada\par}
+    \vspace{0.2cm}
+    {\large Estudiante de Astronomía\par}
+
+    \vfill
+
+    {\large \today\par}
+
+    \vspace*{1cm}
+\end{titlepage}
+
+\hypersetup{pageanchor=true}
+\pagenumbering{roman}
+\tableofcontents
+\clearpage
+\pagenumbering{arabic}
+
+\input{Clases/Clase1}
+\input{Clases/Clase2}
+
+
+\end{document}

@@ -1,0 +1,18 @@
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[>=Stealth,scale=1.05]
+  \draw[very thick] (-4,0) -- (4,0) node[right] {superficie};
+  \draw[dashed,thick] (0,-0.45) -- (0,3.4) node[above] {normal $\hat n$};
+  \draw[->,blue,very thick] (-3,3) -- (0,0)
+    node[pos=0.42,above left] {rayo incidente};
+  \draw[->,red,very thick] (0,0) -- (3,3)
+    node[pos=0.62,above right] {rayo reflejado};
+  \draw (0,1.0) arc[start angle=90,end angle=135,radius=1.0];
+  \node at (-0.48,1.28) {$\theta_i$};
+  \draw (0,1.0) arc[start angle=90,end angle=45,radius=1.0];
+  \node at (0.48,1.28) {$\theta_r$};
+  \node[fill=white,draw,rounded corners] at (0,-0.8)
+    {$\theta_i=\theta_r$};
+\end{tikzpicture}
+\caption{Ley de la reflexión; los ángulos se miden con respecto a la normal.}
+\end{figure}

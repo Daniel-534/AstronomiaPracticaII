@@ -1,0 +1,28 @@
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[>=Stealth,scale=0.93]
+  \begin{scope}[xshift=-4.7cm]
+    \node[font=\bfseries] at (2.5,2.8) {Sistema rápido: $f/4$};
+    \draw[<->,very thick,blue] (0,-2) -- (0,2);
+    \draw[->] (-0.6,0) -- (5.4,0);
+    \draw[red,thick] (0,2) -- (4,0);
+    \draw[red,thick] (0,-2) -- (4,0);
+    \fill (4,0) circle (2pt) node[above] {$F$};
+    \draw[<->] (0,-2.5) -- (4,-2.5) node[midway,fill=white] {$f_{\text{obj}}$};
+    \draw[<->] (-0.45,-2) -- (-0.45,2) node[midway,left] {$D$};
+  \end{scope}
+  \begin{scope}[xshift=3.0cm]
+    \node[font=\bfseries] at (4.2,2.8) {Sistema lento: $f/12$};
+    \draw[<->,very thick,blue] (0,-2) -- (0,2);
+    \draw[->] (-0.6,0) -- (9.0,0);
+    \draw[red,thick] (0,2) -- (8.2,0);
+    \draw[red,thick] (0,-2) -- (8.2,0);
+    \fill (8.2,0) circle (2pt) node[above] {$F$};
+    \draw[<->] (0,-2.5) -- (8.2,-2.5) node[midway,fill=white] {$f_{\text{obj}}$};
+    \draw[<->] (-0.45,-2) -- (-0.45,2) node[midway,left] {$D$};
+  \end{scope}
+  \node[draw,rounded corners,fill=white] at (2.3,-3.35)
+    {$f/\#=f_{\text{obj}}/D$};
+\end{tikzpicture}
+\caption{Comparación geométrica entre relaciones focales rápida y lenta.}
+\end{figure}

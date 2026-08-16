@@ -1,0 +1,22 @@
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[>=Stealth,scale=0.9]
+  \node[font=\bfseries] at (-4.7,2.5) {Reflexión especular};
+  \draw[very thick] (-7,0) -- (-2.4,0);
+  \foreach \x in {-6.5,-5.2,-3.9}{
+    \draw[->,blue,thick] (\x-1.0,1.5) -- (\x,0);
+    \draw[->,red,thick] (\x,0) -- (\x+1.0,1.5);
+  }
+  \node[font=\bfseries] at (3.3,2.5) {Reflexión difusa};
+  \draw[very thick] (1,0) -- (1.4,0.12) -- (1.8,-0.08) --
+    (2.2,0.15) -- (2.6,-0.1) -- (3,0.08) -- (3.4,-0.12) --
+    (3.8,0.14) -- (4.2,-0.04) -- (4.6,0.1) -- (5,0);
+  \foreach \x in {1.6,3,4.4}{
+    \draw[->,blue,thick] (\x-0.9,1.5) -- (\x,0.03);
+  }
+  \draw[->,red,thick] (1.6,0.03) -- (0.8,1.55);
+  \draw[->,red,thick] (3,0.03) -- (3.4,1.7);
+  \draw[->,red,thick] (4.4,0.03) -- (5.8,1.2);
+\end{tikzpicture}
+\caption{Comparación entre reflexión especular y reflexión difusa.}
+\end{figure}

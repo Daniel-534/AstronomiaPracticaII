@@ -1,0 +1,15 @@
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[>=Stealth,scale=1.05]
+  \filldraw[fill=cyan!12,draw=black,very thick] (0,-2.3) -- (2.1,2.3) -- (4.2,-2.3) -- cycle;
+  \draw[->,very thick] (-3.2,0.3) -- (0.94,0.3);
+  \node[above] at (-1.5,0.3) {luz blanca};
+  \draw[white,line width=3pt] (0.94,0.3) -- (3.25,-0.2);
+  \draw[black!50,thin] (0.94,0.3) -- (3.25,-0.2);
+  \foreach \col/\yy/\name in {red/0.45/rojo,orange/0.15/naranja,yellow!80!black/-0.15/amarillo,green!60!black/-0.45/verde,blue/-0.75/azul,violet/-1.05/violeta}{
+    \draw[->,\col,very thick] (3.25,-0.2) -- (7.0,\yy);
+    \node[\col,anchor=west] at (7.05,\yy) {\name};
+  }
+\end{tikzpicture}
+\caption{Dispersión de la luz blanca al atravesar un prisma.}
+\end{figure}

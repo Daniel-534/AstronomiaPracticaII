@@ -1,0 +1,29 @@
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[>=Stealth,scale=0.95]
+  \draw[->] (-4.5,0) -- (7.5,0) node[right] {eje óptico};
+  \filldraw[fill=cyan!18,draw=blue!65,thick]
+    (-1.8,-2) .. controls (-2.45,-1) and (-2.45,1) .. (-1.8,2)
+    .. controls (-1.15,1) and (-1.15,-1) .. cycle;
+  \node[above] at (-1.8,2.05) {objetivo};
+  \foreach \y in {-1.2,0,1.2}{
+    \draw[->,blue,thick] (-4.2,\y) -- (-1.8,\y);
+    \draw[red,thick] (-1.8,\y) -- (3.4,0);
+  }
+  \draw[dashed] (3.4,-1.6) -- (3.4,1.6);
+  \draw[->,very thick] (3.4,0.6) -- (3.4,-0.6);
+  \node[below] at (3.4,-0.65) {imagen primaria};
+  \filldraw[fill=cyan!15,draw=blue!65,thick]
+    (4.45,-1.15) .. controls (4.1,-0.55) and (4.1,0.55) .. (4.45,1.15)
+    .. controls (4.8,0.55) and (4.8,-0.55) .. cycle;
+  \node[above] at (4.45,1.2) {ocular};
+  \draw[->,red,thick] (3.4,0) -- (4.45,0.58) -- (6.2,1.0);
+  \draw[->,red,thick] (3.4,0) -- (4.45,-0.58) -- (6.2,-1.0);
+  \draw (6.6,0) ellipse (0.25 and 0.5);
+  \fill (6.6,0) circle (0.11);
+  \draw[<->] (-1.8,-2.6) -- (3.4,-2.6) node[midway,fill=white] {$f_{\text{obj}}$};
+  \draw[<->] (3.4,-2.1) -- (4.45,-2.1) node[midway,below] {$f_{\text{oc}}$};
+  \node[draw,rounded corners] at (1.8,2.65) {$M=f_{\text{obj}}/f_{\text{oc}}$};
+\end{tikzpicture}
+\caption{Magnificación angular producida por el ocular.}
+\end{figure}

@@ -1,0 +1,21 @@
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[>=Stealth,scale=0.98]
+  \draw[->] (-5,0) -- (6,0) node[right] {eje óptico};
+  \draw[<->,very thick,blue] (0,-2.5) -- (0,2.5) node[above] {objetivo};
+  \draw[dashed] (4.3,-2.5) -- (4.3,2.5) node[above] {plano focal};
+  \foreach \y in {-1.5,-0.6,0.3,1.2}{
+    \draw[->,blue!70,thick] (-4.6,\y+1.15) -- (0,\y);
+    \draw[red,thick] (0,\y) -- (4.3,-1.08);
+  }
+  \draw[red,thick] (-4.6,1.15) -- (0,0) -- (4.3,-1.08);
+  \fill[red] (4.3,-1.08) circle (2.5pt) node[right] {imagen};
+  \draw[<->] (4.75,0) -- (4.75,-1.08) node[midway,right] {$s$};
+  \draw (1.2,0) arc[start angle=0,end angle=-14.1,radius=1.2];
+  \node at (1.55,-0.2) {$\alpha$};
+  \draw[<->] (0,-2.9) -- (4.3,-2.9) node[midway,fill=white] {$f_{\text{obj}}$};
+  \node[draw,rounded corners] at (2.15,2.9)
+    {$s=f_{\text{obj}}\tan\alpha\simeq f_{\text{obj}}\alpha$};
+\end{tikzpicture}
+\caption{Formación de la imagen de una fuente puntual fuera del eje.}
+\end{figure}

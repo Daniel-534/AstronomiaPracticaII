@@ -1,0 +1,195 @@
+\chapter{Clase 1}
+
+\section{Introducción a la Óptica}
+
+La óptica es la rama de la física que se encarga del estudio del comportamiento y las propiedades de la luz. Para comprender los instrumentos astronómicos, es indispensable dominar los principios fundamentales de la óptica, pues todo telescopio opera manipulando la luz mediante reflexión, refracción o dispersión.
+
+Antes de abordar la óptica propiamente dicha, conviene recordar qué es una onda. Una \textbf{onda} es la propagación de una determinada perturbación (producida en un punto denominado \textit{foco}), en la que se produce un transporte de energía pero no de materia. La luz, en particular, es una onda electromagnética: una oscilación acoplada de campos eléctricos y magnéticos que se propaga en el vacío a velocidad $c \approx 3\times10^{8}$~m/s.
+
+\subsection{Características de una onda}
+
+Toda onda se describe mediante las siguientes magnitudes:
+
+\begin{itemize}
+    \item \textbf{Amplitud} ($A$): desplazamiento máximo de la perturbación respecto a la posición de equilibrio.
+    \item \textbf{Longitud de onda} ($\lambda$): distancia entre dos puntos consecutivos en fase (por ejemplo, cresta a cresta).
+    \item \textbf{Frecuencia} ($\nu$): número de ciclos completos por unidad de tiempo, medida en hertz (Hz).
+    \item \textbf{Período} ($T$): tiempo que tarda un ciclo completo; $T=1/\nu$.
+    \item \textbf{Velocidad de propagación} ($v$): rapidez con la que el frente de onda avanza. En el vacío, $v=c$.
+\end{itemize}
+
+Estas cantidades se relacionan mediante
+
+$$v = \lambda\,\nu$$
+
+\input{Clases/FigurasClase1/Fig1}
+
+\subsection{El espectro electromagnético}
+
+La luz visible es solo una pequeña porción del espectro electromagnético, que abarca desde ondas de radio (longitudes de onda de kilómetros) hasta rayos gamma (longitudes de onda inferiores a $10^{-12}$~m). De mayor a menor longitud de onda, las regiones son: ondas de radio, microondas, infrarrojo, visible, ultravioleta, rayos X y rayos gamma. En astronomía, los telescopios se diseñan para operar en ventanas específicas de este espectro según el fenómeno que se desee observar.
+
+\section{Tipos de Óptica}
+
+Existen dos grandes aproximaciones para el estudio de la luz:
+
+\begin{itemize}
+    \item \textbf{Óptica geométrica} (o de rayos): se basa en el concepto de \textit{rayo luminoso} como la trayectoria que sigue la luz. No se preocupa por la naturaleza ondulatoria de la luz; trata la propagación como líneas rectas que cambian de dirección al encontrar superficies. Es la aproximación válida cuando las dimensiones de los objetos son mucho mayores que $\lambda$.
+    \item \textbf{Óptica física} (u ondulatoria): estudia los fenómenos luminosos en términos de ondas e investiga la naturaleza de la luz. Es necesaria para explicar difracción, interferencia y polarización.
+\end{itemize}
+
+Los tres fenómenos fundamentales que gobiernan el comportamiento de la luz al interactuar con la materia son: \textbf{reflexión}, \textbf{refracción} y \textbf{dispersión}.
+
+\section{Reflexión}
+
+La \textbf{reflexión} de la luz es el cambio en la dirección que experimenta un rayo cuando incide sobre una superficie opaca, de modo que el rayo regresa al medio del cual provino.
+
+\subsection{Tipos de reflexión}
+
+\begin{itemize}
+    \item \textbf{Reflexión especular}: ocurre sobre superficies lisas y pulidas (como un espejo). Los rayos paralelos incidentes se reflejan todos en la misma dirección, conservando el paralelismo. Se obtiene una imagen nítida.
+    \item \textbf{Reflexión difusa}: ocurre sobre superficies rugosas o irregulares. Los rayos paralelos incidentes se reflejan en direcciones distintas, dispersándose. No se forma imagen, pero permite que veamos los objetos desde cualquier ángulo.
+\end{itemize}
+
+\input{Clases/FigurasClase1/Fig2}
+
+\subsection{Ley de la Reflexión}
+
+La ley de la reflexión establece dos condiciones:
+
+$$\theta_i = \theta_r$$
+
+donde $\theta_i$ es el ángulo de incidencia y $\theta_r$ es el ángulo de reflexión, ambos medidos respecto a la \textit{normal} a la superficie en el punto de incidencia. Además, el rayo incidente, la normal y el rayo reflejado son coplanares.
+
+\input{Clases/FigurasClase1/Fig3}
+
+\section{Refracción}
+
+La \textbf{refracción} es el cambio de dirección que experimenta una onda al pasar de un medio material a otro con distinto índice de refracción. Este cambio de dirección se debe a que la velocidad de la luz es diferente en cada medio.
+
+\subsection{Índice de refracción}
+
+El índice de refracción $n$ de un medio se define como
+
+$$n = \frac{c}{v}$$
+
+donde $c$ es la velocidad de la luz en el vacío y $v$ es la velocidad de la luz en el medio. Como $v \leq c$, siempre se cumple $n \geq 1$. Por ejemplo, $n_{\text{aire}}\approx1{,}0003$, $n_{\text{agua}}\approx1{,}33$, $n_{\text{vidrio}}\approx1{,}5$.
+
+\subsection{Ley de Snell}
+
+Cuando un rayo pasa de un medio con índice $n_1$ a otro con índice $n_2$, la relación entre los ángulos de incidencia $\theta_1$ y refracción $\theta_2$ (ambos respecto a la normal) está dada por
+
+$$n_1\,\sin\theta_1 = n_2\,\sin\theta_2$$
+
+Si $n_2 > n_1$ (el rayo entra a un medio más denso), el rayo se acerca a la normal ($\theta_2 < \theta_1$). Si $n_2 < n_1$, el rayo se aleja de la normal ($\theta_2 > \theta_1$).
+
+\input{Clases/FigurasClase1/Fig4}
+
+\subsection{Reflexión interna total}
+
+Cuando el rayo de luz parte de un medio más denso hacia otro menos denso (por ejemplo, del agua al aire), existe un \textbf{ángulo crítico} $\theta_c$ a partir del cual el rayo ya no se refracta, sino que se refleja completamente de vuelta al medio denso. El ángulo crítico se obtiene imponiendo $\theta_2=90^\circ$ en la ley de Snell:
+
+$$\sin\theta_c = \frac{n_2}{n_1}, \qquad n_1 > n_2$$
+
+Para ángulos de incidencia $\theta_1 > \theta_c$ se produce la \textbf{reflexión interna total}. Este principio es la base de funcionamiento de las fibras ópticas: la luz queda confinada dentro del núcleo de la fibra mediante reflexiones internas totales sucesivas.
+
+\input{Clases/FigurasClase1/Fig5}
+
+\section{Dispersión}
+
+La \textbf{dispersión} de la luz es la separación de un rayo de luz en sus componentes de color (frecuencias) debido a que cada longitud de onda experimenta un índice de refracción ligeramente distinto en el medio. El ejemplo clásico es un prisma de vidrio: la luz blanca incide y, al refractarse, cada color se desvía un ángulo diferente, produciendo un arcoíris. La luz violeta (menor $\lambda$) se desvía más que la roja (mayor $\lambda$) porque $n(\lambda_{\text{violeta}}) > n(\lambda_{\text{roja}})$.
+
+\input{Clases/FigurasClase1/Fig6}
+
+\section{Lentes}
+
+Una \textbf{lente} es un dispositivo óptico transmisor que enfoca o dispersa un haz de luz por medio de la refracción. Las lentes son el componente fundamental de los telescopios refractores y de los oculares. Sus funciones principales en un sistema óptico astronómico son:
+
+\begin{itemize}
+    \item Acumular la luz en una pequeña región (concentración).
+    \item Producir magnificación de los objetos.
+    \item Proveer poder de resolución.
+\end{itemize}
+
+\subsection{Tipos de lentes}
+
+\begin{itemize}
+    \item \textbf{Lentes convergentes (positivas)}: son más gruesas en el centro que en los bordes. Hacen converger los rayos paralelos en un punto focal real. Ejemplos: biconvexa, plano-convexa, menisco convergente.
+    \item \textbf{Lentes divergentes (negativas)}: son más delgadas en el centro. Hacen diverger los rayos paralelos como si provinieran de un punto focal virtual. Ejemplos: bicóncava, plano-cóncava, menisco divergente.
+\end{itemize}
+
+\input{Clases/FigurasClase1/Fig7}
+
+\subsection{Formación de imágenes con lentes}
+
+Para una lente delgada convergente de distancia focal $f$, la relación entre la distancia del objeto $d_o$, la distancia de la imagen $d_i$ y la distancia focal está dada por la \textbf{ecuación de la lente delgada}:
+
+$$\frac{1}{f} = \frac{1}{d_o} + \frac{1}{d_i}$$
+
+El \textbf{aumento lateral} es
+
+$$M = -\frac{d_i}{d_o}$$
+
+El signo negativo indica que la imagen está invertida cuando $M<0$.
+
+Para construir la imagen geométricamente se utilizan tres rayos principales:
+\begin{enumerate}
+    \item Un rayo paralelo al eje óptico que, tras atravesar la lente, pasa por el foco imagen $F'$.
+    \item Un rayo que pasa por el centro óptico de la lente sin desviarse.
+    \item Un rayo que pasa por el foco objeto $F$ y emerge paralelo al eje óptico.
+\end{enumerate}
+
+La intersección de estos rayos determina la posición y el tamaño de la imagen.
+
+\input{Clases/FigurasClase1/Fig8}
+
+\subsection{Aberración cromática en lentes}
+
+La \textbf{aberración cromática} es un tipo de distorsión óptica provocada por la imposibilidad de una lente para enfocar todos los colores (longitudes de onda) en un único punto de convergencia. Dado que el índice de refracción depende de $\lambda$ (dispersión), la distancia focal es ligeramente distinta para cada color: la luz azul se enfoca más cerca de la lente que la luz roja. El resultado es una imagen con bordes coloreados (franjas rojas/azules).
+
+\input{Clases/FigurasClase1/Fig9}
+
+\section{Espejos}
+
+Un \textbf{espejo} es una superficie pulida en la que, después de incidir, la luz se refleja siguiendo las leyes de la reflexión. En astronomía, los espejos son el componente principal de los telescopios reflectores, pues colectan luz sin introducir aberración cromática.
+
+\subsection{Tipos de espejos}
+
+\begin{itemize}
+    \item \textbf{Espejo plano}: la imagen es virtual, del mismo tamaño y simétrica respecto al plano del espejo.
+    \item \textbf{Espejo cóncavo} (convergente): la superficie reflectante es la interior de una casquete esférico. Concentra los rayos paralelos en un foco real.
+    \item \textbf{Espejo convexo} (divergente): la superficie reflectante es la exterior. Los rayos paralelos se reflejan divergiendo como si vinieran de un foco virtual detrás del espejo.
+\end{itemize}
+
+\input{Clases/FigurasClase1/Fig10}
+
+\subsection{Formación de imágenes con espejos esféricos}
+
+Para un espejo esférico de radio de curvatura $R$, la distancia focal es
+
+$$f = \frac{R}{2}$$
+
+y la ecuación del espejo es idéntica en forma a la de la lente delgada:
+
+$$\frac{1}{f} = \frac{1}{d_o} + \frac{1}{d_i}$$
+
+con la convención de signos apropiada (distancias positivas frente al espejo, negativas detrás). El aumento lateral es
+
+$$M = -\frac{d_i}{d_o}$$
+
+Los rayos principales para la construcción geométrica en un espejo cóncavo son:
+\begin{enumerate}
+    \item Rayo paralelo al eje que se refleja pasando por el foco $F$.
+    \item Rayo que pasa por $F$ y se refleja paralelo al eje.
+    \item Rayo que pasa por el centro de curvatura $C$ y se refleja sobre sí mismo.
+    \item Rayo que incide en el vértice y se refleja simétricamente respecto al eje.
+\end{enumerate}
+
+\input{Clases/FigurasClase1/Fig11}
+
+\subsection{Aberración esférica}
+
+La \textbf{aberración esférica} es un defecto óptico inherente a los espejos (y lentes) de superficie esférica. Los rayos paralelos que inciden cerca del borde del espejo no convergen exactamente en el mismo punto focal que los rayos que inciden cerca del eje óptico. El resultado es una imagen borrosa o con halos.
+
+\input{Clases/FigurasClase1/Fig12}
+
+Este defecto se corrige utilizando espejos con perfil parabólico (que enfocan todos los rayos paralelos en un único punto) o combinaciones de superficies (diseños Cassegrain, Ritchey-Chrétien, etc.), temas que se tratarán al estudiar los telescopios reflectores.

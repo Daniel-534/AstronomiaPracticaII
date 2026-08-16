@@ -1,0 +1,24 @@
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[>=Stealth,scale=1.0]
+  \draw[->] (-4,0) -- (7,0) node[right] {eje óptico};
+  \filldraw[fill=cyan!15,draw=blue!60,thick]
+    (0,-2.2) .. controls (-0.85,-1.1) and (-0.85,1.1) .. (0,2.2)
+    .. controls (0.85,1.1) and (0.85,-1.1) .. cycle;
+  \foreach \y in {-1.25,1.25}{
+    \draw[black!55,thick] (-3.7,\y) -- (0,\y);
+    \draw[blue,very thick] (0,\y) -- (3.0,0);
+    \draw[red,very thick] (0,\y) -- (4.65,0);
+  }
+  \fill[blue] (3,0) circle (2pt);
+  \fill[red] (4.65,0) circle (2pt);
+  \fill[yellow!65,opacity=.35] (3.82,0) ellipse (0.85 and 0.25);
+  \node[above,align=center] at (3.82,0.35) {región sin\\enfoque perfecto};
+  \draw[<->,blue] (0,-1.75) -- (3,-1.75) node[midway,below] {$f_{\text{azul}}$};
+  \draw[<->,red] (0,-2.2) -- (4.65,-2.2) node[midway,below] {$f_{\text{rojo}}$};
+  \draw[blue,opacity=.4,line width=3pt] (5.75,-0.55) -- (5.75,0.55);
+  \draw[red,opacity=.4,line width=3pt] (6.0,-0.55) -- (6.0,0.55);
+  \node[above,align=center] at (5.88,0.72) {imagen con\\bordes coloreados};
+\end{tikzpicture}
+\caption{Aberración cromática longitudinal en el objetivo de un refractor.}
+\end{figure}

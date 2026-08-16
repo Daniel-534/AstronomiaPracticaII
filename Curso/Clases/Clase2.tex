@@ -1,0 +1,467 @@
+\chapter{Clase 2}
+
+\section{Introducción: Funciones del Telescopio}
+
+Un dispositivo óptico astronómico tiene básicamente tres funciones fundamentales que cumplir:
+
+\begin{enumerate}
+    \item \textbf{Incrementar la cantidad de luz recolectada} proveniente de una fuente celeste.
+    \item \textbf{Aumentar el tamaño de la imagen} de los objetos observados.
+    \item \textbf{Incrementar el poder de resolución} del observador, es decir, la capacidad de distinguir detalles finos o separar objetos muy próximos entre sí.
+\end{enumerate}
+
+El telescopio se puede entender, en su forma más simple, como un \textbf{objetivo} (lente o espejo) que recolecta la luz proveniente de un objeto celeste y con ella forma una imagen que es recibida por un \textbf{detector} (ojo, placa fotográfica, CCD, etc.).
+
+\section{Características Básicas del Telescopio}
+
+Todo telescopio se describe mediante los siguientes elementos y parámetros:
+
+\begin{itemize}
+    \item \textbf{Objetivo}: es el elemento óptico principal (lente o espejo) que crea la \textit{imagen primaria}. Es el componente que recolecta la luz.
+    \item \textbf{Ocular}: amplía la imagen primaria para que el observador pueda verla con mayor detalle. En astronomía profesional los oculares casi no se utilizan; pocas personas los emplean en telescopios de más de un metro de diámetro. En su lugar se usan detectores electrónicos.
+    \item \textbf{Apertura o diámetro del objetivo} ($D$): determina la cantidad de luz que se capta. A mayor diámetro, mayor luz recolectada.
+    \item \textbf{Distancia focal del objetivo} ($f_{\text{obj}}$): determina el tamaño de la imagen formada. Se define como la distancia desde la lente (o espejo) hasta el punto donde los rayos paralelos convergen.
+    \item \textbf{Distancia focal del ocular} ($f_{\text{oc}}$): junto con la distancia focal del objetivo, determina la magnificación del telescopio.
+\end{itemize}
+
+\input{Clases/FigurasClase2/Fig1}
+
+\section{Telescopios Refractores}
+
+\subsection{Principio de funcionamiento}
+
+En un telescopio refractor, la luz recolectada por el objetivo (una lente o juego de lentes) se \textbf{refracta} mientras viaja a través de la lente y vuelve al aire, convergiendo a un punto focal donde se dará la formación de la imagen. El diseño más simple es el de una lente convergente como objetivo y una segunda lente (ocular) para magnificar la imagen.
+
+\input{Clases/FigurasClase2/Fig2}
+
+\subsection{Problema 1: Aberración cromática}
+
+La \textbf{aberración cromática} es un tipo de distorsión óptica provocada por la imposibilidad de una lente para enfocar todos los colores (longitudes de onda) en un único punto de convergencia. Dado que el índice de refracción del vidrio depende de $\lambda$ (dispersión), cada color tiene una distancia focal ligeramente distinta: la luz azul se enfoca más cerca de la lente que la roja. El resultado es una imagen con bordes coloreados (franjas rojas y azules) y pérdida de nitidez.
+
+\input{Clases/FigurasClase2/Fig3}
+
+\subsection{Problema 2: Peso y deformación}
+
+Para un telescopio muy grande, una lente no es una opción práctica por varias razones:
+
+\begin{itemize}
+    \item El \textbf{peso} de la lente crece rápidamente con el diámetro.
+    \item El \textbf{balance} del telescopio se ve comprometido, pues la lente solo puede sostenerse por sus bordes (a diferencia de un espejo, que puede soportarse por detrás).
+    \item La \textbf{deformación} de la lente bajo su propio peso se vuelve significativa para diámetros grandes (por ejemplo, $\sim$2~m), degradando la calidad de la imagen.
+\end{itemize}
+
+Estas limitaciones prácticas hacen que los telescopios refractores no sean viables más allá de aproximadamente 1 metro de apertura (el mayor refractor del mundo, el telescopio Yerkes, tiene 1,02~m).
+
+\section{Telescopios Reflectores}
+
+\subsection{Principio de funcionamiento}
+
+En un telescopio reflector, los rayos de luz se \textbf{reflejan} sobre la superficie del espejo primario, convergiendo en una región sobre la cual se formará la imagen del objeto que se observa. Los espejos no sufren aberración cromática porque la reflexión no depende de la longitud de onda. Además, un espejo puede sostenerse por toda su superficie posterior, lo que permite construcciones mucho más grandes.
+
+\input{Clases/FigurasClase2/Fig4}
+
+\subsection{Problema 1: Aberración esférica}
+
+La \textbf{aberración esférica} es un defecto óptico inherente a espejos con perfil esférico. Los rayos paralelos que inciden cerca del borde del espejo no convergen exactamente en el mismo punto focal que los rayos que inciden cerca del eje óptico. El resultado es una imagen borrosa con halos. Este defecto se corrige utilizando espejos con perfil \textbf{parabólico}, que enfocan todos los rayos paralelos al eje en un único punto.
+
+\input{Clases/FigurasClase2/Fig5}
+
+\subsection{Problema 2: Coma}
+
+La \textbf{coma} (o aberración de coma) es un defecto óptico que afecta a fuentes puntuales de luz, como las estrellas, y se manifiesta especialmente en los bordes del campo de visión. Las estrellas cercanas al borde de la imagen lucen como pequeños \textit{cometas} (de ahí el nombre), con una cola que apunta hacia el centro o hacia el borde del campo. La coma es particularmente problemática en telescopios con relaciones focales pequeñas (``rápidos'').
+
+Es importante la \textbf{colimación} del telescopio con frecuencia, es decir, alinear correctamente los espejos del telescopio utilizando un colimador láser para minimizar estos defectos.
+
+\input{Clases/FigurasClase2/Fig6}
+
+\section{Oculares}
+
+Los oculares son un tipo de lente o conjunto de lentes que se antepone al ojo del observador para ampliar la imagen formada por el objetivo. Se utilizan en instrumentos ópticos como microscopios, telescopios, cámaras fotográficas y teodolitos.
+
+En astronomía profesional, los oculares han sido reemplazados en gran medida por detectores electrónicos (CCD, CMOS). Sin embargo, siguen siendo fundamentales en astronomía amateur y en la inspección visual.
+
+\begin{itemize}
+    \item La cantidad de luz captada por el instrumento depende fundamentalmente de la \textbf{apertura} del mismo (el diámetro del objetivo).
+    \item Los rayos de luz de los objetos lejanos inciden sobre una lente o un espejo que crea una imagen en el foco del telescopio.
+    \item Otra lente con menor distancia focal (el ocular) la amplía.
+    \item Para visualizar las imágenes se utilizan los oculares, los cuales se disponen en el punto donde la luz es concentrada por el objetivo (\textbf{plano focal}). Son estos los que proporcionan la ampliación al telescopio.
+\end{itemize}
+
+\section{¿Cómo funciona un telescopio?}
+
+La idea principal en un telescopio astronómico es la \textbf{captación de la mayor cantidad de luz posible}, necesaria para poder observar objetos de bajo brillo superficial. A diferencia de la idea popular de que el telescopio ``acerca'' los objetos, su función primordial es reunir fotones. La magnificación es secundaria frente a la recolección de luz.
+
+El proceso básico es:
+\begin{enumerate}
+    \item La luz de un objeto lejano (efectivamente en el infinito) llega como frentes de onda planos (rayos paralelos).
+    \item El objetivo (lente o espejo) recolecta esa luz y la concentra en el plano focal, formando una imagen real.
+    \item Un ocular (o un detector) recibe esa imagen y la amplía o registra.
+\end{enumerate}
+
+\section{Relación Focal}
+
+La \textbf{relación focal} (o número $f$) es la relación entre la distancia focal del objetivo y su diámetro:
+
+$$f/\# \;=\; \frac{f_{\text{obj}}}{D}$$
+
+Por ejemplo: un telescopio con un objetivo de 100~cm de distancia focal y 10~cm de diámetro tiene una relación focal de $f/10$.
+
+\begin{itemize}
+    \item Cuanto más \textbf{pequeño} es el valor de $f/\#$, mayor será la \textbf{luminosidad} del sistema y mayor el \textbf{campo visual} que abarque en profundidad. Se dice que el telescopio es ``rápido''.
+    \item Un telescopio que se utilice preferentemente para el estudio de \textbf{objetos estelares débiles} (nebulosas, galaxias) conviene que tenga una relación focal comprendida entre $f/5$ y $f/8$.
+    \item Si el instrumento es empleado para la \textbf{observación planetaria}, donde la cantidad de luz a disposición es mayor y se tiene interés en obtener imágenes más grandes con mayor detalle, conviene adoptar telescopios con $f/12$ o más.
+\end{itemize}
+
+\input{Clases/FigurasClase2/Fig7}
+
+\section{Magnificación o Aumento}
+
+La \textbf{magnificación} (o aumento) de un telescopio está dada por la relación entre la distancia focal del objetivo y la del ocular:
+
+$$M = \frac{f_{\text{obj}}}{f_{\text{oc}}}$$
+
+Como el objetivo de un telescopio es fijo, para aumentar o reducir la magnificación \textbf{se cambia el ocular}. Un ocular de menor distancia focal produce mayor aumento.
+
+\textbf{Ejemplo:} Un telescopio cuyo objetivo tenga $f_{\text{obj}} = 2000$~mm de distancia focal, con un ocular de $f_{\text{oc}} = 25$~mm, da un aumento de
+
+$$M = \frac{2000}{25} = 80\times$$
+
+\input{Clases/FigurasClase2/Fig8}
+
+\section{Pupilas Ópticas}
+
+En un sistema óptico se definen dos pupilas fundamentales:
+
+\begin{itemize}
+    \item \textbf{Pupila de entrada}: es la imagen del objetivo del instrumento visto desde el plano del objeto. En la práctica, es el propio objetivo del telescopio (el borde físico de la lente o espejo que limita el haz de luz entrante).
+    \item \textbf{Pupila de salida}: es la imagen del objetivo del telescopio vista desde un punto en el eje óptico del lado de la imagen. Es el punto donde el observador debe colocar su ojo para recibir toda la luz. Se forma detrás del ocular.
+\end{itemize}
+
+El diámetro de la pupila de salida $d$ se relaciona con el diámetro del objetivo $D$ (pupila de entrada) y la magnificación $M$ mediante:
+
+$$d = \frac{D}{M} = \frac{D \cdot f_{\text{oc}}}{f_{\text{obj}}}$$
+
+\input{Clases/FigurasClase2/Fig9}
+
+\section{Diafragmas}
+
+En un sistema óptico existen dos tipos de diafragmas:
+
+\begin{itemize}
+    \item \textbf{Diafragma de apertura}: controla la cantidad de radiación que entra al telescopio. Limita el cono de luz aceptado por el sistema.
+    \item \textbf{Diafragma de campo}: está distribuido en el espacio de la imagen y controla la forma como se expanden los haces de luz en el instrumento. Define el campo de visión útil.
+\end{itemize}
+
+\section{Límites de la Magnificación}
+
+Existen condiciones que restringen qué tanta información se puede extraer de una imagen. En telescopios con oculares o binoculares:
+
+La pupila del ojo humano tiene aproximadamente:
+\begin{itemize}
+    \item $\sim 7$~mm de diámetro en condiciones de oscuridad (noche).
+    \item $\sim 4$~mm de diámetro en condiciones de luz (día).
+\end{itemize}
+
+Por ende, usar un instrumento cuya pupila de salida tenga un diámetro mayor de 7~mm no producirá mayor ganancia en las características de la imagen, ya que la luz que cae por fuera de la pupila del ojo no será detectada. Esto impone un \textbf{límite inferior para el aumento útil} de un telescopio que se usa para observar con el ojo:
+
+$$M_{\text{mín}} = \frac{D}{d_{\text{pupila}}} \approx \frac{D}{7~\text{mm}}$$
+
+donde $D$ es el diámetro del objetivo. Por debajo de este aumento, se está ``desperdiciando'' luz.
+
+En el otro extremo, existe un \textbf{límite superior} de aumento útil determinado por la difracción y la calidad óptica. Aumentos excesivos solo producen una imagen más grande pero más borrosa, sin información adicional. Una regla práctica es que el aumento máximo útil es aproximadamente $2D$ (con $D$ en mm), es decir, $\sim 50\times$ por cada cm de apertura.
+
+\section{Poder de Resolución}
+
+El \textbf{poder de resolución} es la capacidad de un telescopio de mostrar de forma individual dos objetos que se encuentran muy juntos angularmente.
+
+\begin{itemize}
+    \item Cada sistema óptico tiene su propio poder de resolución.
+    \item El telescopio \textbf{no recupera mayor información espacial} que la que le permite su poder de resolución.
+    \item Está directamente relacionado con el diámetro del objetivo: cuanto mayor es el diámetro, mayor es el poder de resolución.
+    \item Este parámetro se mide en \textbf{segundos de arco} (arcsec).
+\end{itemize}
+
+Cuando se dice que un telescopio tiene una resolución de 1~segundo de arco, se está indicando que esa es la \textbf{mínima separación angular} que deben poseer dos objetos puntuales para ser observados de forma individual.
+
+El poder de resolución teórico (límite de difracción) para una apertura circular de diámetro $D$ observando a longitud de onda $\lambda$ está dado por el \textbf{criterio de Rayleigh}:
+
+$$\theta_{\text{mín}} = 1{,}22\,\frac{\lambda}{D}$$
+
+donde $\theta_{\text{mín}}$ está en radianes.
+
+\textbf{Ejemplo:} Un telescopio de 20~cm de diámetro observando en luz visible ($\lambda \approx 550$~nm) tiene un poder de resolución de:
+
+$$\theta_{\text{mín}} = 1{,}22\,\frac{550\times10^{-9}}{0{,}20} \approx 3{,}36\times10^{-6}~\text{rad} \approx 0{,}69~\text{arcsec}$$
+
+\section{Magnitud Mínima Observable}
+
+Los telescopios tienen un mayor poder de recolección de radiación que el ojo humano. La magnitud límite (la estrella más débil detectable) al usar un telescopio se relaciona con el diámetro del objetivo. La ganancia en magnitud respecto al ojo desnudo es:
+
+$$\Delta m = 5\,\log_{10}\!\left(\frac{D_t}{D_o}\right)$$
+
+donde $D_o$ es el diámetro de la pupila del ojo y $D_t$ es el diámetro del telescopio.
+
+Si la pupila del ojo es $D_o \approx 0{,}6$~cm y la fuente más débil que se puede ver a simple vista es $m_o = 6$, entonces la magnitud límite observable con un telescopio de diámetro $D_t$ (en cm) es:
+
+$$m_{\text{lím}} = 6 + 5\,\log_{10}\!\left(\frac{D_t}{0{,}6}\right)$$
+
+Esta ecuación da la magnitud límite detectada por el ojo cuando se usa un telescopio de diámetro $D_t$ para hacer observación visual.
+
+\section{Formación de la Imagen sin Ocular (Proyección)}
+
+Cuando se trabaja sin ocular (por ejemplo, con un detector CCD en el plano focal), se estudia el proceso de formación de la imagen directamente en el \textbf{plano imagen del objetivo} del telescopio.
+
+Las razones para utilizar telescopios sin ocular (proyección directa sobre un detector) son:
+
+\begin{itemize}
+    \item Mejor poder de resolución que el ojo humano.
+    \item Mayor capacidad de recolección de luz (integración temporal).
+    \item Permiten la recolección de luz en diferentes longitudes de onda (más allá del visible).
+    \item Permiten hacer uso de diferentes dispositivos de registro y análisis de radiación.
+\end{itemize}
+
+\section{Formación de la Imagen: Fuentes Puntuales en el Infinito}
+
+Una fuente puntual ubicada en el infinito emitirá radiación que llegará al telescopio, en principio, en la forma de \textbf{frentes de onda planos}; es decir, los rayos incidentes del objeto llegan paralelos al eje óptico del telescopio.
+
+\begin{itemize}
+    \item La imagen de un objeto puntual que se ubica \textbf{sobre el eje óptico} se forma \textbf{sobre el eje}, en el punto focal.
+    \item La imagen de un objeto puntual que se ubica \textbf{fuera del eje óptico} se forma \textbf{fuera del eje}, desplazada en el plano focal.
+    \item La posición de la imagen está determinada por el \textbf{ángulo de inclinación} $\alpha$ que forma el rayo que pasa por el centro de la lente. El ángulo $\alpha$ representa la posición angular de la fuente proyectada sobre la imagen.
+\end{itemize}
+
+\input{Clases/FigurasClase2/Fig10}
+
+\input{Clases/FigurasClase2/Fig11}
+
+\section{Escala de Placa}
+
+La \textbf{escala de placa} ($P_s$) se define como el tamaño angular de la imagen por unidad de longitud en la placa del detector. Si un objeto tiene un tamaño angular $\alpha$ y su imagen tiene un tamaño lineal $s$ en el detector, la escala de placa es:
+
+$$P_s = \frac{\alpha}{s}$$
+
+Dado que para ángulos pequeños $s \approx f_{\text{obj}}\,\alpha$ (con $\alpha$ en radianes), se tiene:
+
+$$P_s = \frac{1}{f_{\text{obj}}} \quad \text{[rad por unidad de longitud]}$$
+
+En la práctica, se expresa en \textbf{segundos de arco por milímetro} (arcsec/mm):
+
+$$P_s~[\text{arcsec/mm}] = \frac{206265}{f_{\text{obj}}~[\text{mm}]}$$
+
+La escala de placa indica cuántos segundos de arco observados en el cielo se mapean por cada milímetro lineal del detector. De ahí su importancia: permite prever cuál será el tamaño de la imagen de un objeto en el detector de un telescopio dado, y saber así si el equipo es conveniente o no para su observación.
+
+\textbf{Ejemplo:} Un telescopio con $f_{\text{obj}} = 2000$~mm tiene una escala de placa de $P_s = 206265/2000 \approx 103$~arcsec/mm.
+
+\section{Difracción y Poder de Resolución}
+
+Visto desde el punto de vista ondulatorio, la formación de la imagen en un telescopio implica un proceso de \textbf{difracción}. La imagen de un objeto puntual que se obtiene en el plano focal no es un punto matemático, sino el \textbf{máximo central del patrón de difracción} (disco de Airy) de la onda plana incidente que se difracta al interactuar con el borde circular del objetivo del telescopio.
+
+\input{Clases/FigurasClase2/Fig12}
+
+El \textbf{criterio de resolución de Rayleigh} establece la separación angular mínima resoluble por una apertura circular de diámetro $D$ observando a longitud de onda $\lambda$:
+
+$$\theta_{\text{mín}} = 1{,}22\,\frac{\lambda}{D}$$
+
+Dos fuentes puntuales se consideran ``resueltas'' cuando el máximo central del patrón de difracción de una cae sobre el primer mínimo del patrón de la otra.
+
+\input{Clases/FigurasClase2/Fig13}
+
+\subsection{Dependencia del poder de resolución}
+
+El poder de resolución de un telescopio, a una longitud de onda fija, depende \textbf{exclusivamente de su diámetro}. El aumento o el tamaño de la imagen en la placa del telescopio \textbf{no incrementarán} el poder de resolución. Un telescopio con un tamaño de placa mayor solo producirá imágenes más grandes, pero no introducirá nueva información sobre las estructuras que tengan un tamaño angular inferior a $\theta_{\text{mín}}$.
+
+\subsection{Ejemplo: GALEX vs.\ telescopio óptico}
+
+El telescopio espacial GALEX, diseñado para observaciones en ultravioleta, tiene un diámetro de 50~cm.
+
+\begin{itemize}
+    \item A $\lambda = 152$~nm (UV):
+$$\theta_{\text{mín}} = 1{,}22\,\frac{152\times10^{-9}}{0{,}50} \approx 3{,}7\times10^{-7}~\text{rad} \approx 0{,}078~\text{arcsec}$$
+    \item Un telescopio del mismo diámetro observando en el visible ($\lambda = 500$~nm):
+$$\theta_{\text{mín}} = 1{,}22\,\frac{500\times10^{-9}}{0{,}50} \approx 1{,}22\times10^{-6}~\text{rad} \approx 0{,}25~\text{arcsec}$$
+\end{itemize}
+
+GALEX puede resolver aproximadamente \textbf{tres veces más detalle} que un telescopio óptico del mismo diámetro, simplemente por observar a una longitud de onda más corta.
+
+\section{Campo de Visión (FoV)}
+
+El \textbf{campo de visión} (\textit{Field of View}, FoV) es la extensión del cielo observable que se ve en un momento dado a través de un instrumento (telescopio, binoculares) o a simple vista. Se suele indicar como una especificación de los oculares, o como una característica calculada a partir de una combinación de ocular y objetivo.
+
+Su máximo valor presenta un límite físico, consecuencia de las leyes de la difracción que operan sobre el sistema óptico.
+
+Si $l$ es el tamaño lineal del detector y $f_{\text{obj}}$ la distancia focal del objetivo, el campo de visión angular es:
+
+$$\text{FoV} \approx \frac{l}{f_{\text{obj}}} \quad \text{[radianes]}$$
+
+o, equivalentemente, multiplicando por $206265$ para obtener arcsec, o dividiendo entre $f_{\text{obj}}$ expresado en la misma unidad que $l$.
+
+\input{Clases/FigurasClase2/Fig14}
+
+\section{Tipos de Telescopios según su Diseño Óptico}
+
+Los telescopios se clasifican según el tipo de elementos ópticos que emplean para formar la imagen:
+
+\subsection{Telescopios Dióptricos (Refractores)}
+
+El objetivo se compone de una lente o juego de lentes. La luz se refracta al atravesar el vidrio. Ejemplo clásico: telescopio de Galileo, telescopio de Kepler.
+
+\subsection{Telescopios Catóptricos (Reflectores)}
+
+Utilizan espejos como elementos ópticos principales. Los diseños más conocidos son:
+
+\begin{itemize}
+    \item \textbf{Newtoniano}: espejo primario parabólico + espejo secundario plano a 45° que desvía la luz hacia un lateral.
+    \item \textbf{Cassegrain}: espejo primario parabólico (o hiperbólico) con perforación central + espejo secundario hiperbólico (o convexo) que refleja la luz de vuelta a través del agujero del primario.
+    \item \textbf{Gregoriano}: variante con espejo secundario cóncavo elíptico, colocado más allá del foco del primario.
+    \item \textbf{Leibniz}: otra configuración histórica de reflector.
+\end{itemize}
+
+\input{Clases/FigurasClase2/Fig15}
+
+\input{Clases/FigurasClase2/Fig16}
+
+\subsection{Telescopios Catadióptricos}
+
+Combinan en su diseño lentes y espejos. Entre los diseños más populares están:
+
+\begin{itemize}
+    \item \textbf{Schmidt-Cassegrain}: utiliza una placa correctora delgada (lente asférica) en la entrada del tubo, un espejo primario esférico y un secundario convexo. La placa corrige la aberración esférica del primario.
+    \item \textbf{Maksutov-Cassegrain}: utiliza un menisco corrector grueso (lente con curvatura en ambas caras) en la entrada, un primario esférico y un secundario (a menudo una zona aluminizada del propio menisco).
+\end{itemize}
+
+\input{Clases/FigurasClase2/Fig17}
+
+\input{Clases/FigurasClase2/Fig18}
+
+\section{Detectores: CCD}
+
+En astronomía moderna, el detector que reemplaza al ojo y a la placa fotográfica es el \textbf{CCD} (\textit{Charge-Coupled Device}). Se trata de un sensor electrónico que convierte los fotones incidentes en cargas eléctricas, permitiendo:
+
+\begin{itemize}
+    \item Alta eficiencia cuántica (mayor sensibilidad que el ojo o la placa).
+    \item Respuesta lineal a la intensidad de luz.
+    \item Registro digital de la imagen para procesamiento posterior.
+    \item Integración temporal larga (minutos a horas) para detectar objetos muy débiles.
+\end{itemize}
+
+El CCD se coloca en el plano focal del telescopio y su estudio detallado se abordará en sesiones posteriores del curso.
+
+\section{Aplicación integral}
+
+\subsection*{Enunciado}
+
+Se dispone de un telescopio astronómico con las siguientes características:
+
+\begin{center}
+\begin{tcolorbox}[width=0.72\textwidth,colback=blue!4,colframe=blue!55!black,
+                  title=Datos del telescopio]
+\[
+    D=100~\text{mm},
+    \qquad
+    f_{\text{obj}}=1000~\text{mm},
+\]
+\[
+    f_{\text{oc}}=70~\text{mm},\quad 40~\text{mm}
+    \quad\text{y}\quad 20~\text{mm}.
+\]
+\end{tcolorbox}
+\end{center}
+
+Resuelva los siguientes ítems. En cada resultado, además del cálculo numérico,
+incluya una breve \textbf{interpretación física} y determine qué consecuencia
+tiene para la observación astronómica.
+
+\begin{enumerate}[a)]
+    \item Calcule la \textbf{relación focal} del telescopio. Clasifique el
+    instrumento como relativamente rápido o lento y explique cómo influye esta
+    característica en la luminosidad superficial de una imagen registrada con
+    un detector, en el campo de visión y en la sensibilidad a las aberraciones.
+
+    \item Calcule la \textbf{magnificación} producida por cada uno de los tres
+    oculares. Ordene las configuraciones de menor a mayor aumento e indique qué
+    ocular sería más apropiado para observar un objeto extenso y cuál para
+    estudiar detalles pequeños.
+
+    \item Determine el diámetro de la \textbf{pupila de salida} para cada
+    ocular. Compare los resultados con una pupila humana de aproximadamente
+    $7~\text{mm}$ durante la noche y $4~\text{mm}$ durante el día. Explique en
+    cuáles configuraciones el ojo puede recibir toda la luz entregada por el
+    telescopio.
+
+    \item Estime el \textbf{aumento mínimo útil} suponiendo una pupila ocular
+    nocturna de $7~\text{mm}$ y el \textbf{aumento máximo útil} mediante la
+    regla práctica $M_{\text{máx}}\simeq2D$, con $D$ expresado en milímetros.
+    Compare estos límites con los aumentos obtenidos y determine si alguno de
+    los oculares desperdicia luz o produce un aumento vacío.
+
+    \item Calcule el área geométrica del objetivo y la razón de
+    \textbf{recolección de luz} con respecto a un ojo cuya pupila tiene
+    $6~\text{mm}$ de diámetro. Interprete por qué esta ganancia permite observar
+    fuentes que no son visibles a simple vista.
+
+    \item Utilice
+    \[
+        m_{\text{lím}}
+        =6+5\log_{10}\!\left(\frac{D_t}{0{,}6}\right),
+    \]
+    con $D_t$ expresado en centímetros, para estimar la
+    \textbf{magnitud límite visual}. Compare el resultado con la magnitud límite
+    del ojo desnudo y explique el significado de la diferencia de magnitudes.
+
+    \item Calcule el \textbf{límite de resolución de Rayleigh} para
+    $\lambda=550~\text{nm}$. Exprese el resultado en radianes y segundos de
+    arco. Analice si aumentar la magnificación modifica este límite físico y
+    explique el papel del disco de Airy.
+
+    \item Calcule la \textbf{escala de placa} en arcsec/mm. Determine después
+    el tamaño lineal que tendría sobre el plano focal:
+    \begin{enumerate}[i)]
+        \item una separación angular de $1~\text{arcsec}$;
+        \item una fuente situada a $10~\text{arcmin}$ del eje óptico;
+        \item el diámetro aparente de la Luna, tomando
+        $\alpha_{\text{Luna}}=0{,}5^\circ$.
+    \end{enumerate}
+    Explique la relación entre distancia focal, escala de placa y tamaño de la
+    imagen.
+
+    \item Se instala un CCD de $15~\text{mm}$ de ancho en el plano focal.
+    Calcule el \textbf{campo de visión angular} registrado por el detector en
+    radianes, grados y minutos de arco. Indique si la imagen completa de la Luna
+    cabría dentro del detector.
+
+    \item Suponga que los tres oculares poseen un campo aparente de
+    $50^\circ$. Estime el \textbf{campo de visión verdadero} mediante
+    \[
+        \mathrm{FoV}_{\text{real}}
+        \approx\frac{\mathrm{FoV}_{\text{aparente}}}{M}.
+    \]
+    Compare las tres configuraciones y explique el compromiso entre aumento y
+    extensión de cielo observable.
+
+    \item Para una fuente puntual situada sobre el eje y otra situada fuera de
+    él, describa dónde se forma cada imagen en el plano focal. Realice un
+    esquema de rayos e interprete físicamente la relación
+    $s=f_{\text{obj}}\tan\alpha$.
+
+    \item Compare el uso de este objetivo en un telescopio
+    \textbf{refractor} y en uno \textbf{reflector}. Indique qué aberraciones
+    pueden presentarse en cada caso y explique cómo se corrigen la aberración
+    cromática, la aberración esférica y la coma.
+
+    \item Dibuje y explique la trayectoria de la luz si el instrumento se
+    construyera con configuración \textbf{Newtoniana},
+    \textbf{Cassegrain}, \textbf{Schmidt--Cassegrain} o
+    \textbf{Maksutov--Cassegrain}. Identifique el objetivo, los espejos
+    secundarios, los elementos correctores y la posición del plano focal.
+
+    \item Explique la función de los \textbf{diafragmas de apertura y de campo}
+    en este telescopio. Analice qué cantidades observacionales cambiarían al
+    reducir artificialmente la apertura de $100~\text{mm}$ a $50~\text{mm}$:
+    luz recolectada, relación focal, resolución, magnitud límite y profundidad
+    de campo.
+
+    \item Finalmente, compare la observación visual mediante ocular con el
+    registro directo mediante un \textbf{CCD}. Discuta las ventajas del CCD en
+    eficiencia cuántica, integración temporal, respuesta lineal y observación
+    en longitudes de onda diferentes del visible.
+\end{enumerate}

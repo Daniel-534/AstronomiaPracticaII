@@ -1,0 +1,20 @@
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[>=Stealth,scale=0.98]
+  \draw[->] (-5.5,0) -- (6.2,0) node[right] {eje óptico};
+  \draw[<->,very thick,blue] (-1.8,-2.3) -- (-1.8,2.3) node[above] {objetivo};
+  \filldraw[fill=gray!25,draw=black,thick] (4.2,-1.25) rectangle (4.45,1.25);
+  \node[right] at (4.45,0) {CCD};
+  \draw[<->] (4.85,-1.25) -- (4.85,1.25) node[midway,right] {$l$};
+  \draw[red,thick] (-1.8,0) -- (4.2,1.25);
+  \draw[red,thick] (-1.8,0) -- (4.2,-1.25);
+  \draw[red,dashed] (-1.8,0) -- (-5.1,0.69);
+  \draw[red,dashed] (-1.8,0) -- (-5.1,-0.69);
+  \draw (-3.4,0.34) arc[start angle=168.2,end angle=191.8,radius=1.63];
+  \node at (-3.75,0) {$\mathrm{FoV}$};
+  \draw[<->] (-1.8,-2.75) -- (4.2,-2.75)
+    node[midway,fill=white] {$f_{\text{obj}}$};
+  \node[align=center] at (-4.5,1.35) {porción de cielo\\cubierta};
+\end{tikzpicture}
+\caption{Campo de visión determinado por el tamaño del detector y la distancia focal.}
+\end{figure}

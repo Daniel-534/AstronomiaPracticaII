@@ -1,0 +1,21 @@
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[>=Stealth,scale=0.95]
+  \draw[->] (-4.5,0) -- (7.3,0) node[right] {eje óptico};
+  \draw[<->,very thick,blue] (-2.7,-2.25) -- (-2.7,2.25);
+  \node[above,align=center] at (-2.7,2.3) {objetivo\\pupila de entrada};
+  \draw[<->] (-3.15,-2.25) -- (-3.15,2.25) node[midway,left] {$D$};
+  \draw[<->,very thick,cyan!60!blue] (3.1,-1.25) -- (3.1,1.25);
+  \node[above] at (3.1,1.3) {ocular};
+  \draw[blue,thick] (-2.7,2.1) -- (3.1,0.55) -- (5.4,0.22);
+  \draw[blue,thick] (-2.7,-2.1) -- (3.1,-0.55) -- (5.4,-0.22);
+  \draw[blue!70,line width=2pt] (5.4,-0.22) -- (5.4,0.22);
+  \draw[<->] (5.75,-0.22) -- (5.75,0.22) node[midway,right] {$d$};
+  \node[above,align=center] at (5.4,0.35) {pupila\\de salida};
+  \draw (6.5,0) ellipse (0.28 and 0.52);
+  \fill (6.5,0) circle (0.12);
+  \node[below] at (6.5,-0.55) {ojo};
+  \node[draw,rounded corners] at (1.3,-2.55) {$d=D/M$};
+\end{tikzpicture}
+\caption{Pupilas de entrada y salida de un telescopio.}
+\end{figure}
