@@ -465,3 +465,235 @@ tiene para la observación astronómica.
     eficiencia cuántica, integración temporal, respuesta lineal y observación
     en longitudes de onda diferentes del visible.
 \end{enumerate}
+
+
+\subsection*{Solución}
+
+\begin{enumerate}[a)]
+    \item \textbf{Relación focal.}
+    \[
+        f/\#=\frac{f_{\text{obj}}}{D}
+        =\frac{1000~\text{mm}}{100~\text{mm}}=10.
+    \]
+    El telescopio es un sistema $f/10$, de relación focal intermedia a lenta.
+    Para fotografía en foco primario entrega menor irradiancia superficial y un
+    campo más estrecho que un sistema más rápido con el mismo detector, pero
+    suele ser menos exigente frente a aberraciones. En observación visual, el
+    brillo superficial percibido depende principalmente de la pupila de salida.
+
+    \item \textbf{Magnificación.}
+    \[
+        M=\frac{f_{\text{obj}}}{f_{\text{oc}}}.
+    \]
+    \begin{center}
+    \begin{tabular}{ccc}
+        \toprule
+        $f_{\text{oc}}$ & Cálculo & $M$ \\
+        \midrule
+        $70~\text{mm}$ & $1000/70$ & $14{,}3\times$ \\
+        $40~\text{mm}$ & $1000/40$ & $25\times$ \\
+        $20~\text{mm}$ & $1000/20$ & $50\times$ \\
+        \bottomrule
+    \end{tabular}
+    \end{center}
+    El ocular de $70~\text{mm}$ es apropiado para objetos extensos y búsqueda;
+    el de $20~\text{mm}$ para detalles pequeños; el de $40~\text{mm}$ ofrece
+    una configuración intermedia.
+
+    \item \textbf{Pupilas de salida.}
+    \[
+        d=\frac{D}{M}=\frac{D f_{\text{oc}}}{f_{\text{obj}}}.
+    \]
+    \begin{center}
+    \begin{tabular}{ccc}
+        \toprule
+        $f_{\text{oc}}$ & $M$ & $d$ \\
+        \midrule
+        $70~\text{mm}$ & $14{,}3\times$ & $7~\text{mm}$ \\
+        $40~\text{mm}$ & $25\times$ & $4~\text{mm}$ \\
+        $20~\text{mm}$ & $50\times$ & $2~\text{mm}$ \\
+        \bottomrule
+    \end{tabular}
+    \end{center}
+    De noche, una pupila ocular de $7~\text{mm}$ recibe completamente los tres
+    haces. Durante el día, una pupila de $4~\text{mm}$ recorta el haz producido
+    por el ocular de $70~\text{mm}$; los otros dos no exceden ese diámetro.
+
+    \input{Clases/FigurasClase2/SolFig1}
+
+    \item \textbf{Límites útiles de aumento.}
+    \[
+        M_{\text{mín}}=\frac{100}{7}\approx14{,}3\times,
+        \qquad
+        M_{\text{máx}}\simeq2D=200\times.
+    \]
+    Los tres aumentos están dentro del intervalo útil. El ocular de
+    $70~\text{mm}$ está justo en el límite inferior nocturno. Ninguno produce
+    aumento vacío, pues el mayor valor obtenido es solamente $50\times$.
+
+    \item \textbf{Área y recolección de luz.}
+    \[
+        A_t=\pi(50~\text{mm})^2
+        \approx7854~\text{mm}^2=78{,}54~\text{cm}^2,
+    \]
+    mientras que para una pupila ocular de $6~\text{mm}$,
+    \[
+        A_o=\pi(3~\text{mm})^2\approx28{,}27~\text{mm}^2.
+    \]
+    Por tanto,
+    \[
+        \frac{A_t}{A_o}
+        =\left(\frac{100}{6}\right)^2
+        \approx277{,}8.
+    \]
+    Idealmente, el telescopio recoge unas $278$ veces más luz que el ojo. La
+    ganancia real es algo menor por pérdidas de transmisión, reflexión y
+    dispersión.
+
+    \item \textbf{Magnitud límite.}
+    Como $D_t=10~\text{cm}$,
+    \[
+        m_{\text{lím}}
+        =6+5\log_{10}\left(\frac{10}{0{,}6}\right)
+        \approx12{,}11.
+    \]
+    La ganancia respecto al ojo desnudo es de $6{,}11$ magnitudes. Esta
+    diferencia equivale a una razón de flujo cercana a $278$, consistente con
+    la razón de áreas.
+
+    \item \textbf{Resolución de Rayleigh.}
+    Con $D=0{,}10~\text{m}$ y $\lambda=550~\text{nm}$:
+    \[
+        \theta_{\text{mín}}
+        =1{,}22\frac{550\times10^{-9}}{0{,}10}
+        =6{,}71\times10^{-6}~\text{rad}
+        \approx1{,}38~\text{arcsec}.
+    \]
+    Aumentar la magnificación agranda el patrón observado, pero no mejora este
+    límite. El primer mínimo del disco de Airy determina la separación mínima
+    resoluble. La turbulencia atmosférica puede empeorar el resultado real.
+
+    \item \textbf{Escala de placa y tamaños lineales.}
+    \[
+        P_s=\frac{206265}{1000}
+        =206{,}265~\text{arcsec/mm}.
+    \]
+    \begin{enumerate}[i)]
+        \item Para $1~\text{arcsec}$:
+        \[
+            s=\frac{1}{206{,}265}
+            =0{,}00485~\text{mm}=4{,}85~\mu\text{m}.
+        \]
+        \item Para $10~\text{arcmin}=600~\text{arcsec}$:
+        \[
+            s=\frac{600}{206{,}265}\approx2{,}91~\text{mm}.
+        \]
+        \item Para la Luna, $0{,}5^\circ=1800~\text{arcsec}$:
+        \[
+            s=\frac{1800}{206{,}265}\approx8{,}73~\text{mm}.
+        \]
+    \end{enumerate}
+    Una distancia focal mayor produce una imagen lineal mayor y una escala de
+    placa numéricamente menor: cada milímetro cubre menos cielo.
+
+    \item \textbf{Campo de visión del CCD.}
+    \[
+        \mathrm{FoV}\approx\frac{15}{1000}
+        =0{,}015~\text{rad}
+        \approx0{,}859^\circ
+        \approx51{,}6~\text{arcmin}.
+    \]
+    La Luna ocupa $0{,}5^\circ$ y su imagen mide $8{,}73~\text{mm}$, por lo que
+    cabe completamente dentro del detector de $15~\text{mm}$.
+
+    \input{Clases/FigurasClase2/SolFig2}
+
+    \item \textbf{Campo de visión visual.}
+    \[
+        \mathrm{FoV}_{\text{real}}
+        \approx\frac{50^\circ}{M}.
+    \]
+    \begin{center}
+    \begin{tabular}{ccc}
+        \toprule
+        $f_{\text{oc}}$ & $M$ & $\mathrm{FoV}_{\text{real}}$ \\
+        \midrule
+        $70~\text{mm}$ & $14{,}3\times$ & $3{,}5^\circ$ \\
+        $40~\text{mm}$ & $25\times$ & $2^\circ$ \\
+        $20~\text{mm}$ & $50\times$ & $1^\circ$ \\
+        \bottomrule
+    \end{tabular}
+    \end{center}
+    A mayor aumento, menor extensión de cielo observable. El ocular de
+    $70~\text{mm}$ facilita la localización de objetos extensos y el de
+    $20~\text{mm}$ presenta una región menor con mayor escala aparente.
+
+    \item \textbf{Fuentes sobre el eje y fuera del eje.}
+    Una fuente sobre el eje forma su imagen en el foco central. Para una fuente
+    situada a un ángulo $\alpha$, la imagen se desplaza:
+    \[
+        s=f_{\text{obj}}\tan\alpha
+        \simeq f_{\text{obj}}\alpha.
+    \]
+    Esta correspondencia transforma posiciones angulares del cielo en
+    posiciones lineales sobre el detector y constituye la base de la escala de
+    placa.
+
+    \item \textbf{Refractor frente a reflector.}
+    El refractor puede presentar aberración cromática, que se reduce con
+    dobletes acromáticos, objetivos apocromáticos o vidrios de diferente
+    dispersión. El reflector no presenta cromatismo, pero un espejo esférico
+    puede sufrir aberración esférica; un perfil parabólico o un elemento
+    corrector la reduce. La coma afecta principalmente a fuentes fuera del eje
+    y se mitiga mediante colimación, correctores de coma, relaciones focales
+    menos rápidas o diseños corregidos.
+
+    \item \textbf{Diseños ópticos.}
+    \begin{itemize}
+        \item En el \textbf{Newtoniano}, el primario parabólico dirige el haz
+        hacia un secundario plano a $45^\circ$, que lo desvía lateralmente.
+        \item En el \textbf{Cassegrain}, el secundario convexo devuelve la luz
+        por el orificio central del primario hacia un foco trasero.
+        \item El \textbf{Schmidt--Cassegrain} añade una placa Schmidt que
+        corrige el primario esférico.
+        \item El \textbf{Maksutov--Cassegrain} utiliza un menisco corrector y,
+        frecuentemente, una zona aluminizada del menisco como secundario.
+    \end{itemize}
+    Las trayectorias correspondientes aparecen en las Figuras 2.15 a 2.18.
+
+    \item \textbf{Diafragmas y reducción de la apertura.}
+    El diafragma de apertura controla la cantidad de luz admitida; el diafragma
+    de campo limita la extensión angular útil. Si la apertura se reduce a
+    $50~\text{mm}$:
+    \[
+        \frac{A_{50}}{A_{100}}
+        =\left(\frac{50}{100}\right)^2=\frac14,
+        \qquad
+        f/\#=\frac{1000}{50}=f/20.
+    \]
+    La resolución empeora a
+    \[
+        \theta_{\text{mín}}\approx2{,}77~\text{arcsec},
+    \]
+    y la magnitud límite pasa a
+    \[
+        m_{\text{lím}}
+        =6+5\log_{10}\left(\frac{5}{0{,}6}\right)
+        \approx10{,}60.
+    \]
+    Se pierde $75\%$ de la luz y aproximadamente $1{,}51$ magnitudes. La
+    profundidad de foco, proporcional aproximadamente a $(f/\#)^2$, aumenta
+    unas cuatro veces. Como la distancia focal no cambia, la magnificación, la
+    escala de placa y el campo geométrico del detector permanecen iguales.
+
+    \item \textbf{Observación visual frente a CCD.}
+    El ojo permite observación inmediata, pero su sensibilidad está limitada
+    por el tamaño de la pupila, su respuesta espectral y su corto tiempo de
+    integración. Un CCD ofrece mayor eficiencia cuántica, integración durante
+    tiempos largos, respuesta aproximadamente lineal, registro digital y
+    sensibilidad en intervalos espectrales más amplios.
+
+    El CCD no modifica la resolución impuesta por la apertura, pero permite
+    registrar y medir con mayor precisión la información disponible en el
+    plano focal.
+\end{enumerate}

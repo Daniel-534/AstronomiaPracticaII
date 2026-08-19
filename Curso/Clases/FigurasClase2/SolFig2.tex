@@ -1,0 +1,20 @@
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[>=Stealth,scale=0.8]
+  \fill[black!4] (-4.5,-4.5) rectangle (4.5,4.5);
+  \draw[very thick] (-4.5,-4.5) rectangle (4.5,4.5);
+  \fill[gray!22] (0,0) circle (2.62);
+  \draw[gray!70!black,very thick] (0,0) circle (2.62);
+  \draw[gray!55] (-2.0,0.7) circle (0.38);
+  \draw[gray!55] (1.25,1.35) circle (0.55);
+  \draw[gray!55] (0.75,-1.2) circle (0.3);
+  \draw[<->,blue,thick] (-4.5,-5.05) -- (4.5,-5.05)
+    node[midway,below] {$l_{\text{CCD}}=15~\text{mm}$};
+  \draw[<->,red,thick] (-2.62,0) -- (2.62,0)
+    node[midway,fill=gray!22] {$d_{\text{Luna}}=8{,}73~\text{mm}$};
+  \node[font=\bfseries] at (0,5.05)
+    {$\mathrm{FoV}_{\text{CCD}}\approx0{,}859^\circ$};
+  \node at (0,-3.75) {margen disponible en el detector};
+\end{tikzpicture}
+\caption{La imagen lunar cabe completamente dentro del CCD de $15~\text{mm}$.}
+\end{figure}
