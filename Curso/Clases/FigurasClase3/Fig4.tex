@@ -1,0 +1,60 @@
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[>=Stealth,scale=0.93]
+  % Blanco con dos puntos de separación conocida.
+  \draw[fill=gray!6,draw=gray!55,rounded corners=2pt]
+    (-6.9,-1.45) rectangle (-6.45,1.45);
+  \fill[orange!90!black] (-6.67,0.82) circle (3pt);
+  \fill[orange!90!black] (-6.67,-0.82) circle (3pt);
+  \draw[<->,thick] (-7.2,-0.82) -- (-7.2,0.82) node[midway,left] {$b$};
+  \node[align=center] at (-6.67,1.82) {blanco con\\dos puntos};
+
+  % Eje, objetivo y rayos principales.
+  \draw[dashed,gray!70] (-6.9,0) -- (2.65,0);
+  \draw[blue!75!black,thick,->] (-6.62,0.82) -- (-0.18,0.03);
+  \draw[blue!75!black,thick,->] (-6.62,-0.82) -- (-0.18,-0.03);
+  \draw[<->,very thick,cyan!65!blue] (0,-1.25) -- (0,1.25);
+  \node at (0,1.58) {objetivo};
+
+  % Formación invertida de las dos imágenes en el plano focal.
+  \draw[blue!65!black,thick,->] (0,0.03) -- (2.15,-0.48);
+  \draw[blue!65!black,thick,->] (0,-0.03) -- (2.15,0.48);
+  \draw[blue!75!black,line width=2.2pt] (2.2,-1.05) -- (2.2,1.05);
+  \fill[orange!90!black] (2.2,0.48) circle (2.7pt);
+  \fill[orange!90!black] (2.2,-0.48) circle (2.7pt);
+  \node[align=right,anchor=north east] at (2.05,-1.18)
+    {CCD en el\\foco primario};
+
+  % Distancia del blanco al objetivo.
+  \draw[<->] (-6.67,-1.9) -- (0,-1.9) node[midway,fill=white,inner sep=2pt] {$L$};
+  \draw[gray!60] (-6.67,-1.5) -- (-6.67,-2.05);
+  \draw[gray!60] (0,-1.32) -- (0,-2.05);
+
+  % Separación angular, dibujada de manera visible.
+  \draw[red!75!black,thick] (-0.86,0.105)
+    arc[start angle=173,end angle=187,radius=0.87];
+  \node[red!75!black] at (-1.18,0) {$\Delta\theta$};
+
+  % Conexión visual con la ampliación frontal del sensor.
+  \draw[gray!65,dashed,->] (2.38,0.92) -- (3.48,1.28);
+  \draw[gray!65,dashed,->] (2.38,-0.92) -- (3.48,-1.28);
+
+  % Vista ampliada de la matriz de píxeles.
+  \node[align=center] at (5.05,1.82) {detalle del sensor CCD};
+  \draw[fill=blue!4,draw=blue!65!black,very thick]
+    (3.5,-1.3) rectangle (6.6,1.3);
+  \foreach \x in {3.81,4.12,...,6.29}
+    \draw[blue!20] (\x,-1.3) -- (\x,1.3);
+  \foreach \y in {-0.99,-0.68,...,0.86,1.17}
+    \draw[blue!20] (3.5,\y) -- (6.6,\y);
+  \fill[orange!90!black] (5.05,0.65) circle (3.3pt);
+  \fill[orange!90!black] (5.05,-0.65) circle (3.3pt);
+  \draw[<->,thick] (5.75,-0.65) -- (5.75,0.65)
+    node[midway,right,fill=white,inner sep=1.5pt] {$\Delta r_{\mathrm{pix}}$};
+
+  % Tamaño físico de un píxel, separado del resto de las etiquetas.
+  \draw[<->,blue!75!black] (3.81,-1.58) -- (4.12,-1.58)
+    node[midway,below=2pt] {$p$};
+\end{tikzpicture}
+\caption{Montaje para medir la escala de placa con dos puntos y una CCD. A la derecha se amplía el sensor para mostrar la separación entre los centroides y el tamaño físico de un píxel.}
+\end{figure}

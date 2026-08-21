@@ -1,4 +1,4 @@
-\chapter{Clase 3}
+\chapter{Práctica I}
 
 \section{Caracterización de Telescopios}
 
@@ -35,6 +35,327 @@ A continuación, se plantean las siguientes actividades experimentales y analít
     \item ¿Cuál será la magnitud mínima observable con este telescopio?
     \item Proponga un mecanismo para medir la escala de placa del telescopio. Impleméntelo y responda: ¿cuántos segundos de arco por milímetro ($''$/mm) representa su montaje?
 \end{enumerate}
+
+
+\section{Procedimiento para los ocho ítems de la sección 3.1.2}
+
+Datos del telescopio refractor Tasco:
+$$
+D = 50\,\mathrm{mm} = 5.0\,\mathrm{cm},
+\qquad
+f_{\mathrm{obj}} = 600\,\mathrm{mm}.
+$$
+Si se emplea un ocular $i$ cuya distancia focal es $f_{\mathrm{oc},i}$, todos los cálculos visuales se hacen con esa distancia focal. En los ítems experimentales, conviene repetir cada medición varias veces, por ejemplo $n \geq 5$, y calcular promedio, desviación estándar e incertidumbre de la media:
+$$
+\bar{x}=\frac{1}{n}\sum_{k=1}^{n}x_k,
+\qquad
+s_x=\sqrt{\frac{1}{n-1}\sum_{k=1}^{n}(x_k-\bar{x})^2},
+\qquad
+u_{\bar{x}}=\frac{s_x}{\sqrt{n}}.
+$$
+
+\subsection{Ítem 1: Aumento teórico de la imagen}
+
+Para cada ocular disponible, el aumento o magnificación angular se calcula como el cociente entre la distancia focal del objetivo y la distancia focal del ocular:
+$$
+M_i=\frac{f_{\mathrm{obj}}}{f_{\mathrm{oc},i}}.
+$$
+Con $f_{\mathrm{obj}}=600\,\mathrm{mm}$, basta reemplazar la distancia focal de cada ocular. Por ejemplo, si un ocular tiene $f_{\mathrm{oc}}=20\,\mathrm{mm}$, entonces:
+$$
+M=\frac{600}{20}=30.
+$$
+El resultado se expresa como un aumento angular, por ejemplo $30\times$. Este valor indica cuántas veces mayor se ve angularmente el objeto a través del telescopio en comparación con la observación a simple vista.
+
+\subsection{Ítem 2: Relación focal}
+
+La relación focal del telescopio se obtiene dividiendo la distancia focal del objetivo entre el diámetro de apertura:
+$$
+N=\frac{f_{\mathrm{obj}}}{D}.
+$$
+Para el Tasco de $600\,\mathrm{mm}$ y $50\,\mathrm{mm}$:
+$$
+N=\frac{600\,\mathrm{mm}}{50\,\mathrm{mm}}=12.
+$$
+Por tanto, el telescopio es un instrumento $f/12$. Esta relación focal es una propiedad del objetivo y no cambia al intercambiar oculares, a menos que se introduzcan lentes de Barlow, reductores focales u otros elementos ópticos que modifiquen la distancia focal efectiva. Si se usa un accesorio de este tipo, se debe calcular:
+$$
+N_{\mathrm{eff}}=\frac{f_{\mathrm{eff}}}{D}.
+$$
+
+\subsection{Ítem 3: Tamaño teórico de la pupila de salida}
+
+La pupila de salida es el diámetro del haz de luz que sale del ocular y que debe coincidir con la pupila del observador para aprovechar toda la luz. Se calcula mediante:
+$$
+d_i=\frac{D}{M_i}.
+$$
+Usando $M_i=f_{\mathrm{obj}}/f_{\mathrm{oc},i}$, también puede escribirse como:
+$$
+d_i=D\,\frac{f_{\mathrm{oc},i}}{f_{\mathrm{obj}}}.
+$$
+Con $D=50\,\mathrm{mm}$ y $f_{\mathrm{obj}}=600\,\mathrm{mm}$:
+$$
+d_i=50\,\mathrm{mm}\times\frac{f_{\mathrm{oc},i}}{600\,\mathrm{mm}}.
+$$
+El resultado se obtiene en milímetros. Por ejemplo, si $f_{\mathrm{oc}}=20\,\mathrm{mm}$:
+$$
+d=50\times\frac{20}{600}\approx 1.67\,\mathrm{mm}.
+$$
+
+\subsection{Ítem 4: Medición experimental del diámetro de la pupila de salida}
+
+Para medir experimentalmente la pupila de salida de cada ocular, se puede emplear el siguiente procedimiento:
+
+\begin{enumerate}
+    \item Apunte el telescopio hacia una fuente extensa y uniforme de luz, como una pared blanca iluminada, una pantalla difusa o el cielo diurno no solar. Nunca apunte directamente al Sol.
+    \item Coloque el ocular en el portaocular.
+    \item Sitúe una hoja translúcida, papel mate, pantalla difusa o regla graduada pequeña detrás del ocular, sobre el eje óptico.
+    \item Mueva la pantalla hacia adelante o hacia atrás hasta observar un disco luminoso nítido y de borde definido. Ese disco corresponde a la pupila de salida.
+    \item Mida su diámetro con una regla milimetrada, un calibrador, o tomando una fotografía de la pupila de salida junto con una escala de referencia para luego medir el diámetro con software.
+    \item Repita la medición varias veces y calcule el promedio y la incertidumbre:
+$$
+\bar{d}_{\mathrm{exp}}=\frac{1}{n}\sum_{k=1}^{n}d_k,
+\qquad
+u_{\bar{d}}=\frac{s_d}{\sqrt{n}}.
+$$
+    \item Compare el valor experimental con el valor teórico del ítem 3 usando el error relativo porcentual:
+$$
+E_r=\frac{\left|\bar{d}_{\mathrm{exp}}-d_{\mathrm{teo}}\right|}{d_{\mathrm{teo}}}\times 100\%.
+$$
+\end{enumerate}
+
+\input{Clases/FigurasClase3/Fig1}
+
+Si se dispone de incertidumbres, también puede verificarse compatibilidad mediante:
+$$
+\left|\bar{d}_{\mathrm{exp}}-d_{\mathrm{teo}}\right|
+\leq
+2\sqrt{u_{\bar{d}_{\mathrm{exp}}}^2+u_{d_{\mathrm{teo}}}^2}.
+$$
+
+\subsection{Ítem 5: Aumento mínimo útil}
+
+La pupila del ojo humano tiene un diámetro aproximado de $7\,\mathrm{mm}$ de noche y de $4\,\mathrm{mm}$ de día. Para que el ojo aproveche toda la luz entregada por el telescopio, la pupila de salida del instrumento no debe ser mayor que la pupila del ojo. La condición límite es:
+$$
+d_{\mathrm{salida}}=d_{\mathrm{ojo}}.
+$$
+Como $d_{\mathrm{salida}}=D/M$, el aumento mínimo útil resulta:
+$$
+M_{\min}=\frac{D}{d_{\mathrm{ojo}}}.
+$$
+Para observación nocturna:
+$$
+M_{\min,\mathrm{noche}}=\frac{50\,\mathrm{mm}}{7\,\mathrm{mm}}\approx 7.14.
+$$
+Para observación diurna:
+$$
+M_{\min,\text{día}}=\frac{50\,\mathrm{mm}}{4\,\mathrm{mm}}=12.5.
+$$
+
+Si se usa un aumento menor que $M_{\min}$, la pupila de salida será mayor que la pupila del ojo:
+$$
+d_{\mathrm{salida}}>d_{\mathrm{ojo}}.
+$$
+En ese caso, el ojo no puede recibir todo el haz luminoso; la parte del haz que cae fuera de la pupila ocular se pierde. Físicamente, el iris actúa como un diafragma que recorta el haz. La fracción de luz aprovechada, si $d_{\mathrm{salida}}>d_{\mathrm{ojo}}$, puede estimarse como:
+$$
+\eta=\left(\frac{d_{\mathrm{ojo}}}{d_{\mathrm{salida}}}\right)^2.
+$$
+Equivalentemente, el diámetro efectivo del objetivo aprovechado por el ojo sería:
+$$
+D_{\mathrm{eff}}=M\,d_{\mathrm{ojo}}.
+$$
+
+\input{Clases/FigurasClase3/Fig2}
+
+\subsection{Ítem 6: Poder de resolución teórico y medición experimental del ángulo límite}
+
+El poder de resolución teórico del telescopio está limitado por difracción. Para una apertura circular de diámetro $D$, el criterio de Rayleigh da:
+$$
+\theta_R=1.22\,\frac{\lambda}{D}
+\quad \text{en radianes}.
+$$
+Para expresarlo en segundos de arco:
+$$
+\theta_R['']=206265\times 1.22\,\frac{\lambda}{D}.
+$$
+Si se toma una longitud de onda visible media, por ejemplo $\lambda=550\,\mathrm{nm}=5.50\times10^{-7}\,\mathrm{m}$, y $D=0.050\,\mathrm{m}$:
+$$
+\theta_R
+=
+1.22\,\frac{5.50\times10^{-7}}{0.050}
+\approx
+1.34\times10^{-5}\,\mathrm{rad},
+$$
+$$
+\theta_R['']
+\approx
+206265\times1.34\times10^{-5}
+\approx
+2.77^{\prime\prime}.
+$$
+
+Para medir experimentalmente el ángulo límite de resolución, se puede hacer lo siguiente:
+
+\begin{enumerate}
+    \item Coloque dos objetos pequeños y bien definidos, por ejemplo dos puntos luminosos, dos marcas sobre una tarjeta o dos orificios iluminados, separados una distancia conocida $b$.
+    \item Ubíquelos a una distancia conocida $L$ del telescopio.
+    \item La separación angular entre los dos puntos es, con buena aproximación para ángulos pequeños:
+$$
+\theta \approx \frac{b}{L}
+\quad \text{en radianes}.
+$$
+    \item Una expresión más exacta es:
+$$
+\theta=2\arctan\left(\frac{b}{2L}\right).
+$$
+    \item En segundos de arco:
+$$
+\theta['']\approx 206265\,\frac{b}{L}.
+$$
+    \item Observe los dos puntos a través de cada ocular y varíe $b$ o $L$ hasta encontrar la separación angular mínima para la cual todavía se distinguen como dos objetos separados.
+    \item Repita varias veces y obtenga el promedio y la incertidumbre del ángulo límite experimental.
+\end{enumerate}
+
+Para comparar con la observación visual, debe tenerse en cuenta que el telescopio aumenta la separación angular aparente. Si el ocular tiene aumento $M_i$, la separación angular aparente vista por el ojo es aproximadamente:
+$$
+\theta_{\mathrm{aparente}} \approx M_i\,\theta.
+$$
+El ojo humano tiene una resolución típica del orden de $1'$, es decir:
+$$
+\theta_{\mathrm{ojo}}\sim 60^{\prime\prime}.
+$$
+Por tanto, para que el ojo pueda resolver dos puntos a través del telescopio, se requiere aproximadamente:
+$$
+M_i\,\theta \gtrsim \theta_{\mathrm{ojo}}.
+$$
+De aquí se obtiene un límite visual asociado al ocular:
+$$
+\theta_{\mathrm{lim,visual},i}\approx \frac{\theta_{\mathrm{ojo}}}{M_i}.
+$$
+El límite práctico observado estará determinado por la mayor contribución entre el límite de difracción del telescopio y el límite impuesto por el ojo amplificado:
+$$
+\theta_{\mathrm{obs}} \gtrsim \max\left(\theta_R,\frac{\theta_{\mathrm{ojo}}}{M_i}\right).
+$$
+Finalmente, compare el valor experimental con el valor teórico de Rayleigh y con el límite visual correspondiente a cada ocular.
+
+\input{Clases/FigurasClase3/Fig3}
+
+\subsection{Ítem 7: Magnitud mínima observable}
+
+La magnitud límite observable con un telescopio en observación visual se estima comparando la cantidad de luz recolectada por el telescopio con la recolectada por el ojo. La fórmula es:
+$$
+m_{\lim}=m_o+5\log_{10}\left(\frac{D_t}{D_o}\right),
+$$
+donde $m_o$ es la magnitud límite a simple vista, $D_t$ es el diámetro del telescopio y $D_o$ es el diámetro de la pupila del ojo. Usando los valores usuales:
+$$
+m_o=6,
+\qquad
+D_o=0.6\,\mathrm{cm}.
+$$
+Para el telescopio Tasco, $D_t=5.0\,\mathrm{cm}$, entonces:
+$$
+m_{\lim}=6+5\log_{10}\left(\frac{5.0}{0.6}\right).
+$$
+Calculando:
+$$
+\frac{5.0}{0.6}\approx 8.33,
+$$
+$$
+\log_{10}(8.33)\approx 0.921,
+$$
+$$
+m_{\lim}\approx 6+5(0.921)\approx 10.6.
+$$
+Por tanto, la magnitud mínima observable estimada es aproximadamente $10.6$ en condiciones ideales. Este cálculo supone observación visual, cielo oscuro, buena transmisión óptica y pérdidas despreciables.
+
+\subsection{Ítem 8: Medición de la escala de placa}
+
+La escala de placa indica cuántos segundos de arco del cielo se proyectan sobre cada milímetro del plano focal o del detector. Teóricamente se calcula como:
+$$
+P_s=\frac{206265}{f_{\mathrm{obj}}[\mathrm{mm}]}
+\quad \left[{}^{\prime\prime}/\mathrm{mm}\right].
+$$
+Para $f_{\mathrm{obj}}=600\,\mathrm{mm}$:
+$$
+P_s=\frac{206265}{600}\approx 343.8^{\prime\prime}/\mathrm{mm}.
+$$
+Esto significa que $1\,\mathrm{mm}$ en el plano focal corresponde aproximadamente a $343.8^{\prime\prime}$ en el cielo.
+
+Para medir experimentalmente la escala de placa en el laboratorio se puede emplear un blanco con \textbf{dos puntos} bien definidos, por ejemplo dos pequeños LED, dos orificios iluminados o dos marcas de alto contraste. La imagen se registra con una CCD colocada directamente en el foco primario del telescopio, sin ocular.
+
+\begin{enumerate}
+    \item Prepare dos puntos separados una distancia física conocida $b$ y sitúelos a una distancia conocida $L$ del objetivo. Conviene que ambos puntos sean pequeños, tengan brillo similar y estén contenidos en un plano perpendicular al eje óptico.
+    \item Calcule la separación angular subtendida por los puntos mediante
+$$
+\Delta\theta=2\arctan\left(\frac{b}{2L}\right).
+$$
+Para ángulos pequeños puede utilizarse $\Delta\theta\approx b/L$, con $b$ y $L$ expresados en las mismas unidades. En segundos de arco:
+$$
+\Delta\theta^{\prime\prime}=206265\,\Delta\theta.
+$$
+    \item Retire el ocular y coloque la CCD en el foco primario. Ajuste su posición hasta obtener simultáneamente imágenes nítidas de los dos puntos.
+    \item Determine las coordenadas de los centroides de ambas imágenes, $(x_1,y_1)$ y $(x_2,y_2)$, expresadas en píxeles. Su separación sobre la CCD es
+$$
+\Delta r_{\mathrm{pix}}
+=\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}.
+$$
+    \item Si el tamaño de cada píxel es $p$ milímetros, la separación lineal entre las imágenes en el sensor es:
+$$
+s=\Delta r_{\mathrm{pix}}\,p
+\quad [\mathrm{mm}].
+$$
+    \item La escala de placa experimental es:
+$$
+P_{s,\mathrm{exp}}=\frac{\Delta\theta^{\prime\prime}}{s}
+\quad \left[{}^{\prime\prime}/\mathrm{mm}\right].
+$$
+También puede obtenerse directamente la escala angular por píxel:
+$$
+P_{\mathrm{pix,exp}}
+=\frac{\Delta\theta^{\prime\prime}}{\Delta r_{\mathrm{pix}}}
+\quad \left[{}^{\prime\prime}/\text{píxel}\right].
+$$
+    \item Repita la medición para varias separaciones $b$ o distancias $L$. Grafique $\Delta\theta^{\prime\prime}$ contra $s$ y ajuste una recta que pase por el origen:
+$$
+\Delta\theta^{\prime\prime}=P_s\,s.
+$$
+La pendiente de esa recta es la escala de placa experimental.
+\end{enumerate}
+
+\input{Clases/FigurasClase3/Fig4}
+
+Si se conoce la incertidumbre en la separación angular y en la separación lineal, la propagación de incertidumbre puede estimarse mediante:
+$$
+u_{P_s}=P_s
+\sqrt{
+\left(\frac{u_{\Delta\theta}}{\Delta\theta}\right)^2
++
+\left(\frac{u_s}{s}\right)^2
+}.
+$$
+
+Si el detector tiene píxeles, también puede calcularse la escala por píxel:
+$$
+P_{\mathrm{pix}}=P_s\,p
+=
+\frac{206265\,p}{f_{\mathrm{obj}}}
+\quad \left[{}^{\prime\prime}/\text{píxel}\right],
+$$
+donde $p$ debe estar en milímetros. Por ejemplo, si $p=5\,\mu\mathrm{m}=0.005\,\mathrm{mm}$:
+$$
+P_{\mathrm{pix}}
+=
+343.8\times 0.005
+\approx
+1.72^{\prime\prime}/\text{píxel}.
+$$
+
+Finalmente, compare la escala de placa experimental con la teórica:
+$$
+E_r=
+\frac{\left|P_{s,\mathrm{exp}}-P_{s,\mathrm{teo}}\right|}
+{P_{s,\mathrm{teo}}}
+\times 100\%.
+$$
+
 
 \subsection{Observación de Júpiter y Acoplamiento CCD}
 

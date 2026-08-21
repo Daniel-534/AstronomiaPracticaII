@@ -1,0 +1,31 @@
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[>=Stealth,scale=0.93]
+  \draw[dashed,gray!75] (-6.1,0) -- (6.5,0) node[right] {eje óptico};
+
+  \fill[orange!90!black] (-5.35,1.35) circle (2.5pt);
+  \fill[orange!90!black] (-5.35,-1.35) circle (2.5pt);
+  \draw[<->,thick] (-5.85,-1.35) -- (-5.85,1.35) node[midway,left] {$b$};
+  \node[align=center,above] at (-5.35,1.55) {dos fuentes\\puntuales};
+
+  \draw[blue!75!black,thick,->] (-5.3,1.35) -- (3.7,0.05);
+  \draw[blue!75!black,thick,->] (-5.3,-1.35) -- (3.7,-0.05);
+  \draw[<->,very thick,cyan!65!blue] (3.85,-1.55) -- (3.85,1.55);
+  \node[above] at (3.85,1.65) {objetivo};
+  \draw[<->,very thick,blue!70!black] (5.85,-0.75) -- (5.85,0.75);
+  \node[below] at (5.85,-0.9) {ocular};
+  \draw[blue!65,thick] (3.85,0) -- (5.85,0.38) -- (6.45,0.52);
+  \draw[blue!65,thick] (3.85,0) -- (5.85,-0.38) -- (6.45,-0.52);
+
+  \draw[<->] (-5.35,-2.2) -- (3.85,-2.2) node[midway,fill=white,inner sep=2pt] {$L$};
+  \draw[gray!65] (-5.35,-1.5) -- (-5.35,-2.35);
+  \draw[gray!65] (3.85,-1.65) -- (3.85,-2.35);
+
+  \draw[red!75!black,thick] (3.05,0.115)
+    arc[start angle=171.8,end angle=188.2,radius=0.81];
+  \node[red!75!black] at (2.78,0) {$\theta$};
+  \node[align=center,font=\scriptsize,red!70!black] at (0.15,1.55)
+    {ángulo exagerado\\para facilitar su lectura};
+\end{tikzpicture}
+\caption{Geometría para medir el ángulo límite de resolución con dos fuentes separadas. El ángulo se representa deliberadamente mayor que en el montaje real.}
+\end{figure}

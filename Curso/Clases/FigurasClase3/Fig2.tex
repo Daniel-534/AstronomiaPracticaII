@@ -1,0 +1,54 @@
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[>=Stealth,scale=0.92]
+  % Aumento inferior al mínimo: parte del haz queda fuera de la pupila ocular.
+  \begin{scope}[shift={(-5,0)}]
+    \draw[rounded corners=5pt,fill=gray!3,draw=gray!35] (-2.05,-2.05) rectangle (2.05,2.2);
+    \node[font=\bfseries] at (0,1.86) {$M<M_{\min}$};
+    \fill[yellow!38] (0,0) circle (1.18);
+    \fill[red!35,even odd rule] (0,0) circle (1.18) (0,0) circle (0.72);
+    \fill[blue!38,opacity=0.78] (0,0) circle (0.72);
+    \draw[orange!90!black,very thick] (0,0) circle (1.18);
+    \draw[blue!75!black,very thick] (0,0) circle (0.72);
+    \draw[red!75!black,thick,->] (-1.72,0.92) -- (-0.93,0.58);
+    \node[red!75!black,align=center,font=\scriptsize] at (-1.38,1.28) {luz no\\aprovechada};
+    \node[red!70!black,font=\bfseries] at (0,-1.52)
+      {$d_{\mathrm{salida}}>d_{\mathrm{ojo}}$};
+    \node at (0,-1.82) {el iris recorta el haz};
+  \end{scope}
+
+  % Condición límite: ambos diámetros coinciden.
+  \begin{scope}[shift={(0,0)}]
+    \draw[rounded corners=5pt,fill=gray!3,draw=gray!35] (-2.05,-2.05) rectangle (2.05,2.2);
+    \node[font=\bfseries] at (0,1.86) {$M=M_{\min}$};
+    \fill[yellow!38] (0,0) circle (0.95);
+    \fill[blue!30,opacity=0.62] (0,0) circle (0.95);
+    \draw[orange!90!black,line width=3.2pt] (0,0) circle (0.95);
+    \draw[blue!75!black,very thick,dashed] (0,0) circle (0.95);
+    \node[green!45!black,font=\bfseries] at (0,-1.52)
+      {$d_{\mathrm{salida}}=d_{\mathrm{ojo}}$};
+    \node at (0,-1.82) {acoplamiento límite};
+  \end{scope}
+
+  % Aumento superior al mínimo: el haz completo entra al ojo.
+  \begin{scope}[shift={(5,0)}]
+    \draw[rounded corners=5pt,fill=gray!3,draw=gray!35] (-2.05,-2.05) rectangle (2.05,2.2);
+    \node[font=\bfseries] at (0,1.86) {$M>M_{\min}$};
+    \fill[blue!28,opacity=0.68] (0,0) circle (1.02);
+    \fill[yellow!48] (0,0) circle (0.56);
+    \draw[blue!75!black,very thick] (0,0) circle (1.02);
+    \draw[orange!90!black,very thick] (0,0) circle (0.56);
+    \node[green!45!black,font=\bfseries] at (0,-1.52)
+      {$d_{\mathrm{salida}}<d_{\mathrm{ojo}}$};
+    \node at (0,-1.82) {se recibe todo el haz};
+  \end{scope}
+
+  \draw[orange!90!black,line width=2.4pt] (-4.75,-2.6) -- (-4.05,-2.6);
+  \node[right] at (-3.92,-2.6) {pupila de salida};
+  \draw[blue!75!black,line width=2.4pt] (0.15,-2.6) -- (0.85,-2.6);
+  \node[right] at (0.98,-2.6) {pupila del ojo};
+  \fill[red!35] (4.2,-2.72) rectangle (4.55,-2.48);
+  \node[right] at (4.68,-2.6) {luz perdida};
+\end{tikzpicture}
+\caption{Comparación entre la pupila de salida y la pupila del ojo. El aumento mínimo útil corresponde a la condición en que ambos diámetros coinciden.}
+\end{figure}
