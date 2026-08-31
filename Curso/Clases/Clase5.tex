@@ -1,0 +1,158 @@
+\chapter{Clase 5}
+
+\section{Introducción a las Bases de Datos en Astronomía}
+
+La astronomía moderna se ha transformado en una ciencia impulsada por grandes volúmenes de datos. Proyectos de observación a gran escala generan terabytes de información que requieren almacenamiento, procesamiento y distribución eficientes. Para aprovechar estos datos, la comunidad astronómica utiliza bases de datos relacionales y herramientas de consulta estandarizadas, permitiendo a los investigadores acceder a catálogos, espectros e imágenes de manera remota y sistemática.
+
+A continuación, se detallan las principales bases de datos, archivos y herramientas de consulta utilizadas en la astronomía contemporánea.
+
+\section{El Sloan Digital Sky Survey (SDSS) y SQL}
+
+\subsection{Descripción del SDSS}
+El \href{https://skyserver.sdss.org/dr17/en/home.aspx}{Sloan Digital Sky Survey (SDSS)} es un proyecto de investigación fundamental que obtiene imágenes del cielo en el visible y espectros para medir corrimientos al rojo. Para ello utiliza un telescopio de 2{,}5 metros y gran campo situado en el Observatorio Apache Point, en Nuevo México.
+
+Sus objetivos principales incluyen cartografiar una cuarta parte del cielo visible, obtener observaciones de cerca de 100 millones de objetos y adquirir espectros de un millón de ellos. La componente principal de las observaciones consiste en fotometría en cinco bandas ($u$, $g$, $r$, $i$, $z$) y espectros para objetos de interés (estrellas de la Vía Láctea, galaxias y cuásares). La base de datos del SDSS contiene aproximadamente 300 TB de datos, entre imágenes, espectros, archivos de calibración y tablas de productos derivados.
+
+\subsection{Consultas SQL en SDSS}
+Para acceder a las tablas de datos del SDSS, se utiliza el Lenguaje de Consulta Estructurada (SQL). A través del \href{https://skyserver.sdss.org/dr17/SearchTools/sql}{SQL Search Tool}, los usuarios pueden extraer información específica.
+
+\subsubsection{Consulta Básica de Coordenadas}
+Para obtener las coordenadas de objetos en una región específica del cielo, se utiliza la tabla \texttt{specObj}. El siguiente código consulta objetos en un rango de ascensión recta (\textit{ra}) y declinación (\textit{dec}):
+
+\begin{verbatim}
+SELECT ra, dec 
+FROM specObj 
+WHERE ra BETWEEN 140 AND 141 
+AND dec BETWEEN 20 AND 21
+\end{verbatim}
+
+\subsubsection{Práctica 1: Área Reducida}
+Si se desea investigar un área más pequeña centrada aproximadamente en $\mathrm{ra}=140{,}5^\circ$ y $\mathrm{dec}=20{,}5^\circ$, se ajustan los límites de la consulta:
+
+\begin{verbatim}
+SELECT ra, dec 
+FROM specObj 
+WHERE ra BETWEEN 140.25 AND 140.75 
+AND dec BETWEEN 20.25 AND 20.75
+\end{verbatim}
+
+\subsubsection{Práctica 2: Filtrado por Clase de Objeto}
+Para filtrar los resultados anteriores y obtener únicamente galaxias, se selecciona la clase \texttt{GALAXY}:
+
+\begin{verbatim}
+SELECT ra, dec 
+FROM specObj 
+WHERE ra BETWEEN 140 AND 141 
+AND dec BETWEEN 20 AND 21 
+AND class='GALAXY'
+\end{verbatim}
+
+\subsubsection{Práctica 3: Unión de Tablas (JOIN)}
+Una de las operaciones más potentes en SQL es la unión de tablas. El siguiente código une la tabla de espectros (\texttt{SpecObj}) con la tabla de fotometría (\texttt{PhotoObj}) para obtener datos de estrellas:
+
+\begin{verbatim}
+SELECT TOP 50 
+s.specObjID, s.ra, s.dec, s.z, 
+p.u, p.g, p.r, p.i, p.z 
+FROM SpecObj AS s 
+JOIN PhotoObj AS p ON s.bestObjID = p.objID 
+WHERE s.class = 'STAR'
+\end{verbatim}
+
+\textbf{Análisis de la consulta:}
+\begin{itemize}
+    \item \textbf{\texttt{ra}, \texttt{dec}}: coordenadas ecuatoriales (ascensión recta y declinación).
+    \item \textbf{\texttt{z}}: corrimiento al rojo (\textit{redshift}), crucial para determinar distancias cosmológicas en galaxias y cuásares.
+    \item \textbf{\texttt{u}, \texttt{g}, \texttt{r}, \texttt{i}, \texttt{z}}: magnitudes aparentes en las cinco bandas fotométricas del SDSS, desde el ultravioleta cercano hasta el infrarrojo cercano.
+    \item \textbf{\texttt{class = 'STAR'}}: indica que el objeto ha sido clasificado espectroscópicamente como una estrella.
+    \item \textbf{Utilidad}: Esta información permite construir diagramas color-magnitud, estudiar la distribución espacial de estrellas o analizar sus propiedades físicas a partir de sus colores.
+\end{itemize}
+
+\subsection{Herramientas Visuales}
+Además de SQL, el SDSS ofrece el \href{https://skyserver.sdss.org/dr17/VisualTools}{Visual Tools}, que incluye la herramienta \textit{Navigation Tools}. 
+
+\textbf{Navigation Tools} presenta un mosaico interactivo del cielo. Permite navegar visualmente por las imágenes del SDSS, seleccionar objetos individuales para consultar sus parámetros básicos y contar objetos, como estrellas o galaxias, dentro de un campo de visión. Por ello resulta útil para la exploración inicial y la identificación visual de cúmulos o estructuras.
+
+\section{El Centro de Datos Astronómicos de Estrasburgo (CDS)}
+
+El \href{https://cds.u-strasbg.fr/}{Centro de datos astronómicos de Estrasburgo (CDS)} se dedica a la recopilación y distribución mundial de datos astronómicos, albergando más de 500 TB de información. Sus servicios principales son SIMBAD, VizieR y Aladin.
+
+\subsection{SIMBAD}
+\href{http://simbad.cds.unistra.fr/simbad/}{SIMBAD} es la base de datos de referencia mundial para la identificación de objetos astronómicos. Proporciona coordenadas, identificaciones referenciadas en diferentes catálogos, medidas físicas y bibliografía.
+
+Al consultar un identificador (por ejemplo, \textit{Betelgeuse}), SIMBAD retorna:
+\begin{itemize}
+    \item \textbf{Tipo de objeto}: Clasificación detallada (ej. \textit{semi-reg. pulsating Star}).
+    \item \textbf{Coordenadas}: Ascensión recta y declinación en la época J2000.
+    \item \textbf{Magnitudes}: Brillo en distintos filtros fotométricos (B, V, J, H, K).
+    \item \textbf{Cinemática}: Distancia estimada y movimiento propio (dirección y magnitud).
+    \item \textbf{Bibliografía}: Referencias a publicaciones científicas asociadas al objeto.
+\end{itemize}
+
+\subsection{VizieR}
+\href{https://vizier.u-strasbg.fr/viz-bin/VizieR}{VizieR} es el servicio de catálogos del CDS, que permite acceder a más de 17\,000 tablas de datos y catálogos publicados en revistas académicas o derivados de grandes sondeos.
+
+\textbf{Ejemplo de uso (Gaia DR3):}
+Al buscar el catálogo \textit{Gaia DR3} (I/355/gaiadr3) y aplicar restricciones como un paralaje mayor a 100 mas (\textit{Parallax > 100}), se pueden extraer estrellas cercanas. Con estos datos, es posible construir un diagrama color-magnitud (ej. eje X: BP-RP, eje Y: magnitud G invertida), donde se identifica claramente la secuencia principal, el giro de las gigantes y la secuencia de enanas blancas.
+
+\subsection{Aladin Sky Atlas}
+Aladin es un software interactivo de atlas del cielo desarrollado por el CDS. Permite acceder, visualizar y analizar imágenes astronómicas, sondeos y catálogos, superponiendo datos de diferentes longitudes de onda y arquitecturas.
+
+\section{Otros Archivos y Bases de Datos Astronómicas}
+
+Además del SDSS y el CDS, existen archivos especializados para misiones específicas o ramas particulares de la astronomía.
+
+\subsection{MAST (Barbara A. Mikulski Archive for Space Telescopes)}
+El \href{https://mast.stsci.edu/portal/Mashup/Clients/Mast/Portal.html}{MAST} es el archivo para telescopios espaciales de la NASA (como Hubble, JWST, Kepler, TESS). Permite buscar datos por nombre de objeto (ej. M51) y misión (ej. JWST), facilitando la descarga de imágenes y espectros calibrados.
+
+\subsection{ESO Archive}
+El \href{https://archive.eso.org/cms.html}{ESO Archive} alberga los datos del Observatorio Austral Europeo. Al buscar un objeto (ej. M25), el usuario puede determinar con qué instrumento fue observado, el tipo de dato, la franja del espectro, los filtros utilizados y otra información técnica de la observación.
+
+\subsection{Gaia Archive}
+La misión Gaia de la ESA realiza un cartografiado astrométrico sin precedentes. Su \href{https://gea.esac.esa.int/archive/}{archivo} utiliza ADQL (Astronomical Data Query Language), una variante de SQL optimizada para datos astronómicos.
+
+\textbf{Ejemplo de consulta ADQL:}
+Para seleccionar estrellas cercanas y brillantes, se ejecuta la siguiente consulta:
+
+\begin{verbatim}
+SELECT source_id, ra, dec, parallax, phot_g_mean_mag 
+FROM gaiadr3.gaia_source 
+WHERE parallax > 10 
+AND phot_g_mean_mag < 12 
+ORDER BY parallax DESC 
+LIMIT 20
+\end{verbatim}
+
+Una vez extraído el paralaje ($\pi$) en milisegundos de arco, se puede calcular la distancia aproximada a la estrella asumiendo $\pi$ en segundos de arco y la distancia $d$ en parsecs:
+
+\[
+d = \frac{1}{\pi}.
+\]
+
+\subsection{NED y NASA Exoplanet Archive}
+\begin{itemize}
+    \item \textbf{NED}: La \href{https://ned.ipac.caltech.edu/}{NASA/IPAC Extragalactic Database} es la base de datos por excelencia para objetos extragalácticos (ej. buscar M31 o Andrómeda), proporcionando distancias, morfologías y datos multi-longitud de onda.
+    \item \textbf{NASA Exoplanet Archive}: El \href{https://exoplanetarchive.ipac.caltech.edu/index.html}{NASA Exoplanet Archive} recopila todos los planetas extrasolares descubiertos. Incluye herramientas como \textit{ExoFAST} para el ajuste de curvas de luz y tránsitos, permitiendo a los investigadores derivar parámetros físicos y orbitales de los exoplanetas.
+\end{itemize}
+
+\section{Resumen de Herramientas}
+
+Para facilitar la comprensión de las herramientas disponibles, se presenta una tabla resumen con sus enfoques principales y métodos de consulta.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{@{}p{0.20\textwidth}p{0.34\textwidth}p{0.38\textwidth}@{}}
+\toprule
+\textbf{Base de datos o archivo} & \textbf{Enfoque principal} & \textbf{Herramienta de consulta} \\
+\midrule
+SDSS & Cartografiado óptico, espectros & SQL \\
+SIMBAD & Identificación y bibliografía & Formulario web / Astroquery \\
+VizieR & Catálogos y tablas publicadas & Formulario web \\
+Gaia Archive & Astrometría estelar de precisión & ADQL \\
+MAST & Datos de telescopios espaciales & Portal de búsqueda / MAST API \\
+NED & Base de datos extragaláctica & Formulario web / API \\
+\bottomrule
+\end{tabular}
+\caption{Resumen de las principales bases de datos y archivos astronómicos.}
+\end{table}
