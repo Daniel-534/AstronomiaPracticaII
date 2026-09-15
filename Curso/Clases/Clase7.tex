@@ -1,0 +1,679 @@
+\chapter{Clase 7}
+
+\section{Descripción general de IRAF}
+
+IRAF (\textit{Image Reduction and Analysis Facility}) es un paquete de uso común en astronomía. Se utiliza para desarrollar procedimientos de análisis y reducción de datos astronómicos, tanto imágenes como espectros.
+
+Su estructura se organiza en paquetes, dentro de los cuales existen tareas (\textit{tasks}) o programas que realizan procedimientos específicos.
+
+En el documento se indica que IRAF no es la única herramienta disponible, ni necesariamente la mejor o la peor; sin embargo, debido a su tiempo de desarrollo ---desde 1984---, se ha convertido en una herramienta conocida y cómoda de usar.
+
+Mediante actualizaciones se han incorporado paquetes nuevos, incluso asociados a instrumentos y/o telescopios. Por ejemplo, se mencionan STDAS, paquete de análisis del Space Telescope Science Institute, y paquetes del observatorio GEMINI.
+
+Además, se destaca que IRAF sigue siendo software libre.
+
+\section{Componentes básicos del sistema}
+
+El sistema IRAF se describe a partir de varias piezas básicas. En el material se mencionan las siguientes:
+
+\begin{itemize}
+    \item Lenguaje de comandos, CL: es la interfaz del usuario con el sistema.
+    \item Paquetes de aplicación: contienen algoritmos para analizar datos reales.
+    \item Sistema operativo virtual, VOS: es la interfaz del sistema huésped.
+\end{itemize}
+
+El lenguaje de comandos CL tiene como función básica proporcionar una interfaz entre el usuario y todos los paquetes de aplicación de IRAF. Muchos de los programas incluidos en los paquetes son funciones estándar para análisis de datos, y la mayoría son iterativos. La ejecución se controla con parámetros que el usuario puede modificar.
+
+\section{Paquetes y tareas}
+
+Un paquete es un conjunto de tareas o comandos que están lógicamente conectados. Para cargar o tener acceso a un paquete únicamente se necesita teclear su nombre y presionar Enter.
+
+Por ejemplo, para cargar o tener acceso a las tareas del paquete \texttt{plot}, se teclea esa palabra. En el entorno de IRAF, esto puede escribirse como:
+
+\begin{verbatim}
+cl> plot
+\end{verbatim}
+
+Al hacer esto, se mostrarán las tareas del paquete.
+
+\section{Representación de archivos de imágenes}
+
+Un archivo de imagen es una matriz de números que representa tripletas de la forma \texttt{(x, y, I)}, donde \texttt{(x, y)} son las coordenadas espaciales de un punto sobre la imagen e \texttt{I} es la intensidad.
+
+En el caso de imágenes digitales, las imágenes están representadas por un número fijo finito de elementos de imagen, o píxeles. Los píxeles definen una discretización en un sistema de coordenadas cartesiano que referencia un punto sobre la imagen.
+
+Cada píxel está caracterizado por sus coordenadas y su intensidad. Cuando se realizan operaciones sobre la imagen, realmente se opera sobre cada uno de los píxeles de la misma.
+
+\section{Formato FITS}
+
+FITS (\textit{Flexible Image Transport System}) es el formato de archivo más utilizado comúnmente en astronomía.
+
+Aunque el formato FITS es conocido por su uso en almacenamiento de imágenes, también se utiliza a menudo para almacenar datos que no son imágenes, como espectros, listas de fotones, cubos de datos, tablas y muchos otros tipos de datos.
+
+Siendo un formato de almacenamiento binario, un archivo FITS puede contener varios bloques de datos, y cada uno de ellos podría contener distintos datos o imágenes de un objeto. Por ejemplo, es posible almacenar en un mismo archivo FITS imágenes en varias bandas de un mismo objeto.
+
+Una de las mayores ventajas del formato FITS para su uso en ciencia es que, asociado a cada archivo o bloque de datos en el archivo, hay una cabecera con información legible en formato ASCII. Esto permite que un usuario pueda examinar las cabeceras de un archivo para investigar su procedencia y contenidos, determinar su origen y obtener demás información característica útil.
+
+Esta particularidad resulta bastante útil al momento de manipular grandes cantidades de datos, administrar archivos en bases de datos, transportar datos y hacerlos duraderos y usables en el tiempo.
+
+Cada archivo FITS consiste en una o varias cabeceras y su respectivo bloque de datos en formato binario. Cada cabecera contiene secuencias de 80 cadenas de caracteres fijos que llevan pares de valores en la forma de un \textit{keyword} y su valor asociado.
+
+Cada par de valores provee información importante en forma de metadatos, como el tamaño, origen, formato binario de los datos, comentarios, historia de los datos y cualquier otra información que el creador desee. Aunque se cuenta con algunas palabras restringidas para la cabecera de los archivos en formato FITS, el estándar permite el uso arbitrario de cualquier palabra.
+
+\section{Configuración inicial: archivo \texttt{login.cl}}
+
+El archivo \texttt{login.cl} contiene todos los aspectos específicos asociados al funcionamiento de la sesión de IRAF del usuario. Puede resultar conveniente editar este archivo para conseguir un comportamiento más cómodo del programa.
+
+Por ejemplo, se puede editar mediante:
+
+\begin{verbatim}
+(iraf27) lauren@lauren-VirtualBox:~/iraf$ gedit login.cl
+(iraf27) lauren@lauren-VirtualBox:~/iraf$ vi login.cl
+\end{verbatim}
+
+El documento sugiere editar, por ejemplo, los siguientes parámetros:
+
+\begin{verbatim}
+set editor= emacs
+set stdimage= imt8192
+set imtype="fits"
+\end{verbatim}
+
+\section{Inicio de una sesión de IRAF}
+
+Para abrir la terminal \texttt{xgterm}, se pueden usar comandos como:
+
+\begin{verbatim}
+(iraf27) lauren@lauren-VirtualBox:~/iraf$ xgterm&
+(iraf27) lauren@lauren-VirtualBox:~/iraf$ xgterm-sbr&
+\end{verbatim}
+
+Dentro de la terminal abierta, se escribe nuevamente la activación del entorno:
+
+\begin{verbatim}
+(base) lauren@lauren-VirtualBox:~/iraf$ source activate iraf27
+\end{verbatim}
+
+Luego se puede abrir el visualizador \texttt{ds9}:
+
+\begin{verbatim}
+(iraf27)lauren@lauren-VirtualBox:~/iraf$ ds9&
+\end{verbatim}
+
+Finalmente, se inicia IRAF escribiendo:
+
+\begin{verbatim}
+(iraf27)lauren@lauren-VirtualBox:~/iraf$ cl
+\end{verbatim}
+
+\section{Consola de IRAF y cierre de sesión}
+
+Al ejecutar \texttt{cl}, se debe leer detenidamente el mensaje de bienvenida de la consola de IRAF. Un usuario familiarizado con paquetes como \texttt{gnuplot} notará cierta similitud con la consola de IRAF.
+
+IRAF atiende instrucciones ingresadas por la línea de comandos del prompt y se ejecuta directamente sobre la consola \texttt{xgterm}. Cerrar la consola \texttt{xgterm} implicará cerrar la aplicación de IRAF.
+
+Para cerrar una sesión IRAF basta con ejecutar el comando:
+
+\begin{verbatim}
+cl>logout
+\end{verbatim}
+
+\section{Paquetes cargados y navegación entre paquetes}
+
+Al ejecutar \texttt{cl}, automáticamente se cargan varios paquetes. El material indica que existe una forma de consultar qué paquetes ya están cargados; en el texto extraído no se conserva la línea exacta de ese comando.
+
+Es importante tener en cuenta que CL distingue entre letras mayúsculas y minúsculas para el nombre de un comando o los argumentos.
+
+Para volver al prompt básico de IRAF, \texttt{cl>}, se puede usar:
+
+\begin{verbatim}
+cl>bye
+\end{verbatim}
+
+El comando \texttt{bye} descarga el paquete que se encuentre cargado en su instancia más inmediata. Se puede navegar a través de los paquetes hacia adelante usando el nombre del paquete, y hacia atrás con el comando \texttt{bye}.
+
+\section{Comandos generales de ayuda}
+
+\subsection{Lista de tareas y paquetes}
+
+Para ver qué paquetes y tareas hay disponibles en el nivel actual, se usa el comando:
+
+\begin{verbatim}
+cl>?
+\end{verbatim}
+
+Si se quiere ver qué hay contenido dentro de cada uno de los paquetes instalados en IRAF, sin tener que cargarlos, se puede ejecutar:
+
+\begin{verbatim}
+cl>??
+\end{verbatim}
+
+Con \texttt{?nombre-del\_paquete} se listan las tareas del paquete especificado, siempre que haya sido cargado previamente. Por ejemplo, de forma genérica:
+
+\begin{verbatim}
+?nombre-del_paquete
+\end{verbatim}
+
+Los nombres de los paquetes y tareas pueden darse de forma abreviada, usando los primeros tres o cuatro caracteres, evitando ambigüedad. Si la abreviatura no es única, se tendrá un mensaje de error.
+
+\subsection{Ayuda sobre una tarea específica}
+
+Para saber en qué paquete se encuentra una tarea, el comando \texttt{help} proporciona esta información. Por ejemplo, si se desea saber dónde está la tarea \texttt{precess}, se puede teclear:
+
+\begin{verbatim}
+plot> help precess
+\end{verbatim}
+
+En la parte superior central de la ayuda aparece la ruta de la tarea. En el ejemplo del documento, para la tarea \texttt{precess}, la ruta será \texttt{noao.astutil}.
+
+Para ejecutar la tarea \texttt{precess}, se deberá cargar el paquete correspondiente. El documento indica que, si \texttt{noao} ya se encuentra cargado, se debe cargar \texttt{astutil}; de no ser así, se tendría que cargar antes el paquete \texttt{noao}.
+
+\subsection{Búsqueda de un término en la documentación: \texttt{refer}}
+
+Otro comando de ayuda particularmente poderoso es \texttt{refer}. El comando \texttt{refer} busca en la documentación de todos los paquetes una palabra en particular.
+
+Por ejemplo, si se quiere ver cuáles paquetes hacen alusión al término \texttt{fft}, se ejecuta:
+
+\begin{verbatim}
+cl>refer fft
+\end{verbatim}
+
+\subsection{Recuperación de comandos anteriores: \texttt{history}}
+
+Si se quiere recuperar un comando que se ha ejecutado anteriormente, se pueden usar las flechas del teclado hacia arriba o hacia abajo, como en el shell del sistema operativo Linux.
+
+Otra forma es usar el comando \texttt{history}. Este comando recupera la lista de últimos comandos ejecutados. Si se ejecuta sin argumentos, \texttt{history} recuperará los últimos 10 comandos, que es el número por defecto.
+
+Si se quieren recuperar los últimos 23 comandos ejecutados en el shell de IRAF, se puede ejecutar:
+
+\begin{verbatim}
+cl>history 23
+\end{verbatim}
+
+\subsection{Lista de parámetros de una tarea: \texttt{lpar}}
+
+Para mostrar la lista de parámetros necesarios para el funcionamiento de una tarea se utiliza la tarea \texttt{lpar}. Por ejemplo:
+
+\begin{verbatim}
+cl>lpar imheader
+\end{verbatim}
+
+Esto lista los parámetros de funcionamiento del task \texttt{imheader}.
+
+\subsection{Uso de \texttt{imheader}}
+
+El task \texttt{imheader} lee el header de un archivo FITS y lo imprime en pantalla. \texttt{lpar} muestra que hay varios parámetros que se pueden pasar al task \texttt{imheader} para su ejecución.
+
+Ejecutando el task con valores por defecto:
+
+\begin{verbatim}
+cl>imheader dev$pix
+\end{verbatim}
+
+Con los valores por defecto, esta es la información que se provee, y claramente no es toda la información contenida en la cabecera de la imagen.
+
+Si se modifica uno de los parámetros del task, específicamente el parámetro \texttt{longheader=yes}, se obtendrá mucha más información. Así, la ejecución para ver la cabecera completa de la imagen sería:
+
+\begin{verbatim}
+cl>imheader dev$pix longheader=yes
+\end{verbatim}
+
+\section{Visualización de imágenes}
+
+Para visualizar una imagen hay que usar una herramienta auxiliar, \texttt{ds9}. El programa \texttt{ds9} es un paquete creado por el Smithsonian Astrophysical Observatory. Aunque es una herramienta que funciona independientemente de IRAF, se puede usar en conjunto con este como herramienta de visualización de imágenes.
+
+Para abrir \texttt{ds9} desde IRAF se puede usar:
+
+\begin{verbatim}
+cl>!ds9&
+\end{verbatim}
+
+Para abrir una imagen desde IRAF se utiliza el comando \texttt{display}. El comando \texttt{display} abrirá la imagen especificada como argumento en la línea de comandos, o mediante el conjunto de valores de sus parámetros, con las opciones que se le entreguen.
+
+Por ejemplo:
+
+\begin{verbatim}
+cl> display dev$pix 1
+\end{verbatim}
+
+Esto abrirá la imagen de M51 empacada por defecto con IRAF en el frame 1.
+
+\texttt{ds9} permite el uso de más de un frame, hasta 16, simultáneamente. En un segundo frame se puede abrir la misma imagen pero con su intensidad mapeada en una escala logarítmica:
+
+\begin{verbatim}
+cl>display dev$pix 2 ztrans=log
+\end{verbatim}
+
+La imagen anterior desaparece y ahora hay una presentación diferente de los mismos datos. Si se presiona la tecla Tab teniendo activa la ventana de \texttt{ds9}, se puede saltar de un frame al otro.
+
+\section{Copiado y eliminación de imágenes}
+
+IRAF tiene sus propios comandos de copiado y eliminación de imágenes: \texttt{imcopy} e \texttt{imdelete}.
+
+En particular, \texttt{imcopy} puede resultar más conveniente porque permite copiar segmentos de imagen.
+
+Por ejemplo, para copiar la región localizada entre las columnas 180 y 320 y las filas 200 y 310, y guardar el resultado en el archivo de imagen \texttt{segment.fits}, se puede usar:
+
+\begin{verbatim}
+cl>imcopy dev$pix[180:320,200:310] segment.fits
+cl> display segment.fits 3
+\end{verbatim}
+
+\section{Estadísticas y examen de imágenes}
+
+\subsection{\texttt{imstatistics}}
+
+El task \texttt{imstatistics} produce estadísticos básicos de una imagen o sección de imagen.
+
+Por ejemplo:
+
+\begin{verbatim}
+cl>imstat dev$pix fields="image,mean,midpt,mode,stddev"
+\end{verbatim}
+
+Esto calculará la media, mediana, punto medio, moda y desviación estándar para la distribución de píxeles en toda la imagen \texttt{dev\$pix}, imprimiendo el resultado en pantalla con cinco columnas, cada una correspondiente a los campos indicados.
+
+\subsection{\texttt{imexamine}}
+
+El task \texttt{imexamine} permite examinar una imagen en interacción con el frame indicado. En el documento se muestra su ejecución como:
+
+\begin{verbatim}
+cl>imexamine segments.fits 2
+\end{verbatim}
+
+\section{Otros comandos básicos para operar sobre imágenes}
+
+\subsection{\texttt{imarith}}
+
+El task \texttt{imarith} ejecuta operaciones aritméticas entre imágenes. Funciona según la sintaxis:
+
+\begin{verbatim}
+cl>imarith imagen1 operacion imagen2 resultado
+\end{verbatim}
+
+donde \texttt{imagen1} e \texttt{imagen2} son los operandos, es decir, dos archivos de imagen preexistentes, mientras que \texttt{resultado} será un archivo de imagen nuevo que se creará como resultado de la operación.
+
+Las operaciones que se pueden realizar con \texttt{imarith} son:
+
+\begin{itemize}
+    \item \texttt{+}: suma.
+    \item \texttt{-}: resta.
+    \item \texttt{*}: multiplicación.
+    \item \texttt{/}: división.
+    \item \texttt{min}: operación mínimo.
+    \item \texttt{max}: operación máximo.
+\end{itemize}
+
+\subsection{\texttt{imcombine}}
+
+El task \texttt{imcombine} combina un conjunto de imágenes a través de una operación especificada: promedio, mediana, sumas pesadas, cuadraturas y cuadraturas pesadas.
+
+Este task es extremadamente útil durante los procesos de reducción, para hacer, por ejemplo, la combinación de archivos de calibración como superdarks o superbias.
+
+\subsection{\texttt{imshift}}
+
+Si se necesita desplazar una imagen, por ejemplo para alinear un conjunto de imágenes tomadas en diferentes bandas y hacer una combinación de colores, el task indicado es \texttt{imshift}.
+
+\texttt{imshift} hace desplazamientos horizontales y verticales en una imagen un conjunto dado de píxeles. Por ejemplo:
+
+\begin{verbatim}
+cl>imshift imagenI imagenO 5 5
+\end{verbatim}
+
+Esto inducirá un desplazamiento de 5 píxeles a la derecha y 5 píxeles hacia arriba en la imagen \texttt{imagenI}, y producirá como resultado una nueva imagen \texttt{imagenO} con las nuevas posiciones desplazadas.
+
+\subsection{\texttt{imtranspose}}
+
+Este task hace una transposición de la o las imágenes de entrada. Recordando que una imagen bidimensional se puede ver como una matriz, \texttt{imtranspose} intercambia filas por columnas en la imagen de entrada y como resultado produce una nueva imagen con la transposición.
+
+Su sintaxis es:
+
+\begin{verbatim}
+cl>imtranspose imagenI imagenO
+\end{verbatim}
+
+\subsection{\texttt{rotate}}
+
+El task \texttt{rotate} es una versión más completa que \texttt{imshift}, en el sentido de que induce rotaciones y traslaciones arbitrarias sobre una imagen.
+
+\section{Graficación con \texttt{implot}}
+
+Otro task importante, y que puede ser usado en modo interactivo, es \texttt{implot}. La función básica de \texttt{implot} es graficar líneas y columnas de una imagen.
+
+Si se quiere graficar toda la columna 50, es decir, la coordenada x igual a 50, de la imagen expuesta en el visor \texttt{ds9}, se puede usar:
+
+\begin{verbatim}
+cl>implot dev$pix[50,*]
+\end{verbatim}
+
+Nuevamente se usa la sintaxis de bloque de imagen. Así como con \texttt{imcopy}, en general IRAF puede trabajar con secciones de imagen delimitadas por la sintaxis:
+
+\begin{verbatim}
+[xmin:xmax, ymin:ymax]
+\end{verbatim}
+
+Indicando el rango en \texttt{y} con \texttt{*}, se liberan todos los posibles valores de \texttt{y} en la gráfica.
+
+La ejecución de \texttt{implot} quita el control al prompt de IRAF y se lo entrega al cursor sobre la ventana de \texttt{ximtool}. Las opciones básicas en esta consola interactiva son:
+
+\begin{verbatim}
+:c #          grafica la columna #
+:l #          grafica la linea #
+q             finaliza la ejecución del modo interactivo
+:o            mantiene la grafica (overplot)
+:i<filename>  nuevo archivo para graficar
+\end{verbatim}
+
+
+\section{Comandos importantes y ejercicio de práctica}
+
+\subsection{Resumen ordenado de comandos importantes}
+
+En esta sección se presentan varios comandos útiles de IRAF. El prompt \texttt{cl>} se muestra solo como referencia para indicar que la orden se ejecuta dentro de la consola de IRAF. Si se copia y pega una orden, debe escribirse únicamente la parte que va después del prompt.
+
+\subsubsection*{Sesión y navegación}
+
+\begin{description}
+
+\item[Iniciar IRAF]
+\begin{verbatim}
+cl
+\end{verbatim}
+Inicia la consola de IRAF.
+
+\item[Cerrar la sesión]
+\begin{verbatim}
+cl>logout
+\end{verbatim}
+Cierra la sesión de IRAF.
+
+\item[Regresar al prompt básico]
+\begin{verbatim}
+cl>bye
+\end{verbatim}
+Descarga el paquete cargado más recientemente y permite volver al prompt básico \texttt{cl>}.
+
+\end{description}
+
+\subsubsection*{Ayuda y consulta}
+
+\begin{description}
+
+\item[Listar tareas del paquete activo]
+\begin{verbatim}
+cl>?
+\end{verbatim}
+Lista las tareas disponibles en el paquete activo.
+
+\item[Listar paquetes y tareas instalados]
+\begin{verbatim}
+cl>??
+\end{verbatim}
+Lista los paquetes y tareas instalados en IRAF, sin necesidad de cargarlos.
+
+\item[Buscar ayuda de una tarea]
+\begin{verbatim}
+plot> help precess
+\end{verbatim}
+Busca ayuda de la tarea \texttt{precess}. En la parte superior de la ayuda aparece la ruta del paquete donde se encuentra la tarea.
+
+\item[Buscar una palabra en la documentación]
+\begin{verbatim}
+cl>refer fft
+\end{verbatim}
+Busca el término \texttt{fft} en la documentación de todos los paquetes.
+
+\item[Recuperar comandos anteriores]
+\begin{verbatim}
+cl>history 23
+\end{verbatim}
+Recupera los últimos 23 comandos ejecutados en la consola de IRAF.
+
+\item[Listar parámetros de una tarea]
+\begin{verbatim}
+cl>lpar imheader
+\end{verbatim}
+Lista los parámetros que usa la tarea \texttt{imheader}.
+
+\end{description}
+
+\subsubsection*{Inspección de cabeceras y estadísticas}
+
+\begin{description}
+
+\item[Ver cabecera FITS]
+\begin{verbatim}
+cl>imheader dev$pix
+\end{verbatim}
+Muestra una versión resumida de la cabecera FITS de la imagen \texttt{dev\$pix}.
+
+\item[Ver cabecera FITS completa]
+\begin{verbatim}
+cl>imheader dev$pix longheader=yes
+\end{verbatim}
+Muestra una versión más completa de la cabecera FITS.
+
+\item[Calcular estadísticas básicas]
+\begin{verbatim}
+cl>imstat dev$pix fields="image,mean,midpt,mode,stddev"
+\end{verbatim}
+Calcula estadísticas básicas de la imagen, como media, punto medio, moda y desviación estándar.
+
+\end{description}
+
+\subsubsection*{Visualización de imágenes}
+
+\begin{description}
+
+\item[Abrir ds9 desde IRAF]
+\begin{verbatim}
+cl>!ds9&
+\end{verbatim}
+Abre el visualizador ds9 desde la consola de IRAF.
+
+\item[Mostrar una imagen en un frame]
+\begin{verbatim}
+cl>display dev$pix 1
+\end{verbatim}
+Muestra la imagen \texttt{dev\$pix} en el frame 1 de ds9.
+
+\item[Mostrar una imagen con escala logarítmica]
+\begin{verbatim}
+cl>display dev$pix 2 ztrans=log
+\end{verbatim}
+Muestra la imagen \texttt{dev\$pix} en el frame 2, usando una transformación logarítmica de intensidad.
+
+\end{description}
+
+\subsubsection*{Manipulación básica de imágenes}
+
+\begin{description}
+
+\item[Copiar una sección de imagen]
+\begin{verbatim}
+cl>imcopy dev$pix[180:320,200:310] segment.fits
+\end{verbatim}
+Copia una sección rectangular de \texttt{dev\$pix} y la guarda en \texttt{segment.fits}.
+
+\item[Transponer una imagen]
+\begin{verbatim}
+cl>imtranspose imagenI imagenO
+\end{verbatim}
+Transpone la imagen de entrada \texttt{imagenI}, intercambiando filas por columnas, y genera \texttt{imagenO}.
+
+\item[Desplazar una imagen]
+\begin{verbatim}
+cl>imshift imagenI imagenO 5 5
+\end{verbatim}
+Desplaza la imagen \texttt{imagenI} 5 píxeles en cada dirección indicada y genera \texttt{imagenO}.
+
+\end{description}
+
+\subsubsection*{Operaciones entre imágenes y graficación}
+
+\begin{description}
+
+\item[Operaciones aritméticas entre imágenes]
+\begin{verbatim}
+cl>imarith imagen1 operacion imagen2 resultado
+\end{verbatim}
+Realiza una operación aritmética entre dos imágenes. Las operaciones pueden ser \texttt{+}, \texttt{-}, \texttt{*}, \texttt{/}, \texttt{min} o \texttt{max}.
+
+\item[Combinar imágenes]
+\begin{verbatim}
+imcombine
+\end{verbatim}
+Combina un conjunto de imágenes mediante operaciones como promedio, mediana, sumas pesadas, cuadraturas o cuadraturas pesadas.
+
+\item[Rotar o trasladar una imagen]
+\begin{verbatim}
+rotate
+\end{verbatim}
+Permite aplicar rotaciones y traslaciones más generales que \texttt{imshift}.
+
+\item[Graficar una columna de una imagen]
+\begin{verbatim}
+cl>implot dev$pix[50,*]
+\end{verbatim}
+Grafica la columna 50 de la imagen \texttt{dev\$pix}, usando todos los valores disponibles en la otra dimensión.
+
+\item[Opciones interactivas básicas de implot]
+\begin{verbatim}
+:c #
+:l #
+q
+:o
+:i<filename>
+\end{verbatim}
+En el modo interactivo de \texttt{implot}: \texttt{:c \#} grafica la columna \#, \texttt{:l \#} grafica la línea \#, \texttt{q} finaliza, \texttt{:o} mantiene la gráfica previa e \texttt{:i<filename>} carga un archivo nuevo para graficar.
+
+\end{description}
+
+\subsection{Ejercicio guiado: copiar una sección, transponerla y comparar estadísticas}
+
+Este ejercicio es sencillo y no requiere hacer una reducción completa de datos. Su objetivo es practicar comandos de ayuda, inspección de cabeceras, visualización, copiado de secciones, transposición y estadísticas.
+
+\subsubsection*{Archivos usados y creados}
+
+\begin{itemize}
+    \item \texttt{dev\$pix}: imagen de ejemplo que suele estar disponible en IRAF.
+    \item \texttt{ejercicio.fits}: sección copiada de la imagen original.
+    \item \texttt{ejercicio\_trans.fits}: versión transpuesta de la sección copiada.
+\end{itemize}
+
+\subsubsection*{Desarrollo del ejercicio}
+
+\begin{enumerate}
+
+\item Si todavía no está dentro de IRAF, inicie la consola:
+\begin{verbatim}
+cl
+\end{verbatim}
+
+\item Abra ds9 desde IRAF:
+\begin{verbatim}
+cl>!ds9&
+\end{verbatim}
+
+\item Liste las tareas disponibles en el nivel actual:
+\begin{verbatim}
+cl>?
+\end{verbatim}
+
+\item Busque ayuda sobre la tarea \texttt{display}:
+\begin{verbatim}
+cl>help display
+\end{verbatim}
+
+\item Liste los parámetros de la tarea \texttt{imheader}:
+\begin{verbatim}
+cl>lpar imheader
+\end{verbatim}
+
+\item Observe una versión resumida de la cabecera de la imagen de ejemplo:
+\begin{verbatim}
+cl>imheader dev$pix
+\end{verbatim}
+
+\item Muestre la imagen original en el frame 1 de ds9:
+\begin{verbatim}
+cl>display dev$pix 1
+\end{verbatim}
+
+\item Copie una sección pequeña de la imagen original a un archivo nuevo:
+\begin{verbatim}
+cl>imcopy dev$pix[100:250,100:250] ejercicio.fits
+\end{verbatim}
+
+\item Muestre la sección copiada en el frame 2:
+\begin{verbatim}
+cl>display ejercicio.fits 2
+\end{verbatim}
+
+\item Transponga la sección copiada:
+\begin{verbatim}
+cl>imtranspose ejercicio.fits ejercicio_trans.fits
+\end{verbatim}
+
+\item Muestre la sección transpuesta en el frame 3:
+\begin{verbatim}
+cl>display ejercicio_trans.fits 3
+\end{verbatim}
+
+\item Calcule estadísticas de la sección original copiada:
+\begin{verbatim}
+cl>imstat ejercicio.fits fields="image,mean,midpt,mode,stddev"
+\end{verbatim}
+
+\item Calcule estadísticas de la sección transpuesta:
+\begin{verbatim}
+cl>imstat ejercicio_trans.fits fields="image,mean,midpt,mode,stddev"
+\end{verbatim}
+
+\item Revise los últimos comandos ejecutados:
+\begin{verbatim}
+cl>history 10
+\end{verbatim}
+
+\item Cierre la sesión de IRAF:
+\begin{verbatim}
+cl>logout
+\end{verbatim}
+
+\end{enumerate}
+
+\subsubsection*{Resultado esperado}
+
+Al finalizar el ejercicio, se espera que el usuario haya logrado:
+
+\begin{itemize}
+    \item Consultar tareas disponibles con \texttt{?}.
+    \item Buscar ayuda de una tarea con \texttt{help}.
+    \item Ver parámetros de una tarea con \texttt{lpar}.
+    \item Inspeccionar la cabecera FITS con \texttt{imheader}.
+    \item Visualizar imágenes en ds9 con \texttt{display}.
+    \item Copiar una sección de imagen con \texttt{imcopy}.
+    \item Transponer una imagen con \texttt{imtranspose}.
+    \item Comparar estadísticas básicas con \texttt{imstat}.
+    \item Cerrar correctamente la sesión con \texttt{logout}.
+\end{itemize}
+
+\subsubsection*{Pregunta de comprobación}
+
+Después de ejecutar el ejercicio, responda mentalmente:
+
+\begin{itemize}
+    \item ¿Qué archivo contiene la sección original copiada?
+    \item ¿Qué archivo contiene la sección transpuesta?
+    \item ¿Qué comando se usó para calcular la media y la desviación estándar?
+    \item ¿Qué comando se usó para cerrar la sesión de IRAF?
+\end{itemize}
+
+Las respuestas esperadas son:
+
+\begin{itemize}
+    \item La sección original copiada quedó en \texttt{ejercicio.fits}.
+    \item La sección transpuesta quedó en \texttt{ejercicio\_trans.fits}.
+    \item El comando usado para estadísticas fue \texttt{imstat}.
+    \item El comando usado para cerrar la sesión fue \texttt{logout}.
+\end{itemize}
