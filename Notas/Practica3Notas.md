@@ -1,4 +1,4 @@
-¿Qué hice en el proceso de solución de la práctica 3?
+¿Qué hice en el proceso de solución de la práctica 3 a partir de la sección 3?
 
 1. Fase de Peparación:
 1.1 Inicializar
@@ -76,7 +76,27 @@ exitosa de im010 y s011 (con sus ejes de píxeles legibles)
 cl > unlearn imsum
 cl > imsum im010, s011 aver1 pixt=r calct=r option=average v+
 3.2 Promediar usando imarith
-cl >
+cl > imarith im010 + s011 aver2 pixt=r calct=r + v
+cl > imarith aver2/2.0 aver2
+
+3.3 Verificación estadística comparativa
+cl > imstat aver1.fits, aver2.fits
+
+-----------------------------------------
+REQUISITO DE ENTREGA #3
+Para el informe final, los estudiantes deberán entregar:
+1. Una tabla comparativa que muestre los datos estadísticos extraídos por
+imstat (media, mediana, desviación estándar, mínimos y máximos) para las
+imágenes combinadas aver1.fits y aver2.fits.
+2. Discusión sobre si los valores coinciden con precisión de flotante de 32 bits y
+cuál de los dos métodos matemáticos considera más automatizable si el
+dataset contara con 100 imágenes en lugar de dos.
+-----------------------------------------
+
+4. Análisis gráfico en 1D,2D,3D
+4.1 Curvas de contorno de intensidad
+cl> contour s011
+
 
 
 
