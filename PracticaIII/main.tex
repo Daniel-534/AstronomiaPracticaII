@@ -1,0 +1,282 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,babel}
+\usepackage{microtype}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.6em}
+\setlength{\emergencystretch}{2em}
+
+\title{Práctica 3: Introducción a IRAF\\
+\large Informe de avance}
+\author{Astronomía Práctica II}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{Objetivo y alcance del avance}
+Explorar el manejo de imágenes astronómicas en IRAF y determinar la
+traslación necesaria para alinear dos imágenes de un mismo campo estelar,
+tomando \texttt{im010} como referencia. Este avance organiza el procedimiento
+registrado y las mediciones de tres estrellas, siguiendo las fases 1 y 2
+de la guía~\cite{guia}. Se completan las explicaciones del requisito de
+entrega 1 y los cálculos del requisito 2. La ejecución del desplazamiento
+calculado y su verificación mediante capturas de DS9 quedan pendientes de
+documentar.
+
+\section{Preparación, lectura de archivos y exploración de parámetros}
+
+\subsection{Inicialización de la sesión}
+Se inició IRAF desde la terminal y se abrió DS9 para visualizar las imágenes.
+El símbolo \texttt{\$} identifica la terminal del sistema y \texttt{cl>}
+identifica el intérprete de comandos de IRAF:
+\begin{verbatim}
+$ iraf
+cl> !ds9 &
+\end{verbatim}
+
+\subsection{Preparación del directorio y lectura con \texttt{rfits}}
+La siguiente transcripción organiza los comandos de los apuntes.
+Las rutas suponen que se parte del directorio personal y que
+\texttt{Documents} y \texttt{Downloads} son carpetas hermanas. Si un
+directorio ya existe, se omite su creación. Desde
+\texttt{Documents/ejercicio/intro} se requieren tres niveles de retorno
+para acceder a \texttt{Downloads}; las rutas deben ajustarse si la
+ubicación real es distinta.
+\begin{verbatim}
+cl> cd Documents
+cl> mkdir ejercicio
+cl> mkdir ejercicio/intro
+cl> cd ejercicio/intro
+cl> !mv ../../../Downloads/fintro0001 .
+cl> !mv ../../../Downloads/fintro0002 .
+cl> unlearn rfits
+cl> rfits fintro* "" junk old+
+cl> dir
+\end{verbatim}
+
+Aunque la guía denomina esta etapa ``descompresión'', \texttt{rfits}
+lee datos FITS y los convierte en imágenes utilizables por IRAF; no es
+un descompresor genérico. \texttt{unlearn rfits} restablece la configuración
+de la tarea. Para archivos en disco, \verb|""| selecciona la unidad
+primaria y \texttt{old+} activa \texttt{oldirafname}, que intenta recuperar
+el nombre almacenado en la cabecera. Por ello, \texttt{junk} no determina
+necesariamente el nombre final~\cite{iraf}. Se debe comprobar con
+\texttt{dir} la presencia de las imágenes \texttt{im010} e \texttt{im011}
+indicadas en la guía.
+
+La figura~\ref{fig:rfits} desglosa el comando de lectura
+\texttt{rfits} utilizado en este paso.
+
+\input{figura_rfits}
+
+\subsection{Exploración y modificación de parámetros}
+Se comparó el resumen de una imagen con su cabecera completa y se exploró
+la configuración de \texttt{imheader}, abreviada como \texttt{imhead}:
+\begin{verbatim}
+cl> lpar imheader
+cl> imhead im010
+cl> imhead im010 longheader=yes | page
+cl> epar imhead
+\end{verbatim}
+En el editor se asigna \texttt{yes} a \texttt{longheader}, se confirma
+la entrada y se sale guardando con \texttt{:q}. Luego se verifica la
+configuración con:
+\begin{verbatim}
+cl> lpar imhead
+\end{verbatim}
+La edición con \texttt{epar} permite conservar el cambio para ejecuciones
+posteriores~\cite{iraf}.
+
+\subsection{Requisito de entrega 1: fundamentos}
+
+\textbf{Pendiente:} reformular esta respuesta de manera más breve y concisa.
+Por ahora, se conserva el texto sin modificaciones.
+
+\subsubsection*{Parámetros Query y Hidden}
+Los parámetros \emph{Query} se consultan al usuario cuando la tarea
+necesita su valor y no se han especificado en la línea de comandos.
+En \texttt{lpar} aparecen sin paréntesis. Los parámetros \emph{Hidden}
+aparecen entre paréntesis y normalmente emplean su valor configurado sin
+preguntar; pueden indicarse explícitamente como \texttt{nombre=valor}.
+Una excepción ocurre si el valor oculto es indefinido o inválido.
+Por tanto, ``obligatorio'' y ``opcional'' describen aquí la interacción
+con el usuario, no la importancia física del parámetro~\cite{iraf}.
+
+En este caso, \texttt{im010} identifica los datos que se examinan,
+mientras que \texttt{longheader=yes} controla la información mostrada:
+permite inspeccionar la cabecera completa sin modificar los píxeles.
+Especificar un parámetro oculto en una llamada no suele guardar su valor
+para la siguiente; editarlo con \texttt{epar} sí permite persistir el
+cambio~\cite{iraf}.
+
+\subsubsection*{Justificación física del formato FITS}
+En astrofísica se necesita conservar los valores numéricos de los píxeles,
+no solamente su apariencia. FITS organiza los datos en unidades de
+cabecera y datos. Las cabeceras contienen registros ASCII legibles con
+palabras clave, valores y comentarios; permiten documentar dimensiones,
+tipo numérico, condiciones de observación e historial de procesamiento.
+Así se conserva el contexto necesario para interpretar y reproducir una
+medición científica~\cite{fitsprimer}.
+
+El campo \texttt{BITPIX} especifica la representación de los datos:
+FITS admite enteros de 8, 16, 32 y 64 bits y números de coma flotante
+de 32 o 64 bits, estos últimos identificados por \texttt{BITPIX=-32}
+y \texttt{BITPIX=-64}. Esta flexibilidad permite conservar un rango
+numérico amplio y resultados fraccionarios o negativos de la reducción,
+si se elige el tipo adecuado; guardar en FITS no recupera información
+que ya se haya perdido~\cite{fitsstandard}.
+
+El JPEG convencional utiliza compresión con pérdidas: la cuantización
+de su representación transformada altera los valores reconstruidos.
+Por ello, una imagen visualmente similar no garantiza las mismas sumas
+de intensidad ni los mismos perfiles estelares. Esto se refiere al JPEG
+de uso habitual, no a todos los modos de la familia JPEG~\cite{jpeg}.
+En una representación de 8 bits por canal solo hay $2^8=256$ niveles,
+frente a $2^{16}=65536$ en una representación entera de 16 bits.
+
+PNG, en cambio, \textbf{sí comprime sin pérdidas} y admite hasta 16 bits
+por muestra. También puede almacenar metadatos textuales. Su limitación
+no es una pérdida inherente por compresión, sino que no ofrece la misma
+representación de datos científicos en coma flotante ni las convenciones
+astronómicas de FITS. Si se exporta una visualización previamente
+reescalada, recortada o reducida a 8 bits, PNG conserva esa visualización,
+no los datos científicos originales~\cite{png,fitsstandard}.
+En consecuencia, JPG y PNG son útiles para ilustrar el informe, mientras
+que los cálculos deben realizarse sobre las imágenes científicas.
+
+\section{Medición de centroides y alineamiento estelar}
+
+\subsection{Visualización y parpadeo en DS9}
+Se cargaron ambas imágenes en marcos distintos:
+\begin{verbatim}
+cl> display im010 1
+cl> display im011 2
+\end{verbatim}
+
+La opción \emph{Match LUTs} se refiere a igualar las tablas de
+transferencia de color, es decir, la correspondencia entre los niveles
+de visualización y los colores o tonos de gris. Está relacionada con
+la barra de color, pero no debe confundirse con igualar únicamente los
+límites mínimo y máximo de intensidad: DS9 distingue el emparejamiento
+de la barra de color, de la escala y de sus límites~\cite{ds9}.
+Estas opciones afectan la visualización, no corrigen las posiciones
+estelares en los datos.
+
+El modo \emph{Blink} alterna los marcos y facilita identificar el
+desplazamiento aparente de las mismas estrellas entre ambas imágenes,
+como propone la guía~\cite{guia}. El parpadeo se desactiva antes de
+realizar las mediciones interactivas.
+
+\subsection{Medición con \texttt{imexamine}}
+Se inició la herramienta mediante:
+\begin{verbatim}
+cl> unlearn imexamine
+cl> imexamine
+\end{verbatim}
+Para obtener las posiciones se sitúa el cursor sobre cada estrella de
+referencia y se utiliza la tecla \texttt{a}; se repite el procedimiento
+para los mismos objetos en la otra imagen. La tecla \texttt{d} permite
+solicitar la carga de una imagen, cuyo nombre y marco deben indicarse;
+no selecciona por sí sola \texttt{im011}. Se sale con
+\texttt{q}~\cite{iraf}.
+
+El centroide es la posición estimada del centro de la distribución
+estelar, mientras que la PSF (\emph{Point Spread Function}) describe
+su perfil espacial. No son la misma magnitud. La tarea dispone de
+centrado y análisis de perfiles, y el modelo de ajuste depende de sus
+parámetros; sin el registro de esa configuración no se afirma que estas
+mediciones procedan de un ajuste gaussiano bidimensional~\cite{iraf}.
+
+\subsection{Requisito de entrega 2: tabla y desplazamiento promedio}
+Se organizan los datos anotados y la corrección indicada para la estrella 1,
+interpretando las cuatro columnas como $X_{10}$, $Y_{10}$, $X_{11}$ y $Y_{11}$, en píxeles.
+Para que los deltas sean directamente la corrección aplicada a
+\texttt{im011}, se adopta la convención de la guía:
+\begin{equation}
+\Delta x_i=X_{10,i}-X_{11,i},\qquad
+\Delta y_i=Y_{10,i}-Y_{11,i}.
+\label{eq:deltas}
+\end{equation}
+
+\begin{table}[htbp]
+\centering
+\small
+\setlength{\tabcolsep}{5pt}
+\caption{Alineamiento estelar con la diferencia vertical corregida de la estrella 1.
+Todas las coordenadas y diferencias están expresadas en píxeles.}
+\label{tab:alineamiento}
+\begin{tabular}{crrrrrr}
+\toprule
+Estrella & $X_{10}$ & $Y_{10}$ & $X_{11}$ & $Y_{11}$
+& $\Delta x$ & $\Delta y$ \\
+\midrule
+1 & 289.986 & 83.967  & 289.986 & 85.547  & 0.000  & $-1.580$ \\
+2 & 281.306 & 189.292 & 281.884 & 191.028 & $-0.578$ & $-1.736$ \\
+3 & 331.347 & 134.894 & 332.320 & 136.630 & $-0.973$ & $-1.736$ \\
+\midrule
+\multicolumn{5}{l}{Promedio de las diferencias}
+& $-0.5170$ & $-1.6840$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Comando de corrección con \texttt{imshift}}
+IRAF define la transformación como
+$x_{\mathrm{salida}}=x_{\mathrm{entrada}}+\texttt{xshift}$ y
+$y_{\mathrm{salida}}=y_{\mathrm{entrada}}+\texttt{yshift}$~\cite{iraf}.
+Por tanto, el comando completado a partir de los datos registrados
+en la tabla~\ref{tab:alineamiento} es:
+\begin{verbatim}
+cl> unlearn imshift
+cl> imshift im011 s011 -0.5170 -1.6840
+\end{verbatim}
+\textbf{Estado:} comando calculado, pendiente de confirmar como ejecutado.
+Los signos negativos desplazan las estrellas hacia coordenadas menores
+para compensar el desfase medio de \texttt{im011}. Al ser un desplazamiento
+fraccionario, se requiere interpolación; por defecto, tras
+\texttt{unlearn}, \texttt{imshift} utiliza interpolación
+bilineal~\cite{iraf}.
+
+La figura~\ref{fig:imshift} ilustra la traslación aplicada a la estrella 1
+con los desplazamientos promedio de la tabla~\ref{tab:alineamiento}.
+
+\input{figura_imshift}
+
+\subsection{Comprobación del resultado y capturas pendientes}
+Después de ejecutar la corrección, se deben cargar la imagen de referencia
+y la imagen desplazada (con blink):
+
+% \begin{figure}[htbp]
+% \centering
+% \includegraphics[width=0.9\linewidth]{Blink1.jpg}
+% \caption{Primer estado del parpadeo en DS9: imagen de referencia
+% \texttt{im010}, con ejes en píxeles. Comparar las posiciones de las
+% estrellas con el segundo estado, conservando el encuadre y la escala.}
+% \label{fig:blink1}
+% \end{figure}
+
+% \begin{figure}[htbp]
+% \centering
+% \includegraphics[width=0.9\linewidth]{Blink2.jpg}
+% \caption{Segundo estado del parpadeo en DS9: imagen desplazada
+% \texttt{s011}, con ejes en píxeles. La comparación con \texttt{im010}
+% permite evaluar visualmente el alineamiento de las estrellas.}
+% \label{fig:blink2}
+% \end{figure}
+
+
+\bibliographystyle{unsrt}
+\bibliography{bibliography}
+
+\end{document}

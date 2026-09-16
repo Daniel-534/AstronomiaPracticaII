@@ -1,0 +1,52 @@
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+    font=\small,
+    token/.style={draw=teal!65!black,fill=teal!7,rounded corners=3pt,
+        minimum width=2.2cm,minimum height=0.75cm,font=\ttfamily},
+    explanation/.style={anchor=west,text width=9.4cm,align=left},
+    connection/.style={-{Stealth[length=2mm]},gray!70!black}]
+\node[draw=gray!40,fill=gray!6,rounded corners=3pt,
+    minimum width=13cm,minimum height=0.8cm] at (5.7,0)
+    {\texttt{\detokenize{cl> rfits fintro* "" junk old+}}};
+
+\node[token] (task) at (0.5,-1.2) {rfits};
+\node[explanation] (tasktext) at (2.5,-1.2)
+    {\textbf{Tarea.} Lee datos de imagen FITS y los convierte
+    en imágenes utilizables por IRAF.};
+\draw[connection] (task.east) -- (tasktext.west);
+
+\node[token] (source) at (0.5,-2.5) {fintro*};
+\node[explanation] (sourcetext) at (2.5,-2.5)
+    {\textbf{Entrada: \texttt{fits\_file}.} Selecciona los archivos
+    cuyo nombre comienza por \texttt{fintro}; por ejemplo,
+    \texttt{fintro0001} y \texttt{fintro0002}.};
+\draw[connection] (source.east) -- (sourcetext.west);
+
+\node[token] (selection) at (0.5,-3.8) {\detokenize{""}};
+\node[explanation] (selectiontext) at (2.5,-3.8)
+    {\textbf{Selección: \texttt{file\_list}.} Para estos archivos
+    en disco, la cadena vacía indica leer solo la unidad primaria
+    (índice 0), no todas las extensiones.};
+\draw[connection] (selection.east) -- (selectiontext.west);
+
+\node[token] (output) at (0.5,-5.1) {junk};
+\node[explanation] (outputtext) at (2.5,-5.1)
+    {\textbf{Salida: \texttt{iraf\_file}.} Nombre raíz de salida.
+    Si se usa esta raíz para varios archivos, se añaden números
+    de secuencia. No es un archivo de entrada.};
+\draw[connection] (output.east) -- (outputtext.west);
+
+\node[token] (names) at (0.5,-6.4) {old+};
+\node[explanation] (namestext) at (2.5,-6.4)
+    {\textbf{Nombres originales.} Abrevia \texttt{oldirafname=yes}.
+    Intenta usar el nombre guardado en la palabra clave
+    \texttt{IRAFNAME} de la cabecera, en lugar de la raíz \texttt{junk}.};
+\draw[connection] (names.east) -- (namestext.west);
+\end{tikzpicture}
+\caption{Desglose del comando \texttt{rfits} para los archivos en disco
+ de la práctica. \texttt{cl>} es el indicador del intérprete, no un
+ argumento. La recuperación de los nombres originales depende de la
+ información disponible en las cabeceras~\cite{iraf}.}
+\label{fig:rfits}
+\end{figure}

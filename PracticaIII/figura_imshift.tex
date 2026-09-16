@@ -1,0 +1,63 @@
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[x=3cm,y=3cm,font=\small,
+    >=Stealth,
+    initial/.style={blue!70!black},
+    shifted/.style={orange!85!black},
+    correction/.style={teal!75!black}]
+\coordinate (reference) at (0,0);
+\coordinate (initial) at (0,1.580);
+\coordinate (shifted) at (-0.517,-0.104);
+\coordinate (corner) at (-0.517,1.580);
+
+\draw[step=0.5,gray!20,very thin] (-1,-0.5) grid (0.75,2);
+\draw[->,gray!70!black] (-1,-0.5) -- (0.9,-0.5);
+\draw[->,gray!70!black] (-1,-0.5) -- (-1,2.12);
+\foreach \tick in {-1,-0.5,0,0.5}{
+    \draw[gray!70!black] (\tick,-0.5) -- (\tick,-0.54)
+        node[below,font=\footnotesize] {$\tick$};
+}
+\foreach \tick in {0,0.5,1,1.5,2}{
+    \draw[gray!70!black] (-1,\tick) -- (-1.04,\tick)
+        node[left,font=\footnotesize] {$\tick$};
+}
+\node[below] at (-0.08,-0.74) {$x-X_{10,1}$ (píxeles)};
+\node[rotate=90] at (-1.42,0.75) {$y-Y_{10,1}$ (píxeles)};
+
+\draw[correction,dashed,->] (initial) -- (corner)
+    node[midway,above=5pt] {$\overline{\Delta x}=-0.517$};
+\draw[correction,dashed,->] (corner) -- (shifted)
+    node[midway,left=5pt,rotate=90,anchor=south]
+    {$\overline{\Delta y}=-1.684$};
+\draw[correction,very thick,->,shorten <=3pt,shorten >=4pt]
+    (initial) -- (shifted);
+\node[correction,anchor=west,align=left] at (0.08,0.85)
+    {Traslación\\\texttt{imshift}};
+
+\draw[gray!70!black,densely dotted,thick] (shifted) -- (reference);
+\fill[initial] (initial) circle (2.6pt);
+\node[initial,right=6pt] at (initial) {\texttt{im011}};
+\fill[shifted] (shifted) circle (2.6pt);
+\node[shifted,below left=3pt] at (shifted) {\texttt{s011}};
+\draw[black,thick] (-0.055,0) -- (0.055,0);
+\draw[black,thick] (0,-0.055) -- (0,0.055);
+\node[above right=3pt] at (reference) {\texttt{im010}};
+\end{tikzpicture}
+
+\smallskip
+{\small
+\begin{tabular}{lrr}
+\toprule
+Posición de la estrella 1 & $X$ (píxeles) & $Y$ (píxeles) \\
+\midrule
+Referencia: \texttt{im010} & 289.986 & 83.967 \\
+Entrada: \texttt{im011} & 289.986 & 85.547 \\
+Salida predicha: \texttt{s011} & 289.469 & 83.863 \\
+\bottomrule
+\end{tabular}
+}
+\caption{Esquema geométrico de la corrección con \texttt{imshift},
+aplicada a la estrella 1. El origen de las coordenadas relativas es su
+posición en \texttt{im010}.}
+\label{fig:imshift}
+\end{figure}
