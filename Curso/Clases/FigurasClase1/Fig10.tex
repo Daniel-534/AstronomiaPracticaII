@@ -1,35 +1,75 @@
 \begin{figure}[H]
 \centering
-\begin{tikzpicture}[scale=0.82]
-  \node[font=\bfseries] at (1.8,3) {(a) Plano};
-  \draw[very thick] (3.5,-2.2) -- (3.5,2.2);
-  \foreach \y in {-1,0,1}{
-    \draw[->,blue,thick] (0,\y+0.65) -- (3.5,\y);
-    \draw[->,red,thick] (3.5,\y) -- (0,\y-0.65);
-  }
-  \begin{scope}[xshift=6cm]
-    \node[font=\bfseries] at (2,3) {(b) Cóncavo};
-    \draw[very thick] (4.1,-2.2) .. controls (3.2,-1.2) and (3.2,1.2) .. (4.1,2.2);
-    \foreach \y in {-1,0,1}{
-      \draw[->,blue,thick] (0,\y) -- ({3.55+0.18*abs(\y)},\y);
-      \draw[->,red,thick] ({3.55+0.18*abs(\y)},\y) -- (1.7,0);
+\begin{tikzpicture}[scale=0.77,>=Stealth]
+  % Espejo plano.
+  \begin{scope}
+    \node[font=\bfseries] at (2,2.85) {(a) Espejo plano};
+    \draw[dashed,gray!65] (-0.2,0) -- (4.7,0);
+    \draw[very thick,blue!70!black] (4,-2) -- (4,2);
+    \foreach \y in {-1.4,-0.7,0,0.7,1.4}
+      \draw[gray!65] (4,\y) -- (4.28,{\y+0.18});
+    \foreach \y in {-0.9,0,0.9}{
+      \draw[->,blue,thick] (0,{\y+0.55}) -- (4,\y);
+      \draw[->,red,thick] (4,\y) -- (0,{\y-0.55});
     }
-    \fill (1.7,0) circle (2pt) node[below] {$F$};
   \end{scope}
-  \begin{scope}[xshift=12.5cm]
-    \node[font=\bfseries] at (2,3) {(c) Convexo};
-    \draw[very thick] (3.3,-2.2) .. controls (4.2,-1.2) and (4.2,1.2) .. (3.3,2.2);
-    \foreach \y in {-1,0,1}{
-      \draw[->,blue,thick] (0,\y) -- ({3.72-0.18*abs(\y)},\y);
+
+  % Espejo cóncavo: el vértice es el punto más alejado a la derecha y
+  % la concavidad se abre hacia los rayos incidentes, que llegan desde la izquierda.
+  \begin{scope}[xshift=6.5cm]
+    \node[font=\bfseries] at (2.4,2.85) {(b) Espejo cóncavo};
+    \draw[dashed,gray!65] (-0.2,0) -- (4.8,0);
+    \draw[very thick,blue!70!black,smooth,domain=-2:2,samples=60]
+      plot ({4-0.15*\x*\x},{\x});
+    \foreach \y in {-1.8,-0.9,0,0.9,1.8}{
+      \pgfmathsetmacro{\xm}{4-0.15*\y*\y}
+      \draw[gray!65] (\xm,\y) -- ({\xm+0.26},{\y+0.16});
     }
-    \draw[->,red,thick] (3.55,1) -- (0.2,2.63);
-    \draw[->,red,thick] (3.72,0) -- (0.2,0);
-    \draw[->,red,thick] (3.55,-1) -- (0.2,-2.63);
-    \draw[dashed] (3.55,1) -- (5.6,0);
-    \draw[dashed] (3.72,0) -- (5.6,0);
-    \draw[dashed] (3.55,-1) -- (5.6,0);
-    \fill (5.6,0) circle (2pt) node[right] {$F$ virtual};
+
+    \coordinate (Fc) at (2,0);
+    \fill (Fc) circle (2.2pt) node[below=3pt] {$F$ real};
+
+    \pgfmathsetmacro{\xc}{4-0.15*0.8*0.8}
+    \draw[->,blue,thick] (0,0.8) -- (\xc,0.8);
+    \draw[->,blue,thick] (0,0) -- (4,0);
+    \draw[->,blue,thick] (0,-0.8) -- (\xc,-0.8);
+    \draw[->,red,thick] (\xc,0.8) -- (0,-0.84);
+    \draw[->,red,thick] (4,0) -- (0,0);
+    \draw[->,red,thick] (\xc,-0.8) -- (0,0.84);
   \end{scope}
+
+  % Espejo convexo: el vértice sobresale hacia los rayos incidentes.
+  \begin{scope}[xshift=13cm]
+    \node[font=\bfseries] at (2.8,2.85) {(c) Espejo convexo};
+    \draw[dashed,gray!65] (-0.2,0) -- (6.3,0);
+    \draw[very thick,blue!70!black,smooth,domain=-2:2,samples=60]
+      plot ({3.4+0.15*\x*\x},{\x});
+    \foreach \y in {-1.8,-0.9,0,0.9,1.8}{
+      \pgfmathsetmacro{\xm}{3.4+0.15*\y*\y}
+      \draw[gray!65] (\xm,\y) -- ({\xm+0.26},{\y+0.16});
+    }
+
+    \coordinate (Fv) at (5.8,0);
+    \fill (Fv) circle (2.2pt) node[below=3pt] {$F$ virtual};
+
+    \pgfmathsetmacro{\xv}{3.4+0.15*0.8*0.8}
+    \draw[->,blue,thick] (0,0.8) -- (\xv,0.8);
+    \draw[->,blue,thick] (0,0) -- (3.4,0);
+    \draw[->,blue,thick] (0,-0.8) -- (\xv,-0.8);
+    \draw[->,red,thick] (\xv,0.8) -- (0,2.02);
+    \draw[->,red,thick] (3.4,0) -- (0,0);
+    \draw[->,red,thick] (\xv,-0.8) -- (0,-2.02);
+    \draw[dashed,gray!75] (\xv,0.8) -- (Fv);
+    \draw[dashed,gray!75] (3.4,0) -- (Fv);
+    \draw[dashed,gray!75] (\xv,-0.8) -- (Fv);
+  \end{scope}
+
+  \draw[blue,thick,->] (4.3,-2.65) -- (5.05,-2.65)
+    node[right,black] {rayo incidente};
+  \draw[red,thick,->] (8.2,-2.65) -- (8.95,-2.65)
+    node[right,black] {rayo reflejado};
+  \draw[gray!75,dashed] (12.1,-2.65) -- (12.85,-2.65)
+    node[right,black] {prolongación virtual};
 \end{tikzpicture}
-\caption{Espejo plano, cóncavo convergente y convexo divergente.}
+\caption{Espejo plano, espejo cóncavo convergente y espejo convexo divergente. Las pequeñas líneas grises indican la cara posterior de cada espejo.}
 \end{figure}
