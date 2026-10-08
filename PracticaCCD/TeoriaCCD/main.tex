@@ -3,17 +3,27 @@
 \usepackage[spanish]{babel}
 \usepackage{amsmath}
 \usepackage{graphicx}
+\usepackage{float}
+\usepackage{tikz}
 \usepackage[hidelinks]{hyperref}
 \usepackage[margin=2cm]{geometry}
-\title{Astronomía Práctica II}
-\author{Lauren Flor Torres, PhD}
-\date{}
+\usetikzlibrary{arrows.meta,babel,calc,positioning,patterns}
+\definecolor{astroNavy}{HTML}{17324D}
+\definecolor{astroBlue}{HTML}{2583A6}
+\definecolor{astroTeal}{HTML}{39A6A3}
+\definecolor{astroGold}{HTML}{E6A23C}
+\definecolor{astroCoral}{HTML}{D96C5F}
+\definecolor{astroPale}{HTML}{EAF2F5}
+\definecolor{astroInk}{HTML}{263746}
+\title{Astronomía Práctica II\\[0.4em]\large Notas de clase}
+\author{Daniel Soto Villada\\[0.4em]\normalsize Docente: Lauren Flor Torres, PhD}
+\date{\today}
 
 \begin{document}
 
 \maketitle
 \tableofcontents
-\newpage
+
 
 \section{Introducción y Primeros Registros}
 
@@ -32,18 +42,11 @@ Estas limitaciones, sin mencionar que era imposible hacer alguna determinación 
 La primera imagen fotográfica de un objeto astronómico data del año 1840, cuando se tomaron las primeras imágenes de la Luna, sin embargo habría que esperar hasta finales del mismo siglo para disponer de sistemas de detección con sensibilidad aceptable que permitieran asegurar un registro de calidad.
 
 \subsection{La Primera Fotografía Astronómica}
-El encargado fue John William Draper. ``Para lograr con éxito esta fotografía, el Draper se ayudó de un telescopio reflector de 13 pulgadas, y tardó 20 minutos en realizarla, debido al tiempo de exposición que empleó la cámara. En esta placa donde se tomó la fotografía se puede apreciar una viñeta similar a un halo que rodea la imagen de la Luna, creando una forma de media Luna que evoca las fases lunares''.
+El encargado fue John William Draper. Para obtener la fotografía, utilizó un telescopio reflector de 13 pulgadas y necesitó 20 minutos de exposición. En la placa se aprecia un halo alrededor de la imagen de la Luna, que evoca una de sus fases.
 
-\begin{center}
-\fbox{\begin{minipage}{0.85\textwidth}
-\textbf{Figura: Primera fotografía de la Luna (1840).} \\
-Descripción: Imagen histórica tomada por John William Draper utilizando un telescopio reflector de 13 pulgadas. Se aprecia la forma de la Luna con una viñeta o halo que evoca las fases lunares, resultado de los 20 minutos de exposición requeridos en aquella época.
-\end{minipage}}
-\end{center}
 
 \section{Fotografía Analógica y el Advenimiento del CCD}
 
-\textit{[No hay texto en la diapositiva 6]}
 
 \subsection{Fotografía Analógica en Astronomía}
 La astrofotografía, o el registro fotográfico de los objetos bajo observación se convirtió en una de las herramientas principales de trabajo en astronomía.
@@ -59,25 +62,21 @@ La fotografía analógica funciona así: En una pieza de papel se tiene una depo
     \item La amplitud del ruido introducido durante el proceso de observación y revelado.
     \item Un inconveniente evidente a este respecto es la necesidad de re-interpretar las observaciones para hacer la calibración fotométrica de las observaciones.
 \end{itemize}
+\input{figuras/respuesta_espectral}
+\input{figuras/ruido_fotografico}
 
 \subsection{CCD -- Charge Coupled Device}
 Los dispositivos CCD, cuyo nombre se deriva del término Charge Coupled Device, fueron desarrollados inicialmente en Bell Laboratories en la década de 1960 (en 2009 Willard Boyle y George Smith recibieron el Premio Nobel de Física por la invención del CCD).
-
-\begin{center}
-\fbox{\begin{minipage}{0.85\textwidth}
-\textbf{Figura: Dibujo comparativo Placa fotográfica vs CCD.} \\
-Descripción: Ilustración que representa el ``boom'' de la CCD en Astronomía, mostrando el dibujo de una placa fotográfica tradicional en contraste con la arquitectura de un sensor CCD.
-\end{minipage}}
-\end{center}
+\input{figuras/placa_vs_ccd}
 
 \section{Física y Arquitectura del Dispositivo CCD}
 
-\textit{[No hay texto en la diapositiva 11, solo el título: Efecto Fotoeléctrico]}
 
-\textit{[No hay texto en la diapositiva 12, solo el título: Física en los CCD]}
 
 \subsection{Efecto Fotoeléctrico}
+
 Los átomos que constituyen el material tienen una distribución de niveles de energía que está determinada por la naturaleza del átomo mismo. En cada nivel de energía se puede acomodar un número determinado de electrones, que van llenando los niveles en orden, desde los que tienen menor energía hasta los de más alta energía.
+\input{figuras/niveles_energia}
 
 Puede pasar que cuando un fotón incide sobre un átomo puede interactuar con uno de sus electrones, al hacer esto, si el fotón tiene la energía correcta, el electrón puede absorber el fotón y saltar a un estado de energía superior.
 
@@ -85,32 +84,15 @@ The photoelectric effect is a phenomenon in which electrons are ejected from the
 
 The photoelectric effect occurs because the electrons at the surface of the metal tend to absorb energy from the incident light and use it to overcome the attractive forces that bind them to the metallic nuclei. 
 
-\begin{center}
-\fbox{\begin{minipage}{0.85\textwidth}
-\textbf{Figura: Ilustración del Efecto Fotoeléctrico.} \\
-Descripción: Diagrama que detalla la emisión de fotoelectrones como resultado del efecto fotoeléctrico, mostrando cómo la luz incidente con la frecuencia adecuada logra expulsar electrones de la superficie metálica.
-\end{minipage}}
-\end{center}
+\input{figuras/fotoelectrico}
 
 \subsection{Conductores y Semiconductores}
-\begin{center}
-\fbox{\begin{minipage}{0.85\textwidth}
-\textbf{Figura: Diagramas de Conductores y Semiconductores.} \\
-Descripción: Representación gráfica de las bandas de energía y la distribución de electrones en materiales conductores y semiconductores, fundamental para entender la física de los CCD.
-\end{minipage}}
-\end{center}
+\input{figuras/bandas}
 
 \subsection{Arquitectura de un CCD}
 Primero, una cubierta semiconductora fotosensible constituida de una juntura PN de Silicio. Este será el material que detendrá los fotones y acumulará los fotoelectrones generados en el proceso. A continuación viene una película delgada de óxido de Silicio que es aislante, seguida de una placa metálica que se puede poner a un potencial variable.
 
-\begin{center}
-\fbox{\begin{minipage}{0.85\textwidth}
-\textbf{Figura: CCD basado en una estructura MOS (Metal-Óxido-Semiconductor).} \\
-Descripción: Corte transversal de la arquitectura de un píxel CCD, mostrando la juntura PN de silicio (semiconductor), la capa de óxido de silicio (aislante) y la placa metálica superior (electrodo) a potencial variable.
-\end{minipage}}
-\end{center}
-
-\textit{[No hay texto en la diapositiva 17, solo el título: Arquitectura de CCD]}
+\input{figuras/arquitectura_ccd}
 
 \subsection{El Píxel}
 \begin{itemize}
@@ -118,13 +100,13 @@ Descripción: Corte transversal de la arquitectura de un píxel CCD, mostrando l
     \item Un píxel es un capacitor fotosensible.
     \item Se encarga de hacer la detección y almacenamiento de información de la luz que incide sobre su superficie.
 \end{itemize}
-
-\textit{[No hay texto en la diapositiva 19, solo el título: CCD basado en una estructura MOS]}
+\input{figuras/pixel}
 
 \section{Funcionamiento, Lectura y Ruido en el CCD}
 
 \subsection{¿Cómo funciona la CCD?}
 Se referencian videos explicativos sobre el proceso de acumulación y transferencia de carga en el sensor.
+\input{figuras/transferencia_carga}
 
 \subsection{Proceso de Lectura}
 Con esto en mente, el proceso de lectura se lleva a cabo como sigue:
@@ -134,13 +116,7 @@ Con esto en mente, el proceso de lectura se lleva a cabo como sigue:
     \item Simultáneamente cada una de las filas transfiere su carga a la fila inmediatamente anterior, siguiendo el procedimiento de transferencia de carga entre píxeles que se describió previamente.
 \end{enumerate}
 
-\begin{center}
-\begin{tabular}{|c|c|c|c|}
-\hline
-\textbf{Photon} & \textbf{Electrons} & \textbf{Voltage} & \textbf{Digital number} \\
-\hline
-\end{tabular}
-\end{center}
+\input{figuras/lectura_ccd}
 
 \begin{enumerate}
     \setcounter{enumi}{2}
@@ -158,8 +134,6 @@ Es el factor de conversión entre el número de electrones generados en el detec
 Ejemplo: Una ganancia de 2 $e^-/\text{ADU}$ significa que por cada 2 electrones acumulados, se registra 1 ADU. Si lees 1000 ADU, tienes 2000 $e^-$. ¡Cada cámara diferente tiene una ganancia diferente!
 
 \subsection{Ruido de Lectura de CCD}
-\textit{[No hay texto en la diapositiva 29, solo el título: Ruido de lectura de CCD]}
-
 El ruido de lectura (read noise o read-out noise) es el número de electrones introducidos por cada píxel en la señal final al producirse la lectura del dispositivo.
 
 El ruido de lectura ocurre cuando los fotoelectrones se convierten en voltaje. Los amplificadores que llevan a cabo esta tarea no son perfectos, por lo que introducen un ruido o incertidumbre en la medida. Cada vez que se lee la carga contenida en un píxel, se obtiene un valor ligeramente diferente.
@@ -172,10 +146,9 @@ El amplificador al final del registro serial realmente no amplifica la señal re
 
 $$ S = \text{número de fotoelectrones convertido a una cifra digital en la memoria} $$
 $$ N_e = \text{número de fotoelectrones que se acumularon en el píxel durante la exposición} $$
-$$ e_{RN} = \text{ruido de lectura de la cámara (error en el conteo y conversión)} $$
+$$ e_{RL} = \text{ruido de lectura de la cámara (error en el conteo y conversión)} $$
 $$ G = \text{ganancia de la cámara} $$
-
-\textit{[No hay texto en las diapositivas 31 y 32]}
+\input{figuras/ruido_lectura}
 
 \subsection{La Razón Señal-Ruido (S/N)}
 En astronomía es muy común expresar la calidad de una observación a través de la razón señal-ruido $S/N$. La razón señal-ruido simplemente cuantifica cuan grande es la amplitud de la señal que se quiere medir comparada con todas las fuentes de ruido que se detectan junto con la señal.
@@ -190,8 +163,6 @@ Llamado también ruido de disparo. Se debe al hecho de que el CCD detecta fotone
 En una analogía de gotas de lluvia cayendo sobre un arreglo de cubetas, las cubetas son los pixeles y las gotas de lluvia los fotones. Tanto las gotas de lluvia como los fotones llegan discreta e independientemente y al azar, estando esto descrito por la estadística de Poisson. Si las cubetas son muy pequeñas y la lluvia cae muy dispersa, algunas cubetas pueden recolectar una o dos gotas, mientras que otras pueden no obtener nada. Si permitimos que la lluvia caiga suficiente tiempo, todas las cubetas medirán el mismo valor, pero para tiempos cortos de medición la dispersión en los valores medidos es grande. Este escenario es esencialmente el de un CCD astronómico donde los pequeños píxeles están recolectando flujos muy bajos de fotones.
 
 \textit{* la distribución de Poisson es una distribución de probabilidad discreta que expresa, a partir de una frecuencia de ocurrencia media, la probabilidad de que ocurra un determinado número de eventos durante cierto período de tiempo.}
-
-\textit{[No hay texto en la diapositiva 36, solo el título: La razón Señal-Ruido (S/N)]}
 
 \subsection{Otras Contribuciones de Ruido}
 \begin{itemize}
@@ -211,33 +182,18 @@ Para disfrutar de una buena noche de observación no solo necesitamos que no hay
 \end{itemize}
 
 \subsection{Seeing}
-\begin{center}
-\fbox{\begin{minipage}{0.85\textwidth}
-\textbf{Figura: Escala de Pickering y efectos del Seeing.} \\
-Descripción: Representación de la Escala de Pickering del 1 (perfecto) al 10 (pésimo). Se incluye una comparación fotográfica de Júpiter tomado con el mismo equipo en una noche de buen seeing y de mal seeing, demostrando el impacto de la turbulencia atmosférica en la resolución de la imagen.
-\end{minipage}}
-\end{center}
+\input{figuras/seeing}
 
 \subsection{Óptica Adaptativa}
 La óptica adaptativa es una técnica óptica que permite contrarrestar, en tiempo real, los efectos de la atmósfera de la Tierra en la formación de las imágenes astronómicas.
 
-Un espejo perfecto refleja la luz de forma perfecta. Un espejo imperfecto refleja la luz imperfecta que llega de la atmósfera de forma perfecta. El resultado es que para tener luz perfecta en el telescopio el espejo debe ``adaptarse'' a la forma de la luz incidente.
+Un espejo perfecto refleja la luz de forma perfecta. Un espejo imperfecto refleja la luz imperfecta que llega de la atmósfera de forma perfecta. Por ello, para obtener una imagen nítida en el telescopio, el espejo debe adaptarse a las distorsiones del frente de onda incidente.
 
-\begin{center}
-\fbox{\begin{minipage}{0.85\textwidth}
-\textbf{Figura: Principio de la Óptica Adaptativa.} \\
-Descripción: Diagrama que ilustra cómo un espejo deformable se ajusta en tiempo real para contrarrestar las distorsiones introducidas por la atmósfera terrestre, logrando que la luz imperfecta que llega se refleje de forma perfecta hacia los instrumentos.
-\end{minipage}}
-\end{center}
+\input{figuras/optica_adaptativa}
 
-Con ayuda de Láseres se crean ``estrellas artificiales'' en la alta atmósfera. El sistema se deforma hasta que la imagen de la estrella artificial sea ``puntual'' (la esperada). El resultado es ¡magia pura!
+Con ayuda de láseres se crean estrellas artificiales en la alta atmósfera. El sistema ajusta el espejo hasta que la imagen de la estrella artificial sea puntual, como se espera. Así se mide y corrige la turbulencia atmosférica.
 
-\begin{center}
-\fbox{\begin{minipage}{0.85\textwidth}
-\textbf{Figura: Estrellas Guía Láser en Óptica Adaptativa.} \\
-Descripción: Imágenes que muestran la creación de estrellas artificiales mediante láseres en la alta atmósfera, las cuales son utilizadas como referencia puntual para que el sistema de óptica adaptativa calcule y corrija las deformaciones del espejo en tiempo real.
-\end{minipage}}
-\end{center}
+\input{figuras/estrella_guia}
 
 \section{Parámetros del Detector: Binning, Eficiencia y Linealidad}
 
@@ -257,12 +213,7 @@ Por ejemplo, suponga que se tiene una cámara CCD con $512 \times 512$ píxeles 
 \end{itemize}
 
 \subsection{Eficiencia Cuántica}
-\begin{center}
-\fbox{\begin{minipage}{0.85\textwidth}
-\textbf{Figura: Gráfico de Eficiencia Cuántica (QE).} \\
-Descripción: Gráfica que muestra el número de fotoelectrones generados por cada fotón en función de la longitud de onda. Ilustra cómo la eficiencia cuántica varía a lo largo del espectro, superando el 50\% en un buen intervalo, en contraste con las películas fotosensibles que solo alcanzaban un 10\%.
-\end{minipage}}
-\end{center}
+\input{figuras/eficiencia_cuantica}
 
 Note que $Q$ se cuantifica en porcentaje, una eficiencia cuántica de 100\% implica que el 100\% de los fotones que de esa longitud de onda pasen a través de la CCD serán detectados, una fracción menor representa precisamente el porcentaje de fotones que será detectado.
 
@@ -276,20 +227,10 @@ La representación de las cuentas (ADUs) en la CCD depende de el número de foto
 \section{Defectos del CCD y Calibración de Imágenes}
 
 \subsection{Defectos Comunes en el CCD}
-\begin{center}
-\fbox{\begin{minipage}{0.85\textwidth}
-\textbf{Figura: Defectos y Fallas en el CCD.} \\
-Descripción: Mosaico de imágenes que muestra distintos artefactos y fallas comunes en los sensores CCD: \textbf{Blooming} (saturación y desbordamiento de carga en píxeles muy brillantes), \textbf{Rayos cósmicos} (trazos brillantes e irregulares por impacto de partículas de alta energía), y \textbf{Defectos cosméticos} (píxeles calientes, píxeles muertos, columnas malas, etc.).
-\end{minipage}}
-\end{center}
+\input{figuras/defectos_ccd}
 
 \subsection{Formato de Imágenes}
-\begin{center}
-\fbox{\begin{minipage}{0.85\textwidth}
-\textbf{Figura: Formatos de Imágenes Astronómicas.} \\
-Descripción: Representación de los formatos de archivo estándar utilizados en astronomía para almacenar las imágenes crudas y calibradas (como el formato FITS), mostrando su estructura de cabeceras y datos.
-\end{minipage}}
-\end{center}
+\input{figuras/formato_fits}
 
 \subsection{Calibración de Imágenes}
 El proceso de calibración involucra corregir:
@@ -299,9 +240,10 @@ El proceso de calibración involucra corregir:
     \item Calibración de campo plano (flat-field)
     \item ¡Rayos cósmicos!
 \end{itemize}
+\input{figuras/calibracion}
 
 \subsubsection{1) BIAS}
-Los Bias o también conocidas como "Offset" son fotografías oscuras que se hacen con el objetivo de la cámara tapado. Sirven para eliminar la señal de lectura producida por el chip de la cámara.
+Las tomas de sesgo, también llamadas de nivel de offset, se realizan con el objetivo de la cámara tapado. Sirven para eliminar la señal de lectura propia del chip de la cámara.
 
 El proceso de detección de fotones es un proceso aleatorio. Es posible que, por fluctuaciones estadísticas, en ausencia de luz, después de la lectura del chip, la señal del amplificador sea negativa. Sin embargo, el dispositivo que convierte la señal analógica (carga de los electrones) en una señal digital (cuentas) no puede representar números negativos. Para evitar esto, se introduce un voltaje extra denominado bias.
 
@@ -319,7 +261,5 @@ Los Flats son fotografías que se hacen a una luz blanca y sirven para corregir,
 
 \subsubsection{ASTROFOTOGRAFÍA: LIGHTS}
 Las tomas light son las fotografías de cielo profundo que hemos hecho con el telescopio a galaxias, nebulosas, cúmulos globulares, etc. Éstas vienen acompañadas de ruido generado por el calentamiento del chip de la cámara cuando se hacen fotografías de larga exposición y debido a un ISO elevado unido con la temperatura ambiente. Este ruido lo podemos eliminar o reducir con las tomas Darks.
-
-\textit{[Las diapositivas 80 a la 86 contienen únicamente la numeración de página y el pie de página "L. Flor- AstroPráctica II – 2022-I", sin texto adicional]}
 
 \end{document}

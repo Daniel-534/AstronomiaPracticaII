@@ -1,0 +1,23 @@
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[font=\small,>=Stealth]
+  \node[draw=astroNavy,fill=astroPale,rounded corners,minimum width=1.7cm,minimum height=.85cm,align=center] (raw) at (.95,2.65){Light\\cruda};
+  \node[draw=astroBlue,fill=astroBlue!10,rounded corners,minimum width=1.7cm,minimum height=.85cm,align=center] (biasstep) at (3.2,2.65){$-$ Bias};
+  \node[draw=astroGold,fill=astroGold!15,rounded corners,minimum width=1.7cm,minimum height=.85cm,align=center] (darkstep) at (5.45,2.65){$-$ Dark};
+  \node[draw=astroTeal,fill=astroTeal!15,rounded corners,minimum width=1.7cm,minimum height=.85cm,align=center] (flatstep) at (7.7,2.65){$\div$ Flat};
+  \node[draw=astroCoral,fill=astroCoral!12,rounded corners,minimum width=1.9cm,minimum height=.85cm,align=center] (cosmic) at (10.0,2.65){Limpiar\\rayos cósmicos};
+  \node[draw=astroNavy,fill=astroPale,rounded corners,minimum width=1.7cm,minimum height=.85cm,align=center] (final) at (12.3,2.65){Light\\calibrada};
+  \draw[->,astroNavy,line width=1.4pt] (raw)--(biasstep);
+  \draw[->,astroNavy,line width=1.4pt] (biasstep)--(darkstep);
+  \draw[->,astroNavy,line width=1.4pt] (darkstep)--(flatstep);
+  \draw[->,astroNavy,line width=1.4pt] (flatstep)--(cosmic);
+  \draw[->,astroNavy,line width=1.4pt] (cosmic)--(final);
+  \node[draw=astroBlue!70,fill=white,rounded corners,text width=1.9cm,minimum height=.65cm,align=center] (masterbias) at (3.2,.75){Bias\\maestro};
+  \node[draw=astroGold!80!astroInk,fill=white,rounded corners,text width=1.9cm,minimum height=.65cm,align=center] (masterdark) at (5.45,.75){Dark\\corregido};
+  \node[draw=astroTeal!80!astroInk,fill=white,rounded corners,text width=1.9cm,minimum height=.65cm,align=center] (masterflat) at (7.7,.75){Flat\\normalizado};
+  \draw[->,astroBlue,line width=1.2pt] (masterbias)--(biasstep);
+  \draw[->,astroGold,line width=1.2pt] (masterdark)--(darkstep);
+  \draw[->,astroTeal,line width=1.2pt] (masterflat)--(flatstep);
+\end{tikzpicture}
+\caption{Secuencia de calibración: sustraer bias y dark, dividir por el flat y limpiar rayos cósmicos.}
+\end{figure}

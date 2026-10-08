@@ -1,0 +1,22 @@
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[font=\small]
+  \draw[astroNavy,line width=1.2pt,rounded corners=3pt] (.2,.2) rectangle (10.8,4.45);
+  \fill[astroBlue!12] (.32,2.35) rectangle (10.68,4.33);
+  \fill[astroTeal!12] (.32,.32) rectangle (10.68,2.2);
+  \node[font=\bfseries,astroNavy,anchor=west] at (.62,3.98){CABECERA};
+  \node[astroInk,anchor=west] at (.62,3.62){Metadatos: tipo de dato y dimensiones de la imagen};
+  \node[font=\ttfamily,anchor=west] at (.72,3.16){SIMPLE = T \qquad BITPIX = 16};
+  \node[font=\ttfamily,anchor=west] at (.72,2.78){NAXIS = 2 \qquad NAXIS1 = 1024};
+  \node[font=\ttfamily,anchor=west] at (.72,2.46){NAXIS2 = 1024 \qquad OBJECT = 'M42'};
+  \node[font=\bfseries,astroNavy,anchor=west] at (.62,1.87){DATOS};
+  \foreach \x in {0,...,9}{\foreach \y in {0,...,2}{
+    \pgfmathsetmacro{\tone}{15+9*mod(\x*\y+\x+2*\y,8)}
+    \fill[astroBlue!\tone] (.72+.48*\x,.58+.3*\y) rectangle +(0.42,.24);
+  }}
+  \node[draw=astroGold,line width=1pt,fill=white,rounded corners=2pt,
+    align=center,text width=2.45cm,minimum height=.78cm] at (8.55,1.0)
+    {Valor por píxel\\(en ADU)};
+\end{tikzpicture}
+\caption{Un archivo FITS separa los metadatos de la matriz numérica de la imagen.}
+\end{figure}

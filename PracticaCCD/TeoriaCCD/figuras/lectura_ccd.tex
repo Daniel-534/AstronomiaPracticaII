@@ -1,0 +1,23 @@
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[font=\small,>=Stealth]
+  \foreach \x/\n/\col in {.2/1/astroNavy,3.45/2/astroBlue,6.7/3/astroGold,9.95/4/astroTeal}{
+    \fill[\col!10] (\x,.85) rectangle +(2.75,2.3);
+    \draw[\col,line width=1pt,rounded corners=3pt] (\x,.85) rectangle +(2.75,2.3);
+    \fill[\col] (\x+1.375,3.48) circle (.2);
+    \node[white,font=\bfseries] at (\x+1.375,3.48){\n};
+  }
+  \node[font=\bfseries,astroNavy,align=center] at (1.575,2.55){Matriz\\CCD};
+  \node[font=\bfseries,astroBlue,align=center] at (4.825,2.55){Registro\\serial};
+  \node[font=\bfseries,astroGold!80!astroInk,align=center] at (8.075,2.55){Amplificador};
+  \node[font=\bfseries,astroTeal!80!astroInk,align=center] at (11.325,2.55){Conversor\\A/D};
+  \draw[->,astroInk,line width=1.6pt] (3.0,2.0)--(3.4,2.0);
+  \draw[->,astroInk,line width=1.6pt] (6.25,2.0)--(6.65,2.0);
+  \draw[->,astroInk,line width=1.6pt] (9.5,2.0)--(9.9,2.0);
+  \node[align=center,text=astroInk!80] at (1.575,1.35){desplaza\\una fila};
+  \node[align=center,text=astroInk!80] at (4.825,1.35){lee carga\\píxel a píxel};
+  \node[align=center,text=astroInk!80] at (8.075,1.35){carga $\to$\\voltaje};
+  \node[align=center,text=astroInk!80] at (11.325,1.35){voltaje $\to$\\ADU};
+\end{tikzpicture}
+\caption{Cadena de lectura de un CCD, desde la matriz de carga hasta los valores digitales.}
+\end{figure}

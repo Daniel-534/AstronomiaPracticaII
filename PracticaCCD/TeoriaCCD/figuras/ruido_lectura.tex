@@ -1,0 +1,23 @@
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[x=.3cm,y=1cm,font=\small,>=Stealth]
+  \draw[->,astroInk,line width=.9pt] (-18,0)--(18,0) node[right]{Desviación de lectura ($e^-$)};
+  \draw[->,astroInk,line width=.9pt] (-18,0)--(-18,3.8) node[above,align=center]{Frecuencia\\relativa};
+  \foreach \x/\lab in {-15/-15,-10/-10,-5/-5,0/0,5/5,10/10,15/15}{
+    \draw[astroInk!35] (\x,0)--(\x,-.08) node[below]{\lab};
+  }
+  \fill[astroBlue!12] plot[domain=-15:15,samples=61] (\x,{3.2*exp(-((\x)^2)/50)}) -- (15,0)--(-15,0)--cycle;
+  \draw[astroBlue,line width=1.8pt,smooth] plot[domain=-15:15,samples=61] (\x,{3.2*exp(-((\x)^2)/50)});
+  \draw[astroInk,dashed,line width=1pt] (0,0)--(0,3.3);
+  \draw[astroCoral,dashed,line width=1.2pt] (-5,0)--(-5,1.95);
+  \draw[astroCoral,dashed,line width=1.2pt] (5,0)--(5,1.95);
+  \draw[<->,astroCoral,line width=1.4pt] (-5,1.35)--(5,1.35);
+  \foreach \dx/\dy in {-0.7pt/0pt,0.7pt/0pt,0pt/-0.7pt,0pt/0.7pt,
+    -0.5pt/-0.5pt,-0.5pt/0.5pt,0.5pt/-0.5pt,0.5pt/0.5pt}{
+    \node[text=white,inner sep=0pt,xshift=\dx,yshift=\dy] at (0,1.7){$2\sigma_{RL}=10\,e^-$};
+  }
+  \node[astroCoral,inner sep=0pt] at (0,1.7){$2\sigma_{RL}=10\,e^-$};
+  \node[astroInk!70] at (0,-.8){error respecto al valor medio};
+\end{tikzpicture}
+\caption{El ruido de lectura se manifiesta como dispersión alrededor del valor esperado.}
+\end{figure}

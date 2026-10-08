@@ -1,0 +1,32 @@
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[font=\small,>=Stealth]
+  \fill[astroPale,rounded corners=4pt] (.15,.2) rectangle (6.75,5.0);
+  \fill[astroPale,rounded corners=4pt] (7.0,.2) rectangle (13.6,5.0);
+  \node[font=\bfseries\Large,text=astroNavy] at (3.45,4.55){Conductor};
+  \node[font=\bfseries\Large,text=astroNavy] at (10.3,4.55){Semiconductor};
+  \draw[->,astroInk,line width=1pt] (.8,.75)--(.8,3.95) node[above]{E};
+  \fill[astroBlue!25] (1.25,.95) rectangle (5.95,2.45);
+  \fill[astroCoral!25] (1.25,2.2) rectangle (5.95,3.8);
+  \fill[astroTeal!45] (1.25,2.2) rectangle (5.95,2.45);
+  \node[astroNavy,font=\bfseries] at (3.6,1.5){Banda de valencia};
+  \node[astroNavy,font=\bfseries] at (3.6,3.25){Banda de conducción};
+  \fill[astroGold] (2.35,2.3) circle (.09);
+  \fill[astroGold] (3.05,2.3) circle (.09);
+  \fill[astroGold] (3.75,2.3) circle (.09);
+  \draw[->,astroGold,line width=1.4pt] (4.1,2.3)--(5.2,2.3);
+  \node[astroInk!75,align=center] at (3.45,.48){Bandas solapadas: hay estados disponibles};
+  \draw[->,astroInk,line width=1pt] (7.65,.75)--(7.65,3.95) node[above]{E};
+  \fill[astroBlue!25] (8.1,.95) rectangle (12.9,1.85);
+  \fill[astroCoral!25] (8.1,3.0) rectangle (12.9,3.8);
+  \node[astroNavy,font=\bfseries] at (10.5,1.4){Banda de valencia};
+  \node[astroNavy,font=\bfseries] at (10.5,3.4){Banda de conducción};
+  \draw[<->,astroGold,line width=1.7pt] (11.8,1.9)--(11.8,2.95);
+  \node[astroGold,font=\bfseries,anchor=west] at (11.95,2.42){$E_g$};
+  \fill[astroBlue] (8.65,1.35) circle (.1);
+  \fill[astroCoral] (8.65,3.62) circle (.1);
+  \draw[->,astroTeal,line width=1.5pt] (8.65,1.8)--(8.65,3.0);
+  \node[astroInk!75,align=center] at (10.3,.48){Una brecha separa ambas bandas};
+\end{tikzpicture}
+\caption{En el conductor las bandas se solapan; en el semiconductor la excitación requiere energía $E_g$.}
+\end{figure}

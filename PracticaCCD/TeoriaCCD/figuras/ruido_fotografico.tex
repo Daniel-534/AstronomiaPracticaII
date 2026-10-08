@@ -1,0 +1,22 @@
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[font=\small]
+  \fill[astroPale,rounded corners=4pt] (.25,.2) rectangle (5.45,4.0);
+  \fill[astroPale,rounded corners=4pt] (6.75,.2) rectangle (11.95,4.0);
+  \node[font=\bfseries,text=astroNavy] at (2.85,3.72){SEÑAL};
+  \node[font=\bfseries,text=astroNavy] at (9.35,3.72){SEÑAL + GRANO};
+  \foreach \x in {0,...,9}{\foreach \y in {0,...,6}{
+    \fill[astroNavy!95] (.72+.42*\x,.55+.42*\y) rectangle +(0.37,.37);
+    \fill[astroNavy!95] (7.22+.42*\x,.55+.42*\y) rectangle +(0.37,.37);
+    \draw[white!12] (.72+.42*\x,.55+.42*\y) rectangle +(0.37,.37);
+    \draw[white!12] (7.22+.42*\x,.55+.42*\y) rectangle +(0.37,.37);
+  }}
+  \foreach \x/\y/\col in {2.82/1.81/astroGold,2.40/1.81/astroGold!25,3.24/1.81/astroGold!25,2.82/1.39/astroGold!25,2.82/2.23/astroGold!25,2.4/2.23/astroBlue!45,3.24/2.23/astroBlue!45,2.4/1.39/astroBlue!45,3.24/1.39/astroBlue!45}{
+    \fill[\col] (\x,\y) rectangle +(0.37,.37);
+  }
+  \foreach \x/\y/\col in {9.32/1.81/astroGold,8.90/1.81/astroGold!25,9.74/1.81/astroGold!25,9.32/1.39/astroGold!25,9.32/2.23/astroGold!25,8.90/2.23/astroBlue!45,9.74/2.23/astroBlue!45,8.90/1.39/astroBlue!45,9.74/1.39/astroBlue!45,7.64/.97/astroTeal!55,8.06/2.65/astroGold!40,8.48/1.39/astroTeal!55,10.16/2.65/astroGold!40,10.58/1.39/astroTeal!55,11.0/2.23/astroGold!40,10.58/.97/astroGold!40,8.06/.55/astroTeal!55,11.0/1.39/astroTeal!55}{
+    \fill[\col] (\x,\y) rectangle +(0.37,.37);
+  }
+\end{tikzpicture}
+\caption{La granulación produce fluctuaciones de fondo que pueden ocultar una señal débil.}
+\end{figure}

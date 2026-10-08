@@ -1,0 +1,20 @@
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[font=\small,>=Stealth,x=1.12cm,y=1cm]
+  \node[astroInk,font=\bfseries,anchor=west] at (.35,3.6){VENTANA ESPECTRAL};
+  \foreach \x/\c in {2.5/astroInk!30,3.25/violet!75,4.0/blue!75,4.75/cyan!70,5.5/green!65,6.25/yellow!85,7.0/orange!85,7.75/red!75,8.5/astroCoral!65,9.25/astroNavy!55,10.0/astroInk!45,10.75/astroInk!35}{
+    \fill[\c] (\x,3.05) rectangle +(0.75,.42);
+  }
+  \node[astroInk!70,anchor=east] at (2.25,2.3){Película};
+  \draw[astroGold,line width=7pt,line cap=round] (4.0,2.3)--(7.75,2.3);
+  \node[astroInk!70,anchor=east] at (2.25,1.35){CCD};
+  \draw[astroBlue,line width=7pt,line cap=round] (2.55,1.35)--(10.75,1.35);
+  \draw[astroInk!60,line width=.8pt] (2.5,.72)--(11.5,.72);
+  \foreach \x/\lab in {2.5/350,4.75/500,7.0/650,9.25/800,11.5/950}{
+    \draw[astroInk!65] (\x,.65)--(\x,.82);
+    \node[below,text=astroInk!75] at (\x,.62){\lab};
+  }
+  \node[below,text=astroInk!75] at (6.95,.14){Longitud de onda (nm)};
+\end{tikzpicture}
+\caption{Esquema cualitativo: la película suele cubrir una banda más estrecha que una CCD; la respuesta real depende del detector.}
+\end{figure}

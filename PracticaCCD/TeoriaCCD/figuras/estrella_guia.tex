@@ -1,0 +1,22 @@
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[font=\small,>=Stealth]
+  \fill[astroNavy] (0,1.0) rectangle (12.2,3.8);
+  \fill[astroBlue!35] (0,1.0) .. controls (3,1.7) and (7,1.1) .. (12.2,1.8) -- (12.2,1.0)--cycle;
+  \node[white,font=\bfseries] at (2.1,3.3){Alta atmósfera};
+  \node[white!70] at (9.6,1.38){Tierra};
+  \fill[astroGold] (6.35,2.68) circle (.13);
+  \foreach \r in {.28,.48}{\draw[astroGold!65] (6.35,2.68) circle (\r);}
+  \draw[astroCoral,line width=1.4pt] (2.05,1.2)--(6.35,2.6);
+  \draw[astroCoral,line width=1.4pt] (2.05,1.2)--(6.35,2.76);
+  \node[astroCoral!20,align=center] at (3.6,2.25){haz láser};
+  \draw[white,line width=1.2pt] (6.35,2.45)--(9.15,1.35);
+  \node[white,align=center] at (8.0,2.7){luz de retorno\\para el sensor};
+  \draw[astroInk,line width=1.4pt,fill=astroInk] (1.35,.78)--(2.75,.78)--(2.05,1.65)--cycle;
+  \draw[astroInk,line width=1.5pt] (2.05,1.65)--(2.05,1.95);
+  \draw[white,line width=1pt] (1.72,.75)--(2.38,.75);
+  \node[white,below] at (2.05,.68){telescopio};
+  \node[white,align=center] at (6.35,3.45){estrella guía artificial};
+\end{tikzpicture}
+\caption{Formación de una estrella guía láser y uso de su señal de retorno para medir la turbulencia.}
+\end{figure}

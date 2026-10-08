@@ -1,0 +1,19 @@
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[font=\small]
+  \node[font=\bfseries,text=astroNavy] at (1.5,3.35){10/10};
+  \node[font=\bfseries,text=astroNavy] at (4.3,3.35){7/10};
+  \node[font=\bfseries,text=astroNavy] at (7.1,3.35){4/10};
+  \node[font=\bfseries,text=astroNavy] at (9.9,3.35){1/10};
+  \foreach \x/\r in {1.5/.32,4.3/.65,7.1/1.0,9.9/1.25}{
+    \fill[astroBlue!12] (\x,1.9) circle (\r);
+    \fill[astroBlue!22] (\x,1.9) circle (.72*\r);
+    \fill[astroBlue!45] (\x,1.9) circle (.42*\r);
+    \fill[astroGold] (\x,1.9) circle (.12*\r);
+  }
+  \draw[astroInk!45] (.4,.45)--(11,.45);
+  \node[align=center,text=astroInk!80] at (5.7,-.05){A mayor turbulencia atmosférica, la imagen estelar se ensancha y pierde definición.};
+  \node[astroInk!65] at (5.7,.8){Mejor calidad de imagen \hspace{1.4cm} Peor calidad de imagen};
+\end{tikzpicture}
+\caption{Representación conceptual de la degradación de una imagen puntual con el seeing.}
+\end{figure}

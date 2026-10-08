@@ -1,0 +1,15 @@
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[x=.011cm,y=.045cm,font=\small,>=Stealth]
+  \draw[->,astroInk,line width=.8pt] (300,0)--(1000,0) node[right]{Longitud de onda (nm)};
+  \draw[->,astroInk,line width=.8pt] (300,0)--(300,105) node[above,align=center]{Eficiencia\\cuántica (\%)};
+  \foreach \x/\lab in {400/400,500/500,600/600,700/700,800/800,900/900,1000/1000}{\draw[astroInk!35] (\x,0)--(\x,-2.5) node[below]{\lab};}
+  \foreach \y in {20,40,60,80,100}{\draw[astroInk!20] (300,\y)--(1000,\y) node[left=2pt]{\y};}
+  \fill[astroBlue!12] (350,0)--(420,18)--(500,49)--(580,78)--(660,88)--(740,81)--(820,65)--(900,38)--(960,8)--(980,0)--cycle;
+  \draw[astroBlue,line width=1.8pt,smooth] plot coordinates {(350,0)(420,18)(500,49)(580,78)(660,88)(740,81)(820,65)(900,38)(960,8)(980,0)};
+  \draw[astroCoral,dashed,line width=1.2pt] (350,10)--(980,10);
+  \node[astroCoral,anchor=west] at (810,15){10\% (referencia ilustrativa)};
+  \node[align=center,text=astroInk!75] at (650,-17){Curva conceptual; la QE depende del modelo de sensor y de la longitud de onda};
+\end{tikzpicture}
+\caption{Respuesta cuántica conceptual de una CCD en función de la longitud de onda.}
+\end{figure}

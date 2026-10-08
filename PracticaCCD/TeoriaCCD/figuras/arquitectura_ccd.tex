@@ -1,0 +1,31 @@
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[font=\small,>=Stealth]
+  \fill[astroBlue!12] (.5,.45) rectangle (9.0,2.55);
+  \draw[astroBlue,line width=1.1pt] (.5,.45) rectangle (9.0,2.55);
+  \node[astroNavy,font=\bfseries] at (1.55,.78){Silicio};
+  \fill[astroGold!45] (.5,2.55) rectangle (9.0,2.88);
+  \draw[astroGold!80!astroInk,line width=.8pt] (.5,2.55) rectangle (9.0,2.88);
+  \fill[astroNavy] (.65,2.88) rectangle (3.2,3.58);
+  \fill[astroBlue] (3.3,2.88) rectangle (6.0,3.58);
+  \fill[astroNavy] (6.1,2.88) rectangle (8.85,3.58);
+  \node[white,font=\bfseries] at (1.93,3.23){G$_1$};
+  \node[white,font=\bfseries] at (4.65,3.23){G$_2$};
+  \node[white,font=\bfseries] at (7.47,3.23){G$_3$};
+  \fill[astroTeal!45] (2.8,2.52) .. controls (3.35,1.4) and (5.8,1.35) .. (6.35,2.52) -- cycle;
+  \foreach \x/\y in {3.55/1.9,4.15/1.7,4.75/1.65,5.35/1.85}{\fill[astroNavy] (\x,\y) circle (.09);}
+  \draw[->,astroGold,line width=1.5pt] (1.6,4.55)--(2.0,3.7);
+  \draw[->,astroGold,line width=1.5pt] (4.6,4.55)--(4.6,3.7);
+  \draw[->,astroGold,line width=1.5pt] (7.6,4.55)--(7.2,3.7);
+  \node[astroGold,font=\bfseries] at (4.6,4.78){Luz incidente};
+  \draw[astroInk!70,line width=1pt] (9.0,3.25)--(9.55,3.25);
+  \node[anchor=west,astroInk] at (9.65,3.25){Compuertas};
+  \draw[astroInk!70,line width=1pt] (9.0,2.72)--(9.55,2.72);
+  \node[anchor=west,astroInk] at (9.65,2.72){Óxido (SiO$_2$)};
+  \draw[astroInk!70,line width=1pt] (9.0,1.1)--(9.55,1.1);
+  \node[anchor=west,astroInk] at (9.65,1.1){Sustrato de silicio};
+  \draw[astroTeal,line width=1pt] (6.1,1.85)--(9.55,1.85);
+  \node[anchor=west,astroInk] at (9.65,1.85){Paquete de electrones};
+\end{tikzpicture}
+\caption{Corte de un píxel CCD tipo MOS: las compuertas sobre el óxido controlan el pozo donde se acumula la carga.}
+\end{figure}

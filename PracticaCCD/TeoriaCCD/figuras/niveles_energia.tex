@@ -1,0 +1,21 @@
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[font=\small,>=Stealth]
+  \fill[astroPale,rounded corners=4pt] (.2,.25) rectangle (5.0,4.2);
+  \fill[astroPale,rounded corners=4pt] (7.5,.25) rectangle (12.3,4.2);
+  \node[font=\bfseries,text=astroNavy] at (2.6,3.75){INICIAL};
+  \node[font=\bfseries,text=astroNavy] at (9.9,3.75){TRAS ABSORBER LUZ};
+  \foreach \y/\lab in {.9/$E_0$,1.8/$E_1$,2.7/$E_2$}{
+    \draw[astroNavy,line width=1.3pt] (1.0,\y)--(4.05,\y);
+    \node[astroInk,anchor=west] at (4.18,\y){\lab};
+    \draw[astroNavy,line width=1.3pt] (8.3,\y)--(11.35,\y);
+    \node[astroInk,anchor=west] at (11.48,\y){\lab};
+  }
+  \fill[astroBlue] (2.3,.9) circle (.14);
+  \fill[astroCoral] (9.7,1.8) circle (.14);
+  \draw[->,astroGold,line width=2pt] (5.15,1.8)--(7.1,1.8);
+  \node[draw=astroGold,fill=white,circle,line width=1pt,minimum size=.75cm,font=\bfseries] at (6.1,2.55){$h\nu$};
+  \node[astroInk!70] at (6.1,.95){$\Delta E=h\nu$};
+\end{tikzpicture}
+\caption{El electrón pasa a un nivel permitido más alto al absorber un fotón con la energía adecuada.}
+\end{figure}

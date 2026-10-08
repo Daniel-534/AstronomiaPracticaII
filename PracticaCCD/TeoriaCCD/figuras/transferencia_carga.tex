@@ -1,0 +1,27 @@
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[font=\small,>=Stealth]
+  \node[font=\bfseries,text=astroNavy] at (2.3,4.75){Matriz del CCD};
+  \foreach \x in {0,...,3}{\foreach \y in {0,...,3}{
+    \fill[astroPale] (.4+.95*\x,2.65+.48*\y) rectangle +(0.9,.43);
+    \draw[astroInk!55] (.4+.95*\x,2.65+.48*\y) rectangle +(0.9,.43);
+  }}
+  \fill[astroTeal!28] (.4,2.65) rectangle (4.2,3.08);
+  \foreach \x in {.68,1.63,2.58,3.53}{\fill[astroNavy] (\x,2.82) circle (.07);}
+  \draw[->,astroGold,line width=1.7pt] (2.3,2.5)--(2.3,2.03);
+  \node[astroInk!80,anchor=west] at (2.5,2.25){traslado de filas};
+  \node[font=\bfseries,text=astroBlue] at (2.3,1.7){Registro serial};
+  \foreach \x in {0,...,3}{
+    \fill[astroBlue!12] (.4+.95*\x,1.0) rectangle +(0.9,.43);
+    \draw[astroBlue,line width=1pt] (.4+.95*\x,1.0) rectangle +(0.9,.43);
+  }
+  \foreach \x in {.68,1.63,2.58,3.53}{\fill[astroNavy] (\x,1.21) circle (.07);}
+  \draw[->,astroBlue,line width=1.7pt] (4.55,1.2)--(6.35,1.2);
+  \node[astroInk!80] at (5.45,1.55){lectura serial};
+  \node[draw=astroGold,fill=astroGold!15,rounded corners,minimum width=2.2cm,minimum height=.85cm,align=center] at (7.55,1.2){Amplificador};
+  \draw[->,astroTeal,line width=1.7pt] (8.75,1.2)--(10.25,1.2);
+  \node[astroInk!80] at (9.5,1.55){voltaje};
+  \node[draw=astroTeal,fill=astroTeal!15,rounded corners,minimum width=2.1cm,minimum height=.85cm,align=center] at (11.45,1.2){ADC / memoria};
+\end{tikzpicture}
+\caption{La carga de una fila pasa al registro serial y luego se lee píxel a píxel.}
+\end{figure}
