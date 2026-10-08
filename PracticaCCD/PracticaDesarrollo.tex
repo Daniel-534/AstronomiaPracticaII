@@ -1,0 +1,186 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{array,tabularx}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\usepackage[margin=2cm]{geometry}
+
+\title{Práctica: caracterización de detectores CCD}
+\author{\mbox{}}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Caracterización de la ganancia y el ruido de lectura}
+
+La ganancia, $G$, es el factor de conversión entre la carga generada en el
+semiconductor y las unidades digitales (ADU) registradas por el convertidor
+análogo-digital. Se expresa en electrones por ADU, $\mathrm{e^-}/\mathrm{ADU}$.
+El ruido de lectura, $\epsilon_{\text{RN}}$, cuantifica la incertidumbre que
+introduce la electrónica al medir la carga de cada píxel.
+
+\input{figuras/montaje_experimental.tex}
+\input{figuras/imagenes_flat_bias.tex}
+
+\subsection{Adquisición y preparación de las imágenes}
+
+\begin{enumerate}
+    \item Tome una secuencia de 40 imágenes bias con la cámara CCD.
+    \item Tome una serie de imágenes \emph{flat-field} con distintos tiempos
+    de exposición. Comience en $0.05\,\mathrm{s}$ y duplique el tiempo en cada
+    paso ($0.05$, $0.1$, $0.2$, $0.4\,\mathrm{s}$, etc.). Seleccione imágenes
+    bien iluminadas (alrededor de 15\,000 ADU o más), pero evite las zonas
+    saturadas o no lineales.
+    \item Para cada tiempo de exposición, divida los flats en dos grupos y
+    combine cada grupo por separado con \texttt{imcombine} y
+    \texttt{combine=average}. Las imágenes resultantes se denotarán
+    $\text{Flat}_1$ y $\text{Flat}_2$. Tome también dos imágenes bias,
+    $\text{Bias}_1$ y $\text{Bias}_2$.
+    \item Reste las imágenes de cada par para obtener
+    \begin{align*}
+        \Delta_F &= \text{Flat}_1 - \text{Flat}_2,\\
+        \Delta_B &= \text{Bias}_1 - \text{Bias}_2.
+    \end{align*}
+    Calcule las medias de cada imagen y las desviaciones estándar de
+    $\Delta_F$ y $\Delta_B$ en una región central, evitando los bordes.
+\end{enumerate}
+
+Por ejemplo, puede dividir en dos grupos los flats tomados con el mismo tiempo
+de exposición (como $2\,\mathrm{s}$) y combinar cada grupo por promedio. Use
+ambas imágenes resultantes para calcular las medias y su imagen diferencia.
+
+\subsection{Cálculo de la ganancia y el ruido de lectura}
+
+Calcule la ganancia para cada tiempo de exposición mediante
+\begin{equation}
+    G = \frac{(\bar{F}_1 + \bar{F}_2) - (\bar{B}_1 + \bar{B}_2)}
+    {\sigma^2_{\Delta_F} - \sigma^2_{\Delta_B}},
+    \label{eq:gain}
+\end{equation}
+donde $\bar{F}_1$ y $\bar{F}_2$ son las medias de los dos flats,
+$\bar{B}_1$ y $\bar{B}_2$ son las medias de los dos bias, y
+$\sigma^2_{\Delta_F}$ y $\sigma^2_{\Delta_B}$ son las varianzas de las
+imágenes diferencia respectivas.
+
+Una vez conocida la ganancia, estime el ruido de lectura con
+\begin{equation}
+    \epsilon_{\text{RN}} = G\,\frac{\sigma_{\Delta_B}}{\sqrt{2}}.
+    \label{eq:read-noise}
+\end{equation}
+
+Registre los datos para cada tiempo de exposición:
+
+\begin{center}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{|c|*{7}{>{\centering\arraybackslash}X|}}
+    \hline
+    \textbf{Tiempo} &
+    \shortstack{\textbf{Media}\\\textbf{Flat 1}\\\textbf{(ADU)}} &
+    \shortstack{\textbf{Media}\\\textbf{Flat 2}\\\textbf{(ADU)}} &
+    \shortstack{\textbf{Media}\\\textbf{Bias 1}\\\textbf{(ADU)}} &
+    \shortstack{\textbf{Media}\\\textbf{Bias 2}\\\textbf{(ADU)}} &
+    \shortstack{$\boldsymbol{\sigma_{\Delta_F}}$\\\textbf{(ADU)}} &
+    \shortstack{$\boldsymbol{\sigma_{\Delta_B}}$\\\textbf{(ADU)}} &
+    \shortstack{\textbf{$G$}\\\textbf{(e$^-$/ADU)}} \\
+    \hline
+    $t_{\text{exp}}$ (s) & & & & & & & \\
+    \hline
+    0.05 & & & & & & & \\
+    \hline
+    0.10 & & & & & & & \\
+    \hline
+    $\vdots$ & & & & & & & \\
+    \hline
+\end{tabularx}
+\end{center}
+
+\subsection{Análisis y discusión}
+
+\begin{itemize}
+    \item Grafique $G$ en función del tiempo de exposición de los flats.
+    ¿Qué comportamiento observa?
+    \item Grafique $\epsilon_{\text{RN}}$ en función del tiempo de exposición
+    usado para calcular $G$ y presente una tabla con los resultados.
+    \item Investigue qué hace la tarea \texttt{findgain} de IRAF. Ejecútela y
+    compare su resultado con los obtenidos en esta práctica.
+    \item Busque los valores de $G$ y $\epsilon_{\text{RN}}$ reportados por el
+    fabricante de la cámara. Compare los resultados y discuta las posibles
+    diferencias.
+\end{itemize}
+
+\section{Respuesta lineal del detector}
+
+Un detector ideal responde de forma lineal: las cuentas registradas (ADU) son
+directamente proporcionales al número de fotones incidentes y al tiempo de
+exposición. A niveles altos de iluminación, los pozos de potencial se llenan
+hasta alcanzar la saturación y la respuesta deja de ser lineal.
+
+\input{figuras/linealidad_detector.tex}
+\input{figuras/blooming_detector.tex}
+
+\begin{itemize}
+    \item Incremente progresivamente el tiempo de exposición de los flats
+    hasta observar la saturación. En esa región, la señal deja de crecer
+    linealmente, se estabiliza o alcanza valores límite del formateador.
+    \item Grafique el flujo promedio de los píxeles de cada flat-field en
+    función del tiempo de exposición.
+    \item Determine numéricamente el límite del régimen lineal de la cámara,
+    en ADU, y calcule el rango dinámico del detector.
+    \item Discuta el fenómeno de \textit{blooming} (desborde de carga), que
+    ocurre cuando un píxel supera su capacidad de almacenamiento.
+\end{itemize}
+
+\section{Tasa de corriente oscura}
+
+La corriente oscura es la tasa de acumulación de electrones generados por
+agitación térmica en el silicio, aun en ausencia de luz. Se expresa en
+$\mathrm{e^-\,pixel^{-1}\,s^{-1}}$ o
+$\mathrm{ADU\,pixel^{-1}\,s^{-1}}$ para una temperatura de operación dada.
+\input{figuras/adquisicion_darks.tex}
+
+\begin{enumerate}
+    \item Tome al menos tres imágenes dark para cada tiempo de exposición,
+    siguiendo el esquema usado para los flats y extendiendo las exposiciones
+    hasta unos 2 o 5 minutos.
+    \item Reste la señal bias de cada imagen dark.
+    \item Combine con \texttt{imcombine} y \texttt{combine=average} los darks
+    del mismo tiempo de exposición para construir imágenes \emph{superdark} y
+    reducir el ruido aleatorio de lectura.
+    \item Calcule la señal media de cada \emph{superdark} y grafíquela en
+    función del tiempo de exposición, en ADU o electrones.
+    \item Ajuste una recta de regresión lineal a los datos. ¿Qué significado
+    físico tiene la pendiente?
+    \item Convierta la pendiente a $\mathrm{e^-\,pixel^{-1}\,s^{-1}}$ usando
+    la ganancia obtenida previamente. Discuta la importancia del enfriamiento
+    (entre $-70\,^{\circ}\mathrm{C}$ y $-140\,^{\circ}\mathrm{C}$) en los CCD
+    astronómicos.
+\end{enumerate}
+
+\input{figuras/pendiente_corriente_oscura.tex}
+\section{Detección de defectos cosméticos}
+
+Las matrices CCD reales presentan imperfecciones de fabricación o degradación
+por radiación, como píxeles muertos (sensibilidad nula), píxeles calientes
+(alta corriente oscura) y columnas defectuosas o trampas de carga.
+
+\begin{itemize}
+    \item ¿Cómo puede usar las imágenes \emph{flat-field} y \emph{superdark}
+    recolectadas para encontrar automáticamente los píxeles muertos y
+    calientes?
+    \item ¿Cómo identificar otros defectos cosméticos, como columnas malas o
+    trampas de carga? Presente capturas de pantalla de DS9 en las que marque
+    estos defectos.
+    \item Investigue para qué sirve la tarea \texttt{ccdmask} de IRAF. Describa
+    cómo genera un mapa de máscara de píxeles defectuosos que pueda usarse al
+    corregir imágenes científicas.
+\end{itemize}
+
+\end{document}

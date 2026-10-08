@@ -1,0 +1,77 @@
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[
+        font=\small,
+        carcasa/.style={draw=gray!75!black, line width=1pt},
+        etiqueta/.style={font=\scriptsize\bfseries, text=blue!60!black,
+            align=center},
+        conexion/.style={draw=teal!70!black, line width=1.1pt}
+    ]
+        \node[font=\bfseries\large, text=blue!65!black] at (8,5.35)
+            {Adquisición de imágenes dark};
+
+        % Cámara CCD con la entrada óptica bloqueada por una tapa opaca.
+        \draw[fill=gray!18, carcasa, rounded corners=5pt]
+            (2.1,2.05) rectangle (7.45,4.05);
+        \draw[fill=gray!35, carcasa] (2.45,2.3) rectangle (2.85,3.8);
+        \foreach \y in {2.48,2.76,3.04,3.32,3.6} {
+            \draw[draw=gray!65] (3.15,\y) -- (3.5,\y);
+        }
+        \draw[fill=gray!45, carcasa] (7.45,2.35) rectangle (7.78,3.75);
+        \draw[fill=violet!22, draw=violet!65!black, line width=0.9pt]
+            (7.78,2.25) rectangle (8.45,3.85);
+        \draw[fill=cyan!45, draw=teal!65!black, line width=0.8pt]
+            (7.88,2.55) rectangle (8.02,3.55);
+        \node[font=\tiny\bfseries, text=violet!65!black, align=center]
+            at (8.25,3.04) {CCD};
+        \draw[fill=gray!40, carcasa] (3.25,1.72) rectangle (6.25,2.05);
+        \node[etiqueta] at (5,4.4) {Cámara CCD};
+
+        % Tapa frontal: la cara oscura representa una superficie opaca.
+        \draw[fill=gray!15, carcasa, line width=1.2pt]
+            (1.45,2.55) rectangle (2.1,3.55);
+        \draw[fill=black!85, draw=black, line width=0.8pt]
+            (1.25,2.48) ellipse (0.18 and 0.56);
+        \node[etiqueta] at (1.8,4.4) {Tapa opaca\\o shutter cerrado};
+        \draw[-{Stealth[length=1.7mm]}, draw=blue!55!black]
+            (1.8,4.1) -- (1.8,3.62);
+
+        % Computadora de control con una secuencia repetida de exposiciones.
+        \draw[fill=gray!28, carcasa, rounded corners=2pt]
+            (10.25,1.95) rectangle (14.75,4.2);
+        \draw[fill=blue!4, draw=gray!65!black, line width=0.8pt]
+            (10.48,2.2) rectangle (14.52,3.95);
+        \node[font=\scriptsize\bfseries, text=blue!65!black]
+            at (12.5,3.68) {SERIE DE EXPOSICIONES};
+        \foreach \ybottom/\ytop/\tiempo in {
+            3.10/3.40/10, 2.67/2.97/30, 2.24/2.54/60
+        } {
+            \draw[fill=teal!12, draw=teal!50!black, rounded corners=1pt]
+                (11.05,\ybottom) rectangle (13.95,\ytop);
+            \node[font=\scriptsize, anchor=west] at (11.25,\ybottom+0.15)
+                {$t_{\mathrm{exp}}=\tiempo\,\mathrm{s}$};
+            \node[font=\scriptsize\bfseries, text=teal!65!black,
+                anchor=east] at (13.75,\ybottom+0.15) {$\times 3$};
+        }
+        \draw[fill=gray!50, carcasa] (12.15,1.68) rectangle (12.85,1.95);
+        \draw[fill=gray!35, carcasa, rounded corners=1pt]
+            (11.55,1.55) rectangle (13.45,1.68);
+        \node[etiqueta] at (12.5,4.52) {Computador de adquisición};
+
+        % Cable de datos; no representa el trayecto de la luz.
+        \draw[conexion] (8.45,2.35) .. controls (9.1,1.25) and
+            (9.55,1.25) .. (10.25,2.2);
+        \node[font=\tiny, text=teal!65!black] at (9.35,1.25) {USB / datos};
+
+        \node[draw=orange!65!black, fill=orange!7, rounded corners=2pt,
+            text width=13.8cm, align=center, inner sep=5pt,
+            font=\scriptsize] at (8,0.55)
+            {Mantenga bloqueada toda la luz y constante la temperatura.
+            Repita cada tiempo de exposición al menos tres veces para poder
+            combinar los darks y reducir el ruido aleatorio.};
+    \end{tikzpicture}
+    \caption{Esquema ilustrativo de la toma de darks: la entrada óptica se
+    mantiene cubierta o con el shutter cerrado mientras la cámara integra
+    durante distintos tiempos. La secuencia mostrada es solo un ejemplo.}
+    \label{fig:adquisicion-darks}
+\end{figure}

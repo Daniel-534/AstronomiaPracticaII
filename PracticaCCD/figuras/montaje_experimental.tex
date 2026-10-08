@@ -1,0 +1,121 @@
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[
+        font=\small,
+        luz/.style={-{Stealth[length=2mm]}, draw=orange!80!black,
+            line width=0.9pt},
+        estructura/.style={draw=gray!75!black, line width=1.1pt},
+        etiqueta/.style={font=\scriptsize\bfseries, align=center,
+            text=blue!60!black},
+        datos/.style={-{Stealth[length=2mm]}, draw=teal!70!black,
+            dashed, line width=1pt}
+    ]
+        \node[font=\bfseries\large, text=blue!65!black] at (8.1,4.2)
+            {Montaje experimental aproximado};
+
+        % Trípode y montura del telescopio
+        \draw[estructura] (7.45,1.82) -- (7.45,1.1);
+        \draw[estructura] (7.45,1.1) -- (6.45,0.2);
+        \draw[estructura] (7.45,1.1) -- (8.45,0.2);
+        \draw[estructura] (7.45,1.1) -- (7.45,0.2);
+        \draw[estructura, line width=2pt] (6.15,0.18) -- (6.7,0.18);
+        \draw[estructura, line width=2pt] (8.2,0.18) -- (8.75,0.18);
+        \draw[estructura, line width=2pt] (7.2,0.18) -- (7.7,0.18);
+        \draw[fill=gray!25, draw=gray!70!black] (7.05,1.52)
+            rectangle (7.85,1.95);
+        \draw[fill=gray!45, draw=gray!70!black] (7.28,1.83)
+            circle (0.28);
+
+        % Pantalla utilizada como fuente de iluminación
+        \draw[fill=gray!25, draw=gray!65!black, line width=1pt,
+            rounded corners=2pt] (0.45,1.55) rectangle (2.95,3.3);
+        \draw[fill=yellow!5, draw=blue!45!black, line width=0.7pt]
+            (0.6,1.7) rectangle (2.8,3.15);
+        \node[font=\scriptsize\bfseries, text=gray!65!black]
+            at (1.7,2.55) {BLANCO};
+        \node[font=\tiny, text=gray!55!black] at (1.7,2.3)
+            {campo uniforme};
+        \draw[fill=gray!55, draw=gray!70!black]
+            (1.52,1.55) -- (1.88,1.55) -- (2.02,0.92) --
+            (1.38,0.92) -- cycle;
+        \draw[fill=gray!35, draw=gray!70!black, rounded corners=1pt]
+            (1.08,0.78) rectangle (2.32,0.92);
+
+        % Luz de la pantalla que entra por el objetivo
+        \fill[orange!18, opacity=0.75]
+            (2.82,1.78) -- (4.35,1.9) -- (4.35,2.92) --
+            (2.82,3.03) -- cycle;
+        \draw[luz] (2.82,2.95) -- (4.28,2.78);
+        \draw[luz] (2.82,2.38) -- (4.28,2.38);
+        \draw[luz] (2.82,1.83) -- (4.28,2.0);
+
+        % Tubo, anillos y objetivo
+        \draw[fill=blue!9, draw=blue!55!black, line width=1.2pt,
+            rounded corners=7pt] (4.35,1.83) rectangle (10.25,2.95);
+        \draw[fill=blue!18, draw=blue!55!black]
+            (4.8,1.88) rectangle (9.83,2.9);
+        \draw[fill=gray!35, draw=gray!70!black]
+            (5.05,1.82) rectangle (5.25,2.96);
+        \draw[fill=gray!35, draw=gray!70!black]
+            (9.72,1.82) rectangle (9.92,2.96);
+        \draw[fill=gray!30, draw=gray!65!black, line width=1pt]
+            (4.25,1.72) rectangle (4.58,3.06);
+        \draw[fill=cyan!25, draw=blue!65!black, opacity=0.8]
+            (4.26,1.83) ellipse [x radius=0.08, y radius=0.55];
+
+        % Convergencia de los rayos en el plano del detector
+        \draw[luz] (4.42,2.78) -- (10.55,2.4);
+        \draw[luz] (4.42,2.38) -- (10.55,2.4);
+        \draw[luz] (4.42,2.0) -- (10.55,2.4);
+
+        % Enfocador y cámara CCD acoplada al extremo posterior
+        \draw[fill=gray!35, draw=gray!70!black, line width=1pt]
+            (10.15,2.0) rectangle (10.65,2.78);
+        \draw[fill=gray!55, draw=gray!70!black]
+            (10.55,2.12) rectangle (10.78,2.66);
+        \draw[fill=violet!22, draw=violet!65!black, line width=1pt,
+            rounded corners=2pt] (10.78,1.85) rectangle (12.05,2.94);
+        \draw[fill=violet!38, draw=violet!65!black]
+            (11.0,1.95) rectangle (11.82,2.12);
+        \draw[fill=cyan!45, draw=teal!65!black, line width=0.7pt]
+            (10.8,2.18) rectangle (10.92,2.6);
+        \draw[draw=violet!65!black, line width=0.8pt]
+            (11.1,2.7) -- (11.72,2.7);
+
+        % Computador que controla la cámara y recibe los datos
+        \draw[fill=gray!30, draw=gray!70!black, line width=1pt,
+            rounded corners=2pt] (13.35,1.08) rectangle (15.35,2.48);
+        \draw[fill=teal!8, draw=teal!65!black]
+            (13.48,1.22) rectangle (15.22,2.34);
+        \node[font=\tiny\bfseries, text=teal!60!black, align=center]
+            at (14.35,1.82) {CONTROL Y\\LECTURA CCD};
+        \draw[fill=gray!40, draw=gray!70!black]
+            (14.18,1.08) rectangle (14.52,0.82);
+        \draw[fill=gray!28, draw=gray!70!black, rounded corners=1pt]
+            (13.82,0.68) rectangle (14.88,0.82);
+        \draw[datos] (11.55,1.88) .. controls (12.25,0.8) and
+            (12.7,0.78) .. (13.35,1.35);
+        \node[font=\tiny, text=teal!60!black] at (12.55,0.62) {USB};
+
+        % Etiquetas con líneas guía
+        \node[etiqueta] at (1.7,3.62) {Computador como\\fuente flat};
+        \draw[-{Stealth[length=1.5mm]}, draw=blue!55!black]
+            (1.7,3.37) -- (1.7,3.16);
+        \node[etiqueta] at (7.45,3.53) {Telescopio};
+        \draw[-{Stealth[length=1.5mm]}, draw=blue!55!black]
+            (7.45,3.35) -- (7.45,2.98);
+        \node[etiqueta] at (11.42,3.53) {Cámara CCD};
+        \draw[-{Stealth[length=1.5mm]}, draw=blue!55!black]
+            (11.42,3.35) -- (11.42,2.96);
+        \node[etiqueta] at (14.35,2.78) {Computador de adquisición};
+        \draw[-{Stealth[length=1.5mm]}, draw=blue!55!black]
+            (14.35,2.63) -- (14.35,2.49);
+
+        \draw[gray!65, line width=0.7pt] (0.15,0.16) -- (15.8,0.16);
+    \end{tikzpicture}
+    \caption{Vista lateral ilustrativa del montaje: una pantalla que muestra
+    un campo blanco uniforme ilumina el objetivo del telescopio; la cámara
+    CCD se acopla al extremo posterior y se conecta al computador de
+    adquisición. Para tomar bias, bloquee la luz antes del detector.}
+    \label{fig:montaje-ccd}
+\end{figure}

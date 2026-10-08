@@ -1,0 +1,61 @@
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[
+        font=\small,
+        rejilla/.style={draw=gray!23, line width=0.35pt},
+        ajuste/.style={draw=blue!75!black, line width=1.5pt},
+        dato/.style={draw=orange!75!black, fill=orange!80!black}
+    ]
+        \node[font=\bfseries\large, text=blue!65!black] at (7.9,5.15)
+            {La pendiente mide la acumulación de señal oscura};
+
+        % Cuadrícula y ejes del gráfico conceptual.
+        \draw[step=1cm, rejilla] (1.35,1.05) grid (10.55,4.35);
+        \draw[-{Stealth[length=2mm]}, line width=0.9pt]
+            (1.35,1.05) -- (10.8,1.05);
+        \draw[-{Stealth[length=2mm]}, line width=0.9pt]
+            (1.35,1.05) -- (1.35,4.62);
+
+        \node[align=center, font=\scriptsize] at (5.95,0.48)
+            {Tiempo de exposición, $t_{\mathrm{exp}}$ (s)};
+        \node[rotate=90, align=center, font=\scriptsize] at (0.42,2.7)
+            {Media del superdark, $\bar{D}$ (ADU/píxel)};
+
+        % Puntos ilustrativos y ajuste lineal conceptual tras restar bias.
+        \draw[ajuste] (1.52,1.12) -- (10.25,4.18);
+        \foreach \x/\y in {
+            2.1/1.34, 3.55/1.79, 5.05/2.31, 6.48/2.76,
+            8.05/3.34, 9.55/3.82
+        } {
+            \filldraw[dato] (\x,\y) circle (2.4pt);
+        }
+        \node[fill=white, inner sep=2pt, font=\scriptsize,
+            text=blue!70!black] at (7.95,2.2) {ajuste lineal};
+
+        % Triángulo de pendiente asociado a dos puntos sobre el ajuste.
+        \draw[draw=orange!80!black, dashed, line width=0.9pt]
+            (3.55,1.83) -- (8.05,1.83) -- (8.05,3.41);
+        \node[font=\scriptsize, text=orange!65!black]
+            at (5.8,1.57) {$\Delta t$};
+        \node[font=\scriptsize, text=orange!65!black, rotate=90]
+            at (8.31,2.62) {$\Delta\bar{D}$};
+
+        \node[draw=teal!60!black, fill=teal!5, rounded corners=2pt,
+            text width=4.25cm, align=left, inner sep=6pt,
+            font=\scriptsize] at (13.25,3.45)
+            {Tras restar el bias, la pendiente del ajuste es la tasa media
+            de señal oscura en ADU por píxel y segundo.};
+        \node[draw=orange!65!black, fill=orange!7, rounded corners=2pt,
+            text width=4.25cm, align=center, inner sep=6pt,
+            font=\small] at (13.25,1.55)
+            {$m=\dfrac{\Delta\bar{D}}{\Delta t}$\\[3pt]
+            $i_{\mathrm{dark}}=G\,m$};
+        \node[font=\tiny, align=center, text=gray!65!black] at (8,0.03)
+            {Puntos y valores conceptuales; no corresponden a mediciones reales.};
+    \end{tikzpicture}
+    \caption{Ejemplo conceptual del ajuste de la señal media de los
+    superdarks, una vez restada la señal bias, en función del tiempo de
+    exposición. La pendiente $m$ se convierte a corriente oscura en
+    $\mathrm{e^-\,pixel^{-1}\,s^{-1}}$ multiplicándola por la ganancia $G$.}
+    \label{fig:pendiente-corriente-oscura}
+\end{figure}

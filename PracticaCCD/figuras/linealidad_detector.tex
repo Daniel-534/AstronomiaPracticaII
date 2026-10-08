@@ -1,0 +1,57 @@
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[
+        font=\scriptsize,
+        ideal/.style={draw=gray!75!black, dashed, line width=1.2pt},
+        medida/.style={draw=blue!75!black, line width=1.8pt}
+    ]
+        \node[font=\bfseries\large, text=blue!65!black] at (5.8,5.35)
+            {Respuesta media del detector frente al tiempo de exposición};
+
+        \fill[green!8] (0.8,0.8) rectangle (5.8,4.55);
+        \fill[yellow!14] (5.8,0.8) rectangle (8.0,4.55);
+        \fill[red!7] (8.0,0.8) rectangle (10.8,4.55);
+        \draw[step=1cm, draw=gray!28, line width=0.25pt]
+            (0.8,0.8) grid (10.8,4.55);
+
+        \draw[-{Stealth[length=2mm]}, line width=0.9pt]
+            (0.8,0.8) -- (11.0,0.8);
+        \draw[-{Stealth[length=2mm]}, line width=0.9pt]
+            (0.8,0.8) -- (0.8,4.75);
+
+        \foreach \x/\t in {0/0,2/2,4/4,6/6,8/8,10/10} {
+            \draw (0.8+\x,0.8) -- (0.8+\x,0.72);
+            \node[below] at (0.8+\x,0.68) {$\t$};
+        }
+        \foreach \y/\s in {0/0,1/1,2/2,3/3,4/4,5/5} {
+            \draw (0.8,0.8+0.75*\y) -- (0.72,0.8+0.75*\y);
+            \node[left] at (0.68,0.8+0.75*\y) {$\s$};
+        }
+
+        \node[align=center, text=green!40!black] at (3.25,4.72)
+            {Régimen\\lineal};
+        \node[align=center, text=orange!60!black] at (6.9,4.72)
+            {Pérdida de\\linealidad};
+        \node[align=center, text=red!65!black] at (9.4,4.72)
+            {Saturación};
+
+        \draw[ideal] (0.8,0.8) -- (10.5,4.44);
+        \draw[medida] plot[smooth, tension=0.8] coordinates {
+            (0.8,0.8) (2.8,1.55) (4.8,2.3) (5.8,2.68)
+            (6.8,3.12) (7.8,3.44) (8.8,3.52) (10.5,3.53)
+        };
+        \node[fill=white, inner sep=1.5pt, text=blue!70!black]
+            at (3.9,2.55) {respuesta medida};
+        \node[fill=white, inner sep=1.5pt, text=gray!70!black]
+            at (8.15,4.08) {proporcionalidad ideal};
+
+        \node[align=center] at (5.8,0.12)
+            {Tiempo de exposición (s)};
+        \node[rotate=90, align=center] at (0.05,2.7)
+            {Señal media (ADU)};
+    \end{tikzpicture}
+    \caption{Curva conceptual: la señal crece proporcionalmente durante el
+    régimen lineal, se desvía de esa tendencia y finalmente alcanza la
+    saturación. Reemplace la curva ilustrativa por los datos medidos.}
+    \label{fig:linealidad-detector}
+\end{figure}

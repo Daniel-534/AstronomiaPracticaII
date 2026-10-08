@@ -1,0 +1,69 @@
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[
+        font=\small,
+        borde/.style={draw=gray!65!black, line width=0.45pt},
+        rebose/.style={-{Stealth[length=1.8mm]}, draw=blue!70!black,
+            dashed, line width=1pt}
+    ]
+        \node[font=\bfseries\large, text=blue!65!black] at (8.1,5.25)
+            {Carga almacenada en los píxeles de un CCD};
+        \node[font=\bfseries, text=green!40!black] at (2.9,4.72)
+            {Régimen no saturado};
+        \node[font=\bfseries, text=red!65!black] at (13.1,4.72)
+            {Saturación y blooming};
+
+        % Cada matriz tiene cinco filas y cinco columnas de igual tamaño.
+        \fill[gray!6] (1.1,0.75) rectangle (4.7,4.35);
+        \fill[yellow!35] (2.54,2.19) rectangle (3.26,2.91);
+        \draw[step=0.72cm, borde] (1.1,0.75) grid (4.7,4.35);
+        \draw[orange!75!black, line width=1pt]
+            (2.54,2.19) rectangle (3.26,2.91);
+        \foreach \x/\y in {
+            2.72/2.38, 3.02/2.38, 2.72/2.67, 3.02/2.67
+        } {
+            \fill[orange!90!black] (\x,\y) circle (0.055);
+        }
+        \node[font=\scriptsize, align=center] at (2.9,0.38)
+            {$Q<Q_{\mathrm{sat}}$: carga confinada al píxel};
+
+        \fill[gray!6] (11.3,0.75) rectangle (14.9,4.35);
+        \fill[orange!15] (12.74,3.63) rectangle (13.46,4.35);
+        \fill[orange!45] (12.74,2.91) rectangle (13.46,3.63);
+        \fill[red!75!black] (12.74,2.19) rectangle (13.46,2.91);
+        \fill[orange!45] (12.74,1.47) rectangle (13.46,2.19);
+        \fill[orange!15] (12.74,0.75) rectangle (13.46,1.47);
+        \draw[step=0.72cm, borde] (11.3,0.75) grid (14.9,4.35);
+        \draw[red!60!black, line width=1.1pt]
+            (12.74,2.19) rectangle (13.46,2.91);
+        \foreach \x/\y in {
+            12.88/2.34, 13.12/2.34, 12.88/2.55, 13.12/2.55,
+            12.88/2.75, 13.12/2.75
+        } {
+            \fill[white] (\x,\y) circle (0.05);
+        }
+        \draw[rebose] (13.1,2.91) -- (13.1,3.5);
+        \draw[rebose] (13.1,2.19) -- (13.1,1.6);
+        \node[font=\scriptsize, align=center] at (13.1,0.38)
+            {$Q\geq Q_{\mathrm{sat}}$: el exceso alcanza píxeles vecinos};
+
+        % Leyenda: los puntos representan electrones acumulados.
+        \draw[fill=gray!6, borde] (0.75,-0.18) rectangle (1.05,0.12);
+        \node[font=\tiny, anchor=west] at (1.13,-0.03) {píxel sin carga};
+        \draw[fill=yellow!35, borde] (4.25,-0.18) rectangle (4.55,0.12);
+        \fill[orange!90!black] (4.4,-0.03) circle (0.045);
+        \node[font=\tiny, anchor=west] at (4.63,-0.03)
+            {electrones almacenados};
+        \draw[fill=red!75!black, borde] (8.35,-0.18) rectangle (8.65,0.12);
+        \fill[white] (8.5,-0.03) circle (0.045);
+        \node[font=\tiny, anchor=west] at (8.73,-0.03) {pozo saturado};
+        \draw[fill=orange!45, borde] (11.8,-0.18) rectangle (12.1,0.12);
+        \node[font=\tiny, anchor=west] at (12.18,-0.03)
+            {carga desbordada};
+    \end{tikzpicture}
+    \caption{Ilustración conceptual del blooming. En el régimen no saturado,
+    la carga se mantiene dentro del píxel iluminado. Al alcanzar su capacidad,
+    el exceso puede pasar a los píxeles vecinos y producir una traza a lo largo
+    de una columna; el patrón exacto depende del detector.}
+    \label{fig:blooming-detector}
+\end{figure}
